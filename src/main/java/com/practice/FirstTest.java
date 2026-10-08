@@ -110,12 +110,10 @@ public class FirstTest {
             writer.println();
             writer.println("========================================================================================");
             writer.println("SECURITY & DEFENSIVE INPUT VALIDATION TEST REPORT");
-            writer.println("Endpoint: " + DEFAULT_BASE_URL + ENDPOINT + " (Method: POST)");
+            writer.println("Target: " + DEFAULT_BASE_URL + ENDPOINT + " (Method: POST)");
+            writer.println("Parameters Audited: @RequestParam(\"bioId\") Long, @RequestParam(\"password\") String");
             writer.println("Session Started: " + LocalDateTime.now().format(TIMESTAMP_FORMATTER));
             writer.println("========================================================================================");
-            writer.printf("%-23s | %-6s | %-10s | %-8s | %-18s | %s%n",
-                    "TIMESTAMP", "RESULT", "STATUS", "TIME", "CATEGORY", "PAYLOAD & DETAILS");
-            writer.println("----------------------------------------------------------------------------------------");
             writer.flush();
         } catch (IOException e) {
             System.err.println("Warning: Unable to initialize log file " + LOG_FILE_PATH + ": " + e.getMessage());
@@ -141,6 +139,7 @@ public class FirstTest {
         int statusCode = 0;
         long responseTime = 0;
         String responseBody = "";
+        Map<String, String> requestParamsSent = new LinkedHashMap<>();
 
         try {
             RequestSpecification request = given()
@@ -150,23 +149,34 @@ public class FirstTest {
             if (bioId != OMITTED_PARAM) {
                 if (bioId != null) {
                     request.formParam("bioId", bioId);
+                    requestParamsSent.put("bioId", String.valueOf(bioId));
                 } else {
                     request.formParam("bioId", "");
+                    requestParamsSent.put("bioId", "null (sent as empty string \"\")");
                 }
+            } else {
+                requestParamsSent.put("bioId", "[OMITTED / NOT SENT]");
             }
 
             // Attach password if not omitted
             if (password != OMITTED_PARAM) {
                 if (password != null) {
                     request.formParam("password", password);
+                    requestParamsSent.put("password", String.valueOf(password));
                 } else {
                     request.formParam("password", "");
+                    requestParamsSent.put("password", "null (sent as empty string \"\")");
                 }
+            } else {
+                requestParamsSent.put("password", "[OMITTED / NOT SENT]");
             }
 
             // Attach any extra parameters (for parameter tampering tests)
             if (extraParams != null && !extraParams.isEmpty()) {
-                extraParams.forEach(request::formParam);
+                extraParams.forEach((k, v) -> {
+                    request.formParam(k, v);
+                    requestParamsSent.put(k, String.valueOf(v));
+                });
             }
 
             response = request.post(ENDPOINT);
@@ -222,11 +232,14 @@ public class FirstTest {
         }
 
         boolean passed = violations.isEmpty();
-        logResult(passed, statusCode, responseTime, category, payloadDescription, violations, responseBody);
+        String requestTransport = "POST " + DEFAULT_BASE_URL + ENDPOINT + " (application/x-www-form-urlencoded)";
+        logResult(passed, statusCode, responseTime, category, payloadDescription,
+                requestTransport, requestParamsSent, violations, responseBody);
 
         assertTrue(passed,
-                String.format("Security Test Failed! Category: [%s] | Payload: [%s]%nViolations:%n - %s%nResponse Status: %d%nResponse Body: %s",
-                        category, payloadDescription, String.join(System.lineSeparator() + " - ", violations),
+                String.format("Security Test Failed! Category: [%s] | Payload: [%s]%nRequest Params: %s%nViolations:%n - %s%nResponse Status: %d%nResponse Body: %s",
+                        category, payloadDescription, requestParamsSent,
+                        String.join(System.lineSeparator() + " - ", violations),
                         statusCode, truncate(responseBody, 250)));
 
         return response;
@@ -246,6 +259,7 @@ public class FirstTest {
 
     private static synchronized void logResult(boolean passed, int statusCode, long responseTime,
                                                String category, String payloadDescription,
+                                               String requestTransport, Map<String, String> requestParamsSent,
                                                List<String> violations, String responseBody) {
         String timestamp = LocalDateTime.now().format(TIMESTAMP_FORMATTER);
         String resultStr = passed ? "PASS" : "FAIL";
@@ -258,23 +272,79 @@ public class FirstTest {
             details = "VIOLATION: " + String.join("; ", violations);
         }
 
-        String logLine = String.format("%-23s | %-6s | %-10s | %-6dms | %-18s | Payload: \"%s\" -> %s",
-                timestamp, resultStr, statusStr, responseTime, category,
-                truncate(payloadDescription, 35), details);
+        // 1. Console Output
+        System.out.printf("[%s] %-10s (%3dms) | %-18s | Test: %s%n",
+                resultStr, statusStr, responseTime, category, truncate(payloadDescription, 45));
+        System.out.print("   --> Request Params: ");
+        if (requestParamsSent == null || requestParamsSent.isEmpty()) {
+            System.out.println("{none}");
+        } else {
+            System.out.println(formatParamsForConsole(requestParamsSent));
+        }
+        System.out.println("   <-- Response Body:  " + formatResponseBody(responseBody, 250));
+        if (!passed) {
+            System.out.println("   !!! VIOLATIONS:     " + details);
+        }
 
-        // Console output
-        System.out.println(logLine);
-
-        // File logging
+        // 2. Structured File Logging
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(LOG_FILE_PATH, true)))) {
-            writer.println(logLine);
-            if (!passed && responseBody != null && !responseBody.isBlank()) {
-                writer.println("   [Response Body Snippet]: " + truncate(responseBody, 300));
+            writer.println("----------------------------------------------------------------------------------------");
+            writer.printf("[%s] [%s] Category: %s | Test: %s%n", timestamp, resultStr, category, payloadDescription);
+            writer.println("  [REQUEST]");
+            writer.println("    Endpoint & Transport: " + requestTransport);
+            writer.println("    Request Params Sent:");
+            if (requestParamsSent != null && !requestParamsSent.isEmpty()) {
+                requestParamsSent.forEach((k, v) ->
+                        writer.printf("      * %-14s = %s%n", k, formatParamValue(v)));
+            } else {
+                writer.println("      * (None)");
+            }
+            writer.println("  [RESPONSE]");
+            writer.printf("    Status Code:          %s (%d ms)%n", statusStr, responseTime);
+            writer.println("    Response Body:        " + formatResponseBody(responseBody, 2000));
+            writer.println("  [VERDICT]");
+            writer.println("    Outcome:              " + (passed ? "PASS" : "FAIL - " + details));
+            if (!violations.isEmpty()) {
+                writer.println("    Violations Detected:");
+                for (String v : violations) {
+                    writer.println("      - " + v);
+                }
             }
             writer.flush();
         } catch (IOException e) {
             System.err.println("Failed to write to log file: " + e.getMessage());
         }
+    }
+
+    private static String formatParamsForConsole(Map<String, String> params) {
+        StringBuilder sb = new StringBuilder("{");
+        boolean first = true;
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            if (!first) sb.append(", ");
+            sb.append(entry.getKey()).append("=").append(truncate(entry.getValue(), 60));
+            first = false;
+        }
+        sb.append("}");
+        return sb.toString();
+    }
+
+    private static String formatParamValue(String val) {
+        if (val == null) return "null";
+        if (val.length() > 200) {
+            return val.substring(0, 150) + "... [truncated: " + val.length() + " chars total]";
+        }
+        return val;
+    }
+
+    private static String formatResponseBody(String body, int maxLen) {
+        if (body == null || body.isBlank()) {
+            return "(empty body)";
+        }
+        String clean = body.replace("\r", " ").replace("\n", " ");
+        if (clean.length() <= maxLen) {
+            return clean;
+        }
+        return clean.substring(0, maxLen) + "... [truncated: " + clean.length() + " chars total]";
     }
 
     private static String truncate(String text, int maxLength) {
@@ -624,7 +694,12 @@ public class FirstTest {
 
             long elapsed = System.currentTimeMillis() - startTime;
             boolean passed = violations.isEmpty();
-            logResult(passed, statusCode, elapsed, "Transport/QueryParam", "SQLi in queryParam", violations, responseBody);
+            Map<String, String> queryParams = new LinkedHashMap<>();
+            queryParams.put("bioId", String.valueOf(VALID_BIO_ID));
+            queryParams.put("password", "' OR '1'='1'");
+            String requestTransport = "POST " + DEFAULT_BASE_URL + ENDPOINT + " (Query Parameters in URL)";
+            logResult(passed, statusCode, elapsed, "Transport/QueryParam", "SQLi in queryParam",
+                    requestTransport, queryParams, violations, responseBody);
             assertTrue(passed, "Transport QueryParam test failed: " + String.join("; ", violations));
         }
 
@@ -663,7 +738,12 @@ public class FirstTest {
 
             long elapsed = System.currentTimeMillis() - startTime;
             boolean passed = violations.isEmpty();
-            logResult(passed, statusCode, elapsed, "Content-Type", "Raw JSON payload", violations, responseBody);
+            Map<String, String> bodyInfo = new LinkedHashMap<>();
+            bodyInfo.put("Content-Type", "application/json");
+            bodyInfo.put("JSON Body Payload", "{\"bioId\": 1001, \"password\": \"' OR '1'='1\"}");
+            String requestTransport = "POST " + DEFAULT_BASE_URL + ENDPOINT + " (application/json Body)";
+            logResult(passed, statusCode, elapsed, "Content-Type", "Raw JSON payload",
+                    requestTransport, bodyInfo, violations, responseBody);
             assertTrue(passed, "Content-Type negotiation test failed: " + String.join("; ", violations));
         }
     }

