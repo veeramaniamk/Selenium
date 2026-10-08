@@ -1,7 +1,0 @@
-com\practice\FirstTest$TransportAndPayloadSecurityTests.class
-com\practice\FirstTest$CommandInjectionTests.class
-com\practice\FirstTest$XssInjectionTests.class
-com\practice\FirstTest$ParameterTypeAndMissingParameterTests.class
-com\practice\FirstTest.class
-com\practice\FirstTest$SqlInjectionTests.class
-com\practice\FirstTest$BoundaryAndMalformedInputTests.class
