@@ -1357,3 +1357,22 @@ Session Started: 2026-10-09 10:47:12.508
     Response Body:        {"message":"Type mismatch: Provided value does not match the expected data type.","status":400}
   [VERDICT]
     Outcome:              PASS
+
+========================================================================================
+SECURITY & DEFENSIVE INPUT VALIDATION TEST REPORT
+Target: http://localhost:8080/auth/test-login (Method: POST)
+Parameters Audited: @RequestParam("bioId") Long, @RequestParam("password") String
+Session Started: 2026-10-09 13:10:32.761
+========================================================================================
+----------------------------------------------------------------------------------------
+[2026-10-09 13:10:43.492] [PASS] Category: Boundary/LongString | Test: 1,000 char string
+  [REQUEST]
+    Endpoint & Transport: POST http://localhost:8080/auth/test-login (application/x-www-form-urlencoded)
+    Request Params Sent:
+      * bioId          = 1001
+      * password       = AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA... [truncated: 1000 chars total]
+  [RESPONSE]
+    Status Code:          HTTP 400 (10403 ms)
+    Response Body:        {"message":"Invalid Credentials","status":400}
+  [VERDICT]
+    Outcome:              PASS
