@@ -5,11 +5,13 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.platform.engine.FilterResult;
+import org.junit.platform.engine.TestDescriptor;
 import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
+import org.junit.platform.launcher.PostDiscoveryFilter;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 import org.junit.platform.launcher.listeners.SummaryGeneratingListener;
@@ -19,11 +21,9 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.stream.Stream;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
@@ -149,6 +149,7 @@ public class FirstTest {
             if (bioId != OMITTED_PARAM) {
                 if (bioId != null) {
                     request.formParam("bioId", bioId);
+                    request.param("bioId", bioId);
                     requestParamsSent.put("bioId", String.valueOf(bioId));
                 } else {
                     request.formParam("bioId", "");
@@ -162,6 +163,7 @@ public class FirstTest {
             if (password != OMITTED_PARAM) {
                 if (password != null) {
                     request.formParam("password", password);
+                    request.param("password", password);
                     requestParamsSent.put("password", String.valueOf(password));
                 } else {
                     request.formParam("password", "");
@@ -526,10 +528,11 @@ public class FirstTest {
             executeAndValidate(VALID_BIO_ID, longPassword, "Boundary/LongString", "9,600 char string");
         }
 
+        @Tag("testOversizedPassword64KB")
         @Test
         @DisplayName("Verify oversized password (65,536 characters / 64KB) - Buffer limit")
         void testOversizedPassword64KB() {
-            String oversizedPassword = "Z".repeat(65536);
+            String oversizedPassword = "Z".repeat(655369000);
             executeAndValidate(VALID_BIO_ID, oversizedPassword, "Boundary/LongString", "65,536 char string (64KB)");
         }
 
@@ -752,13 +755,41 @@ public class FirstTest {
     // PROGRAMMATIC LAUNCHER (Allows running via 'mvn exec:java' or 'java FirstTest')
     // =========================================================================
     public static void main(String[] args) {
+        // Retrieve filter from command line arguments or system property (-Dtest=... or -Dfilter=...)
+        String filter = null;
+        if (args != null && args.length > 0 && !args[0].isBlank()) {
+            filter = args[0].trim();
+        } else if (System.getProperty("test") != null && !System.getProperty("test").isBlank()) {
+            filter = System.getProperty("test").trim();
+        } else if (System.getProperty("filter") != null && !System.getProperty("filter").isBlank()) {
+            filter = System.getProperty("filter").trim();
+        }
+
         System.out.println("Starting Automated Security Test Suite for /test-login...");
         System.out.println("Target Base URL: " + DEFAULT_BASE_URL);
+        if (filter != null) {
+            System.out.println("Applying Test Filter: \"" + filter + "\"");
+        } else {
+            System.out.println("Running ALL tests (no filter specified).");
+        }
 
-        LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
-                .selectors(DiscoverySelectors.selectClass(FirstTest.class))
-                .build();
+        LauncherDiscoveryRequestBuilder requestBuilder = LauncherDiscoveryRequestBuilder.request()
+                .selectors(DiscoverySelectors.selectClass(FirstTest.class));
 
+        if (filter != null) {
+            final String filterPattern = filter.toLowerCase();
+            requestBuilder.filters((PostDiscoveryFilter) testDescriptor -> {
+                if (testDescriptor.isContainer()) {
+                    boolean containerMatches = matchesFilter(testDescriptor, filterPattern);
+                    boolean descendantMatches = testDescriptor.getDescendants().stream()
+                            .anyMatch(d -> matchesFilter(d, filterPattern));
+                    return FilterResult.includedIf(containerMatches || descendantMatches);
+                }
+                return FilterResult.includedIf(matchesFilter(testDescriptor, filterPattern));
+            });
+        }
+
+        LauncherDiscoveryRequest request = requestBuilder.build();
         Launcher launcher = LauncherFactory.create();
         SummaryGeneratingListener listener = new SummaryGeneratingListener();
         launcher.registerTestExecutionListeners(listener);
@@ -767,7 +798,7 @@ public class FirstTest {
         TestExecutionSummary summary = listener.getSummary();
         System.out.println();
         System.out.println("========================================================================================");
-        System.out.println("SECURITY TEST SUITE EXECUTION SUMMARY");
+        System.out.println("SECURITY TEST SUITE EXECUTION SUMMARY" + (filter != null ? " [FILTER: " + filter + "]" : ""));
         System.out.println("========================================================================================");
         System.out.println("Total Tests Found:      " + summary.getTestsFoundCount());
         System.out.println("Total Tests Started:    " + summary.getTestsStartedCount());
@@ -777,12 +808,33 @@ public class FirstTest {
         System.out.println("Results Log Written To: " + LOG_FILE_PATH);
         System.out.println("========================================================================================");
 
+        if (summary.getTestsStartedCount() == 0) {
+            System.out.println("NOTE: No tests matched filter '" + filter + "'.");
+            System.out.println("Hints:");
+            System.out.println(" - Category names: sql, xss, command, boundary, malformed, param, tampering, transport");
+            System.out.println(" - Class names:    SqlInjectionTests, XssInjectionTests, CommandInjectionTests, etc.");
+            System.out.println(" - Method names:   testMissingBioIdParameter, testEmptyPassword, testOversizedPassword64KB, etc.");
+        }
+
         if (summary.getTestsFailedCount() > 0) {
             System.err.println("Security vulnerabilities or test failures were identified! Check " + LOG_FILE_PATH);
             System.exit(1);
         } else {
-            System.out.println("All security checks passed safely!");
+            System.out.println("All executed security checks passed safely!");
             System.exit(0);
         }
+    }
+
+    private static boolean matchesFilter(TestDescriptor descriptor, String filterPattern) {
+        TestDescriptor current = descriptor;
+        while (current != null) {
+            if (current.getDisplayName().toLowerCase().contains(filterPattern)
+                    || current.getLegacyReportingName().toLowerCase().contains(filterPattern)
+                    || current.getUniqueId().toString().toLowerCase().contains(filterPattern)) {
+                return true;
+            }
+            current = current.getParent().orElse(null);
+        }
+        return false;
     }
 }
