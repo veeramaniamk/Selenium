@@ -1,6 +1,5 @@
 package com.practice;
 
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
 import org.junit.platform.engine.discovery.DiscoverySelectors;
