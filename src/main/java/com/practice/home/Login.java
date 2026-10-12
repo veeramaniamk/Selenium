@@ -942,15 +942,6 @@ public class Login {
     public static List<TestCase> buildTestCases() {
         List<TestCase> list = new ArrayList<>();
 
-        // 1. Right / Valid Credentials
-        list.add(new TestCase(
-                "TC-01",
-                "Valid Credentials",
-                "Valid login ID and correct password (Happy Path)",
-                VALID_LOGIN_ID,
-                VALID_PASSWORD,
-                true));
-
         // 2. Wrong Password
         list.add(new TestCase(
                 "TC-02",
@@ -1050,6 +1041,16 @@ public class Login {
                 "walkin111".repeat(30),
                 false));
 
+
+                // 1. Right / Valid Credentials
+        list.add(new TestCase(
+                "TC-01",
+                "Valid Credentials",
+                "Valid login ID and correct password (Happy Path)",
+                VALID_LOGIN_ID,
+                VALID_PASSWORD,
+                true));
+                
         return list;
     }
 }

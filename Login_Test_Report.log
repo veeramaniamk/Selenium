@@ -1,187 +1,226 @@
 ====================================================================================================
                       SELENIUM AUTOMATION TEST REPORT: Login.java                                  
 ====================================================================================================
-Generated Date & Time : 2026-10-12 14:16:31
+Generated Date & Time : 2026-10-12 16:02:58
 Target Website URL    : http://13.233.119.231
 Browser Engine        : Google Chrome (Headless/Interactive) with CDP Performance Logging
 Test Scope            : Entrance page, Dual Auth, Login Form (Login ID + Password), Network Traffic
-Baseline Credentials  : Login ID=23114 | Password=walkin1111
+Baseline Credentials  : Login ID=23114 | Password=walkin111
 ====================================================================================================
 
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-01 [Valid Credentials]
 DESCRIPTION   : Valid login ID and correct password (Happy Path)
-TIMESTAMP     : 2026-10-12 14:16:40
+TIMESTAMP     : 2026-10-12 16:03:05
 INPUT VALUES  :
   * Login ID : "23114"
-  * Password : "walkin1111"
+  * Password : "walkin111"
 EXPECTED TYPE : VALID CREDENTIALS (SHOULD AUTHENTICATE)
 ----------------------------------------------------------------------------------------------------
 CAPTURED NETWORK ACTIVITY:
   [1] HTTP REQUEST:
-      URL    : http://13.233.119.231/
+      URL    : http://13.233.119.231/dashboard.php
       Method : GET
       Param / Body / FormData: [None]
-      Request Headers: {Upgrade-Insecure-Requests=1, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
-      HTTP RESPONSE:
-      URL         : http://13.233.119.231/
-      Status Code : 200 OK
-      MIME Type   : text/html
-      Response Body Got:
-        [Empty or Streaming/Redirected]
-
-  [2] HTTP REQUEST:
-      URL    : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Method : GET
-      URL Query Parameters:
-        family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Request Headers: {Referer=http://13.233.119.231/, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, sec-ch-ua="Chromium";v="154", "Google Chrome";v="154", "Not A(Brand";v="99", sec-ch-ua-mobile=?0, sec-ch-ua-platform="Windows"}
-      HTTP RESPONSE:
-      URL         : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Status Code : 200 
-      MIME Type   : text/css
-      Response Body Got:
-        [Empty or Streaming/Redirected]
-
-  [3] HTTP REQUEST:
-      URL    : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
-      Method : GET
-      Param / Body / FormData: [None]
-      Request Headers: {Referer=http://13.233.119.231/, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, sec-ch-ua="Chromium";v="154", "Google Chrome";v="154", "Not A(Brand";v="99", sec-ch-ua-mobile=?0, sec-ch-ua-platform="Windows"}
-      HTTP RESPONSE:
-      URL         : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
-      Status Code : 200 
-      MIME Type   : application/javascript
-      Response Body Got:
-        [Empty or Streaming/Redirected]
-
-  [4] HTTP REQUEST:
-      URL    : http://13.233.119.231/
-      Method : POST
-      Param / Body / FormData:
-        csrf_token=b8291cded801c4b762a2dd0691716ba75a682f7a35489a75e56247d8605f57d9&identifier=23114&password=walkin1111
       Request Headers: {Content-Type=application/x-www-form-urlencoded, Origin=http://13.233.119.231, Referer=http://13.233.119.231/, Upgrade-Insecure-Requests=1, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
       HTTP RESPONSE:
-      URL         : http://13.233.119.231/
+      URL         : http://13.233.119.231/dashboard.php
       Status Code : 200 OK
       MIME Type   : text/html
       Response Body Got:
-        [Full HTML Content Omitted - Response Code: 200 OK | Title: "SIMATS 360" | Length: 39351 chars]
+        [Full HTML Content Omitted - Response Code: 200 OK | Title: "VIANA 360" | Length: 317559 chars]
 
-  [5] HTTP REQUEST:
-      URL    : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
+  [2] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/software-tickets.php?action=pending_count
       Method : GET
       URL Query Parameters:
-        family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Request Headers: {Referer=http://13.233.119.231/}
+        action=pending_count
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjNmMTU3ZDVmOWQzZmMxN2YyYWI0NzEwOWU3NDM5NWQyIiwiaWF0IjoxNzkxODAxMTgzLCJuYmYiOjE3OTE4MDExODMsImV4cCI6MTc5MTgwMjA4M30.j2s21c7iqNSlHbAsGMON80FCunppXP76COA1kthPRr0}
       HTTP RESPONSE:
-      URL         : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Status Code : 200 
-      MIME Type   : text/css
+      URL         : http://13.233.119.231/api/employee/software-tickets.php?action=pending_count
+      Status Code : 200 OK
+      MIME Type   : application/json
       Response Body Got:
-        /* latin */
-@font-face {
-  font-family: 'Arvo';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/arvo/v23/tDbD2oWUg0MKqScQ7Q.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin */
-@font-face {
-  font-family: 'Arvo';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/arvo/v23/tDbM2oWUg0MKoZw1-LPK8w.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZOIHQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZOIHQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-dis
-        ... [Payload truncated, total length: 4135 chars]
+        {"success":true,"data":{"count":0,"is_handler":false}}
 
-  [6] HTTP REQUEST:
-      URL    : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
+  [3] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/digilocker-verification.php?action=status
+      Method : GET
+      URL Query Parameters:
+        action=status
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjNmMTU3ZDVmOWQzZmMxN2YyYWI0NzEwOWU3NDM5NWQyIiwiaWF0IjoxNzkxODAxMTgzLCJuYmYiOjE3OTE4MDExODMsImV4cCI6MTc5MTgwMjA4M30.j2s21c7iqNSlHbAsGMON80FCunppXP76COA1kthPRr0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/digilocker-verification.php?action=status
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"state":"verified","verified_at":"2026-07-22 02:59:16","masked_phone":"63******52","phone_valid":true,"aadhaar_number":"287467652410","aadhaar_prefilled":true}}
+
+  [4] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/dashboard-theme.php
       Method : GET
       Param / Body / FormData: [None]
-      Request Headers: {Referer=http://13.233.119.231/}
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjNmMTU3ZDVmOWQzZmMxN2YyYWI0NzEwOWU3NDM5NWQyIiwiaWF0IjoxNzkxODAxMTgzLCJuYmYiOjE3OTE4MDExODMsImV4cCI6MTc5MTgwMjA4M30.j2s21c7iqNSlHbAsGMON80FCunppXP76COA1kthPRr0}
       HTTP RESPONSE:
-      URL         : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
-      Status Code : 200 
-      MIME Type   : application/javascript
+      URL         : http://13.233.119.231/api/employee/dashboard-theme.php
+      Status Code : 200 OK
+      MIME Type   : application/json
       Response Body Got:
-        /* -----------------------------------------------
-/* Author : Vincent Garreau  - vincentgarreau.com
-/* MIT license: http://opensource.org/licenses/MIT
-/* Demo / Generator : vincentgarreau.com/particles.js
-/* GitHub : github.com/VincentGarreau/particles.js
-/* How to use? : Check the GitHub README
-/* v2.0.0
-/* ----------------------------------------------- */
-function hexToRgb(e){var a=/^#?([a-f\d])([a-f\d])([a-f\d])$/i;e=e.replace(a,function(e,a,t,i){return a+a+t+t+i+i});var t=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e);return t?{r:parseInt(t[1],16),g:parseInt(t[2],16),b:parseInt(t[3],16)}:null}function clamp(e,a,t){return Math.min(Math.max(e,a),t)}function isInArray(e,a){return a.indexOf(e)>-1}var pJS=function(e,a){var t=document.querySelector("#"+e+" > .particles-js-canvas-el");this.pJS={canvas:{el:t,w:t.offsetWidth,h:t.offsetHeight},particles:{number:{value:400,density:{enable:!0,value_area:800}},color:{value:"#fff"},shape:{type:"circle",stroke:{width:0,color:"#ff0000"},polygon:{nb_sides:5},image:{src:"",width:100,height:100}},opacity:{value:1,random:!1,anim:{enable:!1,speed:2,opacity_min:0,sync:!1}},size:{value:20,random:!1,anim:{enable:!1,speed:20,size_min:0,sync:!1}},line_linked:{enable:!0,distance:100,color:"#fff",opacity:1,width:1},move:{enable:!0,speed:2,direction:"none",random:!1,straight:!1,out_mode:"out",bounce:!1,attract:{enable:!1,rotateX:3e3,rotateY:3e3}},array:[]},interactivity:{detect_on:"canvas",events:{onhover:{enable:!0,mode:"grab"},onclick:{enable:!0,mode:"push"},resize:!0},modes:{grab:{distance:100,line_linked:{opacity:1}},bubble:{distance:200,size:80,duration:.4},repulse:{distance:200,duration:.4},push:{particles_nb:4},remove:{particles_nb:2}},mouse:{}},retina_detect:!1,fn:{interact:{},modes:{},vendors:{}},tmp:{}};var i=this.pJS;a&&Object.deepExtend(i,a),i.tmp.obj={size_value:i.particles.size.value,size_anim_speed:i.particles.size.anim.speed,move_speed:i.particles.move.speed,line_linked_distance:i.particles.line_linked.distance,line_linked_width:i.particles.line_linked.width,mode_grab_distance:i.interactivity.modes.grab.distance,mode_bubble_distance:i.interactivity.modes.bubble.distance,mode_bubble_size:i.interactivity.modes.bubble.size,mode_repulse_distance:i.interactivity.modes.repulse.distance},i.fn.retinaInit=function(){i.retina_detect&&window.devicePixelRatio>1?(i.canvas.pxratio=window.devicePixelRatio,i.tmp.retina=!0):(i.canvas.pxratio=1,i.tmp.retina=!1),i.canvas.w=i.canvas.el.offsetWidth*i.canvas.pxratio,i.canvas.h=i.canvas.el.offsetHeight*i.canvas.pxratio,i.particles.size.value=i.tmp.obj.size_value*i.canvas.pxratio,i.particles.size.anim.speed=i.tmp.obj.size_anim_speed*i.canvas.pxratio,i.particles.move.speed=i.tmp.obj.move_speed*i.canvas.pxratio,i.particles.line_linked.distance=i.tmp.obj.line_linked_distance*i.canvas.pxratio,i.interactivity.modes.grab.distance=i.tmp.obj.mode_grab_distance*i.canvas.pxratio,i.interactivity.modes.bubble.distance=i.tmp.obj.mode_bubble_distance*i.canvas.pxratio,i.particles.line_l
-        ... [Payload truncated, total length: 23364 chars]
+        {"success":true,"data":{"themes":[{"id":15,"bio_id":"23114","media_type":"image","file_url":"storage\/themes\/23114_6a9529e53fa6c2.55798739.jpg","display_name":"app_bg.jpg","file_size":1931577,"created_at":"2026-08-31 07:14:45","presigned_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/storage\/themes\/23114_6a9529e53fa6c2.55798739.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T103304Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=db3aa3397f039a52effa919508a568ec86b2ef72f1cf9be3d7d3d4de3c5243bd"}]}}
+
+  [5] HTTP REQUEST:
+      URL    : http://13.233.119.231/privileges/api/doa/pending_counts.php
+      Method : GET
+      Param / Body / FormData: [None]
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/privileges/api/doa/pending_counts.php
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"by_slug":[],"total":0}}
+
+  [6] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/approval-counts.php
+      Method : GET
+      Param / Body / FormData: [None]
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjNmMTU3ZDVmOWQzZmMxN2YyYWI0NzEwOWU3NDM5NWQyIiwiaWF0IjoxNzkxODAxMTgzLCJuYmYiOjE3OTE4MDExODMsImV4cCI6MTc5MTgwMjA4M30.j2s21c7iqNSlHbAsGMON80FCunppXP76COA1kthPRr0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/approval-counts.php
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"pendingCounts":{"purchase":0,"projectHandover":0,"payment":0,"consumable":0,"scrape":0,"scrapDispatch":0,"equipment":0,"equipmentEdit":0,"service":0,"leave":0,"substitute":0,"privilege":0,"project":0,"event":0,"claim":0,"total":0},"weekendClaimsPending":0,"dutyClaimsPending":0,"claimsPendingTotal":0,"pendingTicketsCount":0}}
+
+  [7] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/home.php
+      Method : GET
+      Param / Body / FormData: [None]
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjNmMTU3ZDVmOWQzZmMxN2YyYWI0NzEwOWU3NDM5NWQyIiwiaWF0IjoxNzkxODAxMTgzLCJuYmYiOjE3OTE4MDExODMsImV4cCI6MTc5MTgwMjA4M30.j2s21c7iqNSlHbAsGMON80FCunppXP76COA1kthPRr0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/home.php
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"home":{"summary":{"bio_id":"23114","staff_id":"SSENTS881","employee_name":"Veeramani A","designation":"Senior Developer Intern - SDI","level":"L-24","category":"Non teaching","emp_type":"Full time","department":"Software","campus":"Viana Soft Private Limited","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_68b70257432b41.09819328.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T103304Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=af1a4ef6400bfa9380850663e6eb156a9a9ed3ddbbf17fc617823fdd6ba07caf","doj":"2024-02-05"},"statistics":{"current_month":"October 2026","current_year":"2026"},"leave":{"types":[{"abbr":"CL","name":"Casual leave","availability":1.5,"interval":"Month"},{"abbr":"SL","name":"Sick leave","availability":5,"interval":"Month"},{"abbr":"EL","name":"Earned leave","availability":1,"interval":"Month"}],"message":"Reporting Authority: Dr. V. Deepak Nallasamy (389)","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T103304Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=627bc0b5731ae834bbd0e5ff22748c7e601db8813d64448d45bc12e71fd4a502","display":"Reporting Authority: Dr. V. Deepak Nallasamy (389)"}},"notices":{"resignation_notice":false,"resignation_message":"You are currently under the notice period!"},"navigation":[{"key":"next_duty","label":"Next Duty","href":"..\/upcoming_duties.php","show":true,"badge":0},{"key":"privilege_approval","label":"Privilege Approval","href":"..\/privilage-approval.php","show":true,"badge":0},{"key":"allowance_details","label":"Allowance Details","href":"..\/employee_allowance_details.php","show":true,"badge":0},{"key":"salary_history","label":"Salary History","href":"..\/salary_history.php","show":true,"badge":0},{"key":"video_wall","label":"Duty - Video Wall","href":"..\/video_wall.php","show":true,"badge":0},{"key":"claim_ot","label":"Claim OT","href":"..\/ot.php","show":true,"badge":0},{"key":"grievance","label":"Grievance","href":"..\/grievanceForm.php","show":true,"badge":0}],"community":{"required":false},"legacy_urls":{"attendance":"..\/attendance.php","leave_status":"..\/leave_status.php","leave_application":"..\/leave_application.php","fetch_attendance":"..\/fetch_emp_attendance.php","save_community":"\/save_community.php","profile_view":"..\/profile_view.php"}}}}
+
+  [8] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/profile.php?_ts=1791801184315
+      Method : GET
+      URL Query Parameters:
+        _ts=1791801184315
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjNmMTU3ZDVmOWQzZmMxN2YyYWI0NzEwOWU3NDM5NWQyIiwiaWF0IjoxNzkxODAxMTgzLCJuYmYiOjE3OTE4MDExODMsImV4cCI6MTc5MTgwMjA4M30.j2s21c7iqNSlHbAsGMON80FCunppXP76COA1kthPRr0, cache-control=no-cache, pragma=no-cache}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/profile.php?_ts=1791801184315
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"profile":{"identity":{"bio_id":"23114","staff_id":"SSENTS881","employee_name":"Veeramani A","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_68b70257432b41.09819328.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T103304Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=af1a4ef6400bfa9380850663e6eb156a9a9ed3ddbbf17fc617823fdd6ba07caf","status":"Active"},"work":{"campus":"Viana Soft Private Limited","department":"Software","designation":"Senior Developer Intern - SDI","category":"Non teaching","emp_type":"Full time","role":"Employee","level":"L-24","doj":"05 Feb 2024","shift":"M8.00-16.30","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T103304Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=627bc0b5731ae834bbd0e5ff22748c7e601db8813d64448d45bc12e71fd4a502","display":"Dr. V. Deepak Nallasamy (389)"}},"personal":{"gender":"Male","dob":"06 Jul 2001","phone":"6374432752","email":"veeramaniamk@gmail.com","address":"No179, Pettai Street, Pappakudi South, Pappakudi, Ariyalure, Tamil Nadu 612903","qualification":"","registration_num":"0","external_experience":"0","physically_challenged":"No","outside_inside_state":"Inside","state":"Tamil Nadu","country":"India"},"compliance":{"aadhar_num":"287467652410","pan_num":"DJPPA0854P","passport_num":""},"bank":{"bank_name":"RBL BANK","bank_ac":"309024507372","bank_ifsc":"RATN0000387","branch_address":""}}}}
+
+  [9] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Method : GET
+      URL Query Parameters:
+        cycle=current&lite=1
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjNmMTU3ZDVmOWQzZmMxN2YyYWI0NzEwOWU3NDM5NWQyIiwiaWF0IjoxNzkxODAxMTgzLCJuYmYiOjE3OTE4MDExODMsImV4cCI6MTc5MTgwMjA4M30.j2s21c7iqNSlHbAsGMON80FCunppXP76COA1kthPRr0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"attendance":{"cycle":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"title":"Oct 2026","available_cycles":{"current":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"last":{"key":"last","start":"2026-08-21","end":"2026-09-20","label":"Aug 21 – Sep 20, 2026","selector_label":"Sep 2026","end_month_key":"2026-09"}},"summary":{"present_days":0,"half_days":0,"sandwich_lop_days":3,"total_present_days":0,"total_absent_days":22,"week_off_days":3,"lop_days":22,"remaining_buffer_minutes":250,"total_buffer_minutes":250,"used_buffer_minutes":0,"buffer_lop_cycles":0,"total_working_hours":0,"attendance_percent":0,"today_in_time":"—","today_out_time":"—"},"calendar":{"mode":"payroll_cycle","title":"Sep 21 – Oct 20, 2026","start_date":"2026-09-21","end_date":"2026-10-20","offset":1,"total_days":30,"days":{"2026-09-21":{"date":"2026-09-21","display_day":21,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-22":{"date":"2026-09-22","display_day":22,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-23":{"date":"2026-09-23","display_day":23,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-24":{"date":"2026-09-24","display_day":24,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-25":{"date":"2026-09-25","display_day":25,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-26":{"date":"2026-09-26","display_day":26,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-27":{"date":"2026-09-27","display_day":27,"month_label":"Sep","status":"Sandwich LOP","raw_status":"(LOP)","in_time":null,"out_time":null,"is_future":false},"2026-09-28":{"date":"2026-09-28","display_day":28,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-29":{"date":"2026-09-29","display_day":29,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-30":{"date":"2026-09-30","display_day":30,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-01":{"date":"2026-10-01","display_day":1,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-02":{"date":"2026-10-02","display_day":2,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-03":{"date":"2026-10-03","display_day
+        ... [Payload truncated, total length: 12486 chars]
+
+  [10] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/software-tickets.php?action=pending_count
+      Method : GET
+      URL Query Parameters:
+        action=pending_count
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjNmMTU3ZDVmOWQzZmMxN2YyYWI0NzEwOWU3NDM5NWQyIiwiaWF0IjoxNzkxODAxMTgzLCJuYmYiOjE3OTE4MDExODMsImV4cCI6MTc5MTgwMjA4M30.j2s21c7iqNSlHbAsGMON80FCunppXP76COA1kthPRr0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/software-tickets.php?action=pending_count
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"count":0,"is_handler":false}}
+
+  [11] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/birthday.php?action=status
+      Method : GET
+      URL Query Parameters:
+        action=status
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjNmMTU3ZDVmOWQzZmMxN2YyYWI0NzEwOWU3NDM5NWQyIiwiaWF0IjoxNzkxODAxMTgzLCJuYmYiOjE3OTE4MDExODMsImV4cCI6MTc5MTgwMjA4M30.j2s21c7iqNSlHbAsGMON80FCunppXP76COA1kthPRr0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/birthday.php?action=status
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"is_birthday_today":false,"has_auto_opened":false,"celebration_year":2026,"employee":{"bio_id":"23114","employee_name":"Veeramani A","first_name":"Veeramani","display_name":"Veeramani","formal_name":"Veeramani","department":"Software","campus":"Viana Soft Private Limited","institution":"Viana Soft Private Limited","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_68b70257432b41.09819328.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T103304Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=2651c79900b02eb5761ae3a10a4c94613a29a678d047c1ca83db699b22f922f6"},"colleague_birthdays":[],"pending_notifications":[],"stats":{"wish_count":0,"greet_me_count":0,"auto_popup_count":0},"greeting":null}}
+
+  [12] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Method : GET
+      URL Query Parameters:
+        cycle=current&lite=1
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjNmMTU3ZDVmOWQzZmMxN2YyYWI0NzEwOWU3NDM5NWQyIiwiaWF0IjoxNzkxODAxMTgzLCJuYmYiOjE3OTE4MDExODMsImV4cCI6MTc5MTgwMjA4M30.j2s21c7iqNSlHbAsGMON80FCunppXP76COA1kthPRr0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"attendance":{"cycle":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"title":"Oct 2026","available_cycles":{"current":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"last":{"key":"last","start":"2026-08-21","end":"2026-09-20","label":"Aug 21 – Sep 20, 2026","selector_label":"Sep 2026","end_month_key":"2026-09"}},"summary":{"present_days":0,"half_days":0,"sandwich_lop_days":3,"total_present_days":0,"total_absent_days":22,"week_off_days":3,"lop_days":22,"remaining_buffer_minutes":250,"total_buffer_minutes":250,"used_buffer_minutes":0,"buffer_lop_cycles":0,"total_working_hours":0,"attendance_percent":0,"today_in_time":"—","today_out_time":"—"},"calendar":{"mode":"payroll_cycle","title":"Sep 21 – Oct 20, 2026","start_date":"2026-09-21","end_date":"2026-10-20","offset":1,"total_days":30,"days":{"2026-09-21":{"date":"2026-09-21","display_day":21,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-22":{"date":"2026-09-22","display_day":22,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-23":{"date":"2026-09-23","display_day":23,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-24":{"date":"2026-09-24","display_day":24,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-25":{"date":"2026-09-25","display_day":25,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-26":{"date":"2026-09-26","display_day":26,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-27":{"date":"2026-09-27","display_day":27,"month_label":"Sep","status":"Sandwich LOP","raw_status":"(LOP)","in_time":null,"out_time":null,"is_future":false},"2026-09-28":{"date":"2026-09-28","display_day":28,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-29":{"date":"2026-09-29","display_day":29,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-30":{"date":"2026-09-30","display_day":30,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-01":{"date":"2026-10-01","display_day":1,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-02":{"date":"2026-10-02","display_day":2,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-03":{"date":"2026-10-03","display_day
+        ... [Payload truncated, total length: 12486 chars]
+
+  [13] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Method : GET
+      URL Query Parameters:
+        action=pending
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjNmMTU3ZDVmOWQzZmMxN2YyYWI0NzEwOWU3NDM5NWQyIiwiaWF0IjoxNzkxODAxMTgzLCJuYmYiOjE3OTE4MDExODMsImV4cCI6MTc5MTgwMjA4M30.j2s21c7iqNSlHbAsGMON80FCunppXP76COA1kthPRr0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"is_head":false,"date":"2026-10-12","due_groups":[],"waiting_groups":[],"due_count":0,"next_available_at":null,"must_score":false}}
+
+  [14] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-duty
+      Method : GET
+      URL Query Parameters:
+        page=home-tab-duty
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=text/html, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjNmMTU3ZDVmOWQzZmMxN2YyYWI0NzEwOWU3NDM5NWQyIiwiaWF0IjoxNzkxODAxMTgzLCJuYmYiOjE3OTE4MDExODMsImV4cCI6MTc5MTgwMjA4M30.j2s21c7iqNSlHbAsGMON80FCunppXP76COA1kthPRr0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-duty
+      Status Code : 200 OK
+      MIME Type   : text/html
+      Response Body Got:
+        [Full HTML Content Omitted - Response Code: 200 OK | Length: 4094 chars]
+
+  [15] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-leave
+      Method : GET
+      URL Query Parameters:
+        page=home-tab-leave
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=text/html, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjNmMTU3ZDVmOWQzZmMxN2YyYWI0NzEwOWU3NDM5NWQyIiwiaWF0IjoxNzkxODAxMTgzLCJuYmYiOjE3OTE4MDExODMsImV4cCI6MTc5MTgwMjA4M30.j2s21c7iqNSlHbAsGMON80FCunppXP76COA1kthPRr0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-leave
+      Status Code : 200 OK
+      MIME Type   : text/html
+      Response Body Got:
+        [Full HTML Content Omitted - Response Code: 200 OK | Length: 11060 chars]
 
 UI & BROWSER OUTCOME:
-  * Final Page URL : http://13.233.119.231/
-  * Page Title     : SIMATS 360
-  * UI Message Got : [UI Error: Invalid Login ID or password]
+  * Final Page URL : http://13.233.119.231/dashboard.php
+  * Page Title     : VIANA 360
+  * UI Message Got : None detected (No error popup or message displayed)
   * Final Verdict  : PASSED (Valid credentials accepted as expected)
 ----------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-02 [Wrong Password]
 DESCRIPTION   : Valid login ID with incorrect password
-TIMESTAMP     : 2026-10-12 14:16:45
+TIMESTAMP     : 2026-10-12 16:04:07
 INPUT VALUES  :
   * Login ID : "23114"
   * Password : "wrongpassword999"
@@ -189,328 +228,308 @@ EXPECTED TYPE : INVALID/MALFORMED (SHOULD BE REJECTED)
 ----------------------------------------------------------------------------------------------------
 CAPTURED NETWORK ACTIVITY:
   [1] HTTP REQUEST:
-      URL    : http://13.233.119.231/
+      URL    : http://13.233.119.231/dashboard.php
       Method : GET
       Param / Body / FormData: [None]
       Request Headers: {Upgrade-Insecure-Requests=1, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
       HTTP RESPONSE:
-      URL         : http://13.233.119.231/
+      URL         : http://13.233.119.231/dashboard.php
       Status Code : 200 OK
       MIME Type   : text/html
       Response Body Got:
         [Empty or Streaming/Redirected]
 
   [2] HTTP REQUEST:
-      URL    : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
+      URL    : http://13.233.119.231/api/employee/software-tickets.php?action=pending_count
       Method : GET
       URL Query Parameters:
-        family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Request Headers: {Referer=http://13.233.119.231/}
+        action=pending_count
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
       HTTP RESPONSE:
-      URL         : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Status Code : 200 
-      MIME Type   : text/css
+      URL         : http://13.233.119.231/api/employee/software-tickets.php?action=pending_count
+      Status Code : 200 OK
+      MIME Type   : application/json
       Response Body Got:
         [Empty or Streaming/Redirected]
 
   [3] HTTP REQUEST:
-      URL    : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
+      URL    : http://13.233.119.231/api/employee/digilocker-verification.php?action=status
       Method : GET
-      Param / Body / FormData: [None]
-      Request Headers: {Referer=http://13.233.119.231/}
+      URL Query Parameters:
+        action=status
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
       HTTP RESPONSE:
-      URL         : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
-      Status Code : 200 
-      MIME Type   : application/javascript
+      URL         : http://13.233.119.231/api/employee/digilocker-verification.php?action=status
+      Status Code : 200 OK
+      MIME Type   : application/json
       Response Body Got:
         [Empty or Streaming/Redirected]
 
   [4] HTTP REQUEST:
-      URL    : http://13.233.119.231/
-      Method : POST
-      Param / Body / FormData:
-        csrf_token=b8291cded801c4b762a2dd0691716ba75a682f7a35489a75e56247d8605f57d9&identifier=23114&password=wrongpassword999
-      Request Headers: {Content-Type=application/x-www-form-urlencoded, Origin=http://13.233.119.231, Referer=http://13.233.119.231/, Upgrade-Insecure-Requests=1, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
+      URL    : http://13.233.119.231/api/employee/dashboard-theme.php
+      Method : GET
+      Param / Body / FormData: [None]
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
       HTTP RESPONSE:
-      URL         : http://13.233.119.231/
+      URL         : http://13.233.119.231/api/employee/dashboard-theme.php
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        [Empty or Streaming/Redirected]
+
+  [5] HTTP REQUEST:
+      URL    : http://13.233.119.231/privileges/api/doa/pending_counts.php
+      Method : GET
+      Param / Body / FormData: [None]
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/privileges/api/doa/pending_counts.php
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        [Empty or Streaming/Redirected]
+
+  [6] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/approval-counts.php
+      Method : GET
+      Param / Body / FormData: [None]
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/approval-counts.php
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        [Empty or Streaming/Redirected]
+
+  [7] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/home.php
+      Method : GET
+      Param / Body / FormData: [None]
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/home.php
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        [Empty or Streaming/Redirected]
+
+  [8] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/profile.php?_ts=1791801186224
+      Method : GET
+      URL Query Parameters:
+        _ts=1791801186224
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0, cache-control=no-cache, pragma=no-cache}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/profile.php?_ts=1791801186224
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        [Empty or Streaming/Redirected]
+
+  [9] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Method : GET
+      URL Query Parameters:
+        cycle=current&lite=1
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        [Empty or Streaming/Redirected]
+
+  [10] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/software-tickets.php?action=pending_count
+      Method : GET
+      URL Query Parameters:
+        action=pending_count
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/software-tickets.php?action=pending_count
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        [Empty or Streaming/Redirected]
+
+  [11] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/birthday.php?action=status
+      Method : GET
+      URL Query Parameters:
+        action=status
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/birthday.php?action=status
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        [Empty or Streaming/Redirected]
+
+  [12] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-duty
+      Method : GET
+      URL Query Parameters:
+        page=home-tab-duty
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=text/html, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-duty
       Status Code : 200 OK
       MIME Type   : text/html
       Response Body Got:
-        [Full HTML Content Omitted - Response Code: 200 OK | Title: "SIMATS 360" | Length: 39351 chars]
+        [Empty or Streaming/Redirected]
 
-  [5] HTTP REQUEST:
-      URL    : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
+  [13] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-leave
       Method : GET
       URL Query Parameters:
-        family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Request Headers: {Referer=http://13.233.119.231/}
+        page=home-tab-leave
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=text/html, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
       HTTP RESPONSE:
-      URL         : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Status Code : 200 
-      MIME Type   : text/css
+      URL         : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-leave
+      Status Code : 200 OK
+      MIME Type   : text/html
       Response Body Got:
-        /* latin */
-@font-face {
-  font-family: 'Arvo';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/arvo/v23/tDbD2oWUg0MKqScQ7Q.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin */
-@font-face {
-  font-family: 'Arvo';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/arvo/v23/tDbM2oWUg0MKoZw1-LPK8w.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZOIHQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZOIHQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-dis
-        ... [Payload truncated, total length: 4135 chars]
+        [Empty or Streaming/Redirected]
 
-  [6] HTTP REQUEST:
-      URL    : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
+  [14] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Method : GET
+      URL Query Parameters:
+        cycle=current&lite=1
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        [Empty or Streaming/Redirected]
+
+  [15] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/duty-exchange.php?action=overview&slim=1
+      Method : GET
+      URL Query Parameters:
+        action=overview&slim=1
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/duty-exchange.php?action=overview&slim=1
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        [Empty or Streaming/Redirected]
+
+  [16] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/leave.php?action=bootstrap
+      Method : GET
+      URL Query Parameters:
+        action=bootstrap
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/leave.php?action=bootstrap
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        [Empty or Streaming/Redirected]
+
+  [17] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Method : GET
+      URL Query Parameters:
+        action=pending
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        [Empty or Streaming/Redirected]
+
+  [18] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/project-requests.php?action=list&page=1&search=&location=&doa_status=
+      Method : GET
+      URL Query Parameters:
+        action=list&page=1&search=&location=&doa_status=
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/project-requests.php?action=list&page=1&search=&location=&doa_status=
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        [Empty or Streaming/Redirected]
+
+  [19] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Method : GET
+      URL Query Parameters:
+        action=pending
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        [Empty or Streaming/Redirected]
+
+  [20] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Method : GET
+      URL Query Parameters:
+        action=pending
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZmFmNDM1MmUzMGIxNjY2NDQzZTJhODFjYTAzY2NlODllYWRlNTI0M2ViNWQ1N2UyODVmYjk0NTNjZmE5ZjdkNyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImNiMjk0Y2E5ODExMDQ0YjY2OGVjYWEyNWJhM2M0NjJlIiwiaWF0IjoxNzkxODAxMTg2LCJuYmYiOjE3OTE4MDExODYsImV4cCI6MTc5MTgwMjA4Nn0.bQ2MryVWLiifoHJ5ntzB5grWuw1P-MUPirjTsUNdsN0}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        [Empty or Streaming/Redirected]
+
+  [21] HTTP REQUEST:
+      URL    : http://13.233.119.231/logout.php
       Method : GET
       Param / Body / FormData: [None]
-      Request Headers: {Referer=http://13.233.119.231/}
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, Upgrade-Insecure-Requests=1, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
       HTTP RESPONSE:
-      URL         : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
-      Status Code : 200 
-      MIME Type   : application/javascript
+      URL         : http://13.233.119.231/logout.php
+      Status Code : 200 OK
+      MIME Type   : text/html
       Response Body Got:
-        /* -----------------------------------------------
-/* Author : Vincent Garreau  - vincentgarreau.com
-/* MIT license: http://opensource.org/licenses/MIT
-/* Demo / Generator : vincentgarreau.com/particles.js
-/* GitHub : github.com/VincentGarreau/particles.js
-/* How to use? : Check the GitHub README
-/* v2.0.0
-/* ----------------------------------------------- */
-function hexToRgb(e){var a=/^#?([a-f\d])([a-f\d])([a-f\d])$/i;e=e.replace(a,function(e,a,t,i){return a+a+t+t+i+i});var t=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e);return t?{r:parseInt(t[1],16),g:parseInt(t[2],16),b:parseInt(t[3],16)}:null}function clamp(e,a,t){return Math.min(Math.max(e,a),t)}function isInArray(e,a){return a.indexOf(e)>-1}var pJS=function(e,a){var t=document.querySelector("#"+e+" > .particles-js-canvas-el");this.pJS={canvas:{el:t,w:t.offsetWidth,h:t.offsetHeight},particles:{number:{value:400,density:{enable:!0,value_area:800}},color:{value:"#fff"},shape:{type:"circle",stroke:{width:0,color:"#ff0000"},polygon:{nb_sides:5},image:{src:"",width:100,height:100}},opacity:{value:1,random:!1,anim:{enable:!1,speed:2,opacity_min:0,sync:!1}},size:{value:20,random:!1,anim:{enable:!1,speed:20,size_min:0,sync:!1}},line_linked:{enable:!0,distance:100,color:"#fff",opacity:1,width:1},move:{enable:!0,speed:2,direction:"none",random:!1,straight:!1,out_mode:"out",bounce:!1,attract:{enable:!1,rotateX:3e3,rotateY:3e3}},array:[]},interactivity:{detect_on:"canvas",events:{onhover:{enable:!0,mode:"grab"},onclick:{enable:!0,mode:"push"},resize:!0},modes:{grab:{distance:100,line_linked:{opacity:1}},bubble:{distance:200,size:80,duration:.4},repulse:{distance:200,duration:.4},push:{particles_nb:4},remove:{particles_nb:2}},mouse:{}},retina_detect:!1,fn:{interact:{},modes:{},vendors:{}},tmp:{}};var i=this.pJS;a&&Object.deepExtend(i,a),i.tmp.obj={size_value:i.particles.size.value,size_anim_speed:i.particles.size.anim.speed,move_speed:i.particles.move.speed,line_linked_distance:i.particles.line_linked.distance,line_linked_width:i.particles.line_linked.width,mode_grab_distance:i.interactivity.modes.grab.distance,mode_bubble_distance:i.interactivity.modes.bubble.distance,mode_bubble_size:i.interactivity.modes.bubble.size,mode_repulse_distance:i.interactivity.modes.repulse.distance},i.fn.retinaInit=function(){i.retina_detect&&window.devicePixelRatio>1?(i.canvas.pxratio=window.devicePixelRatio,i.tmp.retina=!0):(i.canvas.pxratio=1,i.tmp.retina=!1),i.canvas.w=i.canvas.el.offsetWidth*i.canvas.pxratio,i.canvas.h=i.canvas.el.offsetHeight*i.canvas.pxratio,i.particles.size.value=i.tmp.obj.size_value*i.canvas.pxratio,i.particles.size.anim.speed=i.tmp.obj.size_anim_speed*i.canvas.pxratio,i.particles.move.speed=i.tmp.obj.move_speed*i.canvas.pxratio,i.particles.line_linked.distance=i.tmp.obj.line_linked_distance*i.canvas.pxratio,i.interactivity.modes.grab.distance=i.tmp.obj.mode_grab_distance*i.canvas.pxratio,i.interactivity.modes.bubble.distance=i.tmp.obj.mode_bubble_distance*i.canvas.pxratio,i.particles.line_l
-        ... [Payload truncated, total length: 23364 chars]
+        [Empty or Streaming/Redirected]
+
+  [22] HTTP REQUEST:
+      URL    : http://13.233.119.231/index.php?message=logout
+      Method : GET
+      URL Query Parameters:
+        message=logout
+      Request Headers: {Referer=http://13.233.119.231/logout.php, Upgrade-Insecure-Requests=1, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/index.php?message=logout
+      Status Code : 200 OK
+      MIME Type   : text/html
+      Response Body Got:
+        [Full HTML Content Omitted - Response Code: 200 OK | Title: "SIMATS 360" | Length: 39495 chars]
 
 UI & BROWSER OUTCOME:
-  * Final Page URL : http://13.233.119.231/
-  * Page Title     : SIMATS 360
-  * UI Message Got : [UI Error: Invalid Login ID or password]
-  * Final Verdict  : PASSED (Rejected correctly (Authentication denied or validation triggered))
+  * Final Page URL : http://13.233.119.231/index.php?message=logout
+  * Page Title     : 
+  * UI Message Got : 
+  * Final Verdict  : FAILED (Execution Exception: Expected condition failed: waiting for visibility of element located by By.xpath: //input[@placeholder='Enter your Login ID' or contains(@placeholder, 'Login ID')] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.7'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 154.0.8037.98, chrome: {chromedriverVersion: 154.0.8037.92 (334b65d254cc..., userDataDir: C:\Users\veera\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53660}, goog:processID: 22820, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:53660/devtoo..., se:cdpVersion: 154.0.8037.98, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: cfb87d7c71326e0ac07912ad227e51ab)
 ----------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-03 [Wrong Login ID]
 DESCRIPTION   : Non-existent login ID with valid password format
-TIMESTAMP     : 2026-10-12 14:16:50
+TIMESTAMP     : 2026-10-12 16:04:12
 INPUT VALUES  :
   * Login ID : "99999"
-  * Password : "walkin1111"
+  * Password : "walkin111"
 EXPECTED TYPE : INVALID/MALFORMED (SHOULD BE REJECTED)
 ----------------------------------------------------------------------------------------------------
 CAPTURED NETWORK ACTIVITY:
-  [1] HTTP REQUEST:
-      URL    : http://13.233.119.231/
-      Method : GET
-      Param / Body / FormData: [None]
-      Request Headers: {Upgrade-Insecure-Requests=1, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
-      HTTP RESPONSE:
-      URL         : http://13.233.119.231/
-      Status Code : 200 OK
-      MIME Type   : text/html
-      Response Body Got:
-        [Empty or Streaming/Redirected]
-
-  [2] HTTP REQUEST:
-      URL    : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Method : GET
-      URL Query Parameters:
-        family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Request Headers: {Referer=http://13.233.119.231/}
-      HTTP RESPONSE:
-      URL         : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Status Code : 200 
-      MIME Type   : text/css
-      Response Body Got:
-        [Empty or Streaming/Redirected]
-
-  [3] HTTP REQUEST:
-      URL    : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
-      Method : GET
-      Param / Body / FormData: [None]
-      Request Headers: {Referer=http://13.233.119.231/}
-      HTTP RESPONSE:
-      URL         : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
-      Status Code : 200 
-      MIME Type   : application/javascript
-      Response Body Got:
-        [Empty or Streaming/Redirected]
-
-  [4] HTTP REQUEST:
-      URL    : http://13.233.119.231/
-      Method : POST
-      Param / Body / FormData:
-        csrf_token=b8291cded801c4b762a2dd0691716ba75a682f7a35489a75e56247d8605f57d9&identifier=99999&password=walkin1111
-      Request Headers: {Content-Type=application/x-www-form-urlencoded, Origin=http://13.233.119.231, Referer=http://13.233.119.231/, Upgrade-Insecure-Requests=1, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
-      HTTP RESPONSE:
-      URL         : http://13.233.119.231/
-      Status Code : 200 OK
-      MIME Type   : text/html
-      Response Body Got:
-        [Full HTML Content Omitted - Response Code: 200 OK | Title: "SIMATS 360" | Length: 39351 chars]
-
-  [5] HTTP REQUEST:
-      URL    : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Method : GET
-      URL Query Parameters:
-        family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Request Headers: {Referer=http://13.233.119.231/}
-      HTTP RESPONSE:
-      URL         : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Status Code : 200 
-      MIME Type   : text/css
-      Response Body Got:
-        /* latin */
-@font-face {
-  font-family: 'Arvo';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/arvo/v23/tDbD2oWUg0MKqScQ7Q.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin */
-@font-face {
-  font-family: 'Arvo';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/arvo/v23/tDbM2oWUg0MKoZw1-LPK8w.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZOIHQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZOIHQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-dis
-        ... [Payload truncated, total length: 4135 chars]
-
-  [6] HTTP REQUEST:
-      URL    : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
-      Method : GET
-      Param / Body / FormData: [None]
-      Request Headers: {Referer=http://13.233.119.231/}
-      HTTP RESPONSE:
-      URL         : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
-      Status Code : 200 
-      MIME Type   : application/javascript
-      Response Body Got:
-        /* -----------------------------------------------
-/* Author : Vincent Garreau  - vincentgarreau.com
-/* MIT license: http://opensource.org/licenses/MIT
-/* Demo / Generator : vincentgarreau.com/particles.js
-/* GitHub : github.com/VincentGarreau/particles.js
-/* How to use? : Check the GitHub README
-/* v2.0.0
-/* ----------------------------------------------- */
-function hexToRgb(e){var a=/^#?([a-f\d])([a-f\d])([a-f\d])$/i;e=e.replace(a,function(e,a,t,i){return a+a+t+t+i+i});var t=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e);return t?{r:parseInt(t[1],16),g:parseInt(t[2],16),b:parseInt(t[3],16)}:null}function clamp(e,a,t){return Math.min(Math.max(e,a),t)}function isInArray(e,a){return a.indexOf(e)>-1}var pJS=function(e,a){var t=document.querySelector("#"+e+" > .particles-js-canvas-el");this.pJS={canvas:{el:t,w:t.offsetWidth,h:t.offsetHeight},particles:{number:{value:400,density:{enable:!0,value_area:800}},color:{value:"#fff"},shape:{type:"circle",stroke:{width:0,color:"#ff0000"},polygon:{nb_sides:5},image:{src:"",width:100,height:100}},opacity:{value:1,random:!1,anim:{enable:!1,speed:2,opacity_min:0,sync:!1}},size:{value:20,random:!1,anim:{enable:!1,speed:20,size_min:0,sync:!1}},line_linked:{enable:!0,distance:100,color:"#fff",opacity:1,width:1},move:{enable:!0,speed:2,direction:"none",random:!1,straight:!1,out_mode:"out",bounce:!1,attract:{enable:!1,rotateX:3e3,rotateY:3e3}},array:[]},interactivity:{detect_on:"canvas",events:{onhover:{enable:!0,mode:"grab"},onclick:{enable:!0,mode:"push"},resize:!0},modes:{grab:{distance:100,line_linked:{opacity:1}},bubble:{distance:200,size:80,duration:.4},repulse:{distance:200,duration:.4},push:{particles_nb:4},remove:{particles_nb:2}},mouse:{}},retina_detect:!1,fn:{interact:{},modes:{},vendors:{}},tmp:{}};var i=this.pJS;a&&Object.deepExtend(i,a),i.tmp.obj={size_value:i.particles.size.value,size_anim_speed:i.particles.size.anim.speed,move_speed:i.particles.move.speed,line_linked_distance:i.particles.line_linked.distance,line_linked_width:i.particles.line_linked.width,mode_grab_distance:i.interactivity.modes.grab.distance,mode_bubble_distance:i.interactivity.modes.bubble.distance,mode_bubble_size:i.interactivity.modes.bubble.size,mode_repulse_distance:i.interactivity.modes.repulse.distance},i.fn.retinaInit=function(){i.retina_detect&&window.devicePixelRatio>1?(i.canvas.pxratio=window.devicePixelRatio,i.tmp.retina=!0):(i.canvas.pxratio=1,i.tmp.retina=!1),i.canvas.w=i.canvas.el.offsetWidth*i.canvas.pxratio,i.canvas.h=i.canvas.el.offsetHeight*i.canvas.pxratio,i.particles.size.value=i.tmp.obj.size_value*i.canvas.pxratio,i.particles.size.anim.speed=i.tmp.obj.size_anim_speed*i.canvas.pxratio,i.particles.move.speed=i.tmp.obj.move_speed*i.canvas.pxratio,i.particles.line_linked.distance=i.tmp.obj.line_linked_distance*i.canvas.pxratio,i.interactivity.modes.grab.distance=i.tmp.obj.mode_grab_distance*i.canvas.pxratio,i.interactivity.modes.bubble.distance=i.tmp.obj.mode_bubble_distance*i.canvas.pxratio,i.particles.line_l
-        ... [Payload truncated, total length: 23364 chars]
-
+  [Notice: No HTTP requests captured for this interaction, or request was blocked by client-side validation]
 UI & BROWSER OUTCOME:
   * Final Page URL : http://13.233.119.231/
   * Page Title     : SIMATS 360
@@ -521,166 +540,14 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-04 [Wrong ID & Password]
 DESCRIPTION   : Non-existent login ID and wrong password
-TIMESTAMP     : 2026-10-12 14:16:56
+TIMESTAMP     : 2026-10-12 16:04:17
 INPUT VALUES  :
   * Login ID : "invalid_user_888"
   * Password : "IncorrectPass!404"
 EXPECTED TYPE : INVALID/MALFORMED (SHOULD BE REJECTED)
 ----------------------------------------------------------------------------------------------------
 CAPTURED NETWORK ACTIVITY:
-  [1] HTTP REQUEST:
-      URL    : http://13.233.119.231/
-      Method : GET
-      Param / Body / FormData: [None]
-      Request Headers: {Upgrade-Insecure-Requests=1, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
-      HTTP RESPONSE:
-      URL         : http://13.233.119.231/
-      Status Code : 200 OK
-      MIME Type   : text/html
-      Response Body Got:
-        [Empty or Streaming/Redirected]
-
-  [2] HTTP REQUEST:
-      URL    : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Method : GET
-      URL Query Parameters:
-        family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Request Headers: {Referer=http://13.233.119.231/}
-      HTTP RESPONSE:
-      URL         : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Status Code : 200 
-      MIME Type   : text/css
-      Response Body Got:
-        [Empty or Streaming/Redirected]
-
-  [3] HTTP REQUEST:
-      URL    : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
-      Method : GET
-      Param / Body / FormData: [None]
-      Request Headers: {Referer=http://13.233.119.231/}
-      HTTP RESPONSE:
-      URL         : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
-      Status Code : 200 
-      MIME Type   : application/javascript
-      Response Body Got:
-        [Empty or Streaming/Redirected]
-
-  [4] HTTP REQUEST:
-      URL    : http://13.233.119.231/
-      Method : POST
-      Param / Body / FormData:
-        csrf_token=b8291cded801c4b762a2dd0691716ba75a682f7a35489a75e56247d8605f57d9&identifier=invalid_user_888&password=IncorrectPass%21404
-      Request Headers: {Content-Type=application/x-www-form-urlencoded, Origin=http://13.233.119.231, Referer=http://13.233.119.231/, Upgrade-Insecure-Requests=1, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
-      HTTP RESPONSE:
-      URL         : http://13.233.119.231/
-      Status Code : 200 OK
-      MIME Type   : text/html
-      Response Body Got:
-        [Full HTML Content Omitted - Response Code: 200 OK | Title: "SIMATS 360" | Length: 39400 chars]
-
-  [5] HTTP REQUEST:
-      URL    : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Method : GET
-      URL Query Parameters:
-        family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Request Headers: {Referer=http://13.233.119.231/}
-      HTTP RESPONSE:
-      URL         : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Status Code : 200 
-      MIME Type   : text/css
-      Response Body Got:
-        /* latin */
-@font-face {
-  font-family: 'Arvo';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/arvo/v23/tDbD2oWUg0MKqScQ7Q.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin */
-@font-face {
-  font-family: 'Arvo';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/arvo/v23/tDbM2oWUg0MKoZw1-LPK8w.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZOIHQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZOIHQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-dis
-        ... [Payload truncated, total length: 4135 chars]
-
-  [6] HTTP REQUEST:
-      URL    : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
-      Method : GET
-      Param / Body / FormData: [None]
-      Request Headers: {Referer=http://13.233.119.231/}
-      HTTP RESPONSE:
-      URL         : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
-      Status Code : 200 
-      MIME Type   : application/javascript
-      Response Body Got:
-        /* -----------------------------------------------
-/* Author : Vincent Garreau  - vincentgarreau.com
-/* MIT license: http://opensource.org/licenses/MIT
-/* Demo / Generator : vincentgarreau.com/particles.js
-/* GitHub : github.com/VincentGarreau/particles.js
-/* How to use? : Check the GitHub README
-/* v2.0.0
-/* ----------------------------------------------- */
-function hexToRgb(e){var a=/^#?([a-f\d])([a-f\d])([a-f\d])$/i;e=e.replace(a,function(e,a,t,i){return a+a+t+t+i+i});var t=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e);return t?{r:parseInt(t[1],16),g:parseInt(t[2],16),b:parseInt(t[3],16)}:null}function clamp(e,a,t){return Math.min(Math.max(e,a),t)}function isInArray(e,a){return a.indexOf(e)>-1}var pJS=function(e,a){var t=document.querySelector("#"+e+" > .particles-js-canvas-el");this.pJS={canvas:{el:t,w:t.offsetWidth,h:t.offsetHeight},particles:{number:{value:400,density:{enable:!0,value_area:800}},color:{value:"#fff"},shape:{type:"circle",stroke:{width:0,color:"#ff0000"},polygon:{nb_sides:5},image:{src:"",width:100,height:100}},opacity:{value:1,random:!1,anim:{enable:!1,speed:2,opacity_min:0,sync:!1}},size:{value:20,random:!1,anim:{enable:!1,speed:20,size_min:0,sync:!1}},line_linked:{enable:!0,distance:100,color:"#fff",opacity:1,width:1},move:{enable:!0,speed:2,direction:"none",random:!1,straight:!1,out_mode:"out",bounce:!1,attract:{enable:!1,rotateX:3e3,rotateY:3e3}},array:[]},interactivity:{detect_on:"canvas",events:{onhover:{enable:!0,mode:"grab"},onclick:{enable:!0,mode:"push"},resize:!0},modes:{grab:{distance:100,line_linked:{opacity:1}},bubble:{distance:200,size:80,duration:.4},repulse:{distance:200,duration:.4},push:{particles_nb:4},remove:{particles_nb:2}},mouse:{}},retina_detect:!1,fn:{interact:{},modes:{},vendors:{}},tmp:{}};var i=this.pJS;a&&Object.deepExtend(i,a),i.tmp.obj={size_value:i.particles.size.value,size_anim_speed:i.particles.size.anim.speed,move_speed:i.particles.move.speed,line_linked_distance:i.particles.line_linked.distance,line_linked_width:i.particles.line_linked.width,mode_grab_distance:i.interactivity.modes.grab.distance,mode_bubble_distance:i.interactivity.modes.bubble.distance,mode_bubble_size:i.interactivity.modes.bubble.size,mode_repulse_distance:i.interactivity.modes.repulse.distance},i.fn.retinaInit=function(){i.retina_detect&&window.devicePixelRatio>1?(i.canvas.pxratio=window.devicePixelRatio,i.tmp.retina=!0):(i.canvas.pxratio=1,i.tmp.retina=!1),i.canvas.w=i.canvas.el.offsetWidth*i.canvas.pxratio,i.canvas.h=i.canvas.el.offsetHeight*i.canvas.pxratio,i.particles.size.value=i.tmp.obj.size_value*i.canvas.pxratio,i.particles.size.anim.speed=i.tmp.obj.size_anim_speed*i.canvas.pxratio,i.particles.move.speed=i.tmp.obj.move_speed*i.canvas.pxratio,i.particles.line_linked.distance=i.tmp.obj.line_linked_distance*i.canvas.pxratio,i.interactivity.modes.grab.distance=i.tmp.obj.mode_grab_distance*i.canvas.pxratio,i.interactivity.modes.bubble.distance=i.tmp.obj.mode_bubble_distance*i.canvas.pxratio,i.particles.line_l
-        ... [Payload truncated, total length: 23364 chars]
-
+  [Notice: No HTTP requests captured for this interaction, or request was blocked by client-side validation]
 UI & BROWSER OUTCOME:
   * Final Page URL : http://13.233.119.231/
   * Page Title     : SIMATS 360
@@ -691,128 +558,14 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-05 [Malformed: Empty Fields]
 DESCRIPTION   : Both login ID and password submitted as empty strings
-TIMESTAMP     : 2026-10-12 14:17:01
+TIMESTAMP     : 2026-10-12 16:04:22
 INPUT VALUES  :
   * Login ID : ""
   * Password : ""
 EXPECTED TYPE : INVALID/MALFORMED (SHOULD BE REJECTED)
 ----------------------------------------------------------------------------------------------------
 CAPTURED NETWORK ACTIVITY:
-  [1] HTTP REQUEST:
-      URL    : http://13.233.119.231/
-      Method : GET
-      Param / Body / FormData: [None]
-      Request Headers: {Upgrade-Insecure-Requests=1, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
-      HTTP RESPONSE:
-      URL         : http://13.233.119.231/
-      Status Code : 200 OK
-      MIME Type   : text/html
-      Response Body Got:
-        [Full HTML Content Omitted - Response Code: 200 OK | Title: "SIMATS 360" | Length: 38793 chars]
-
-  [2] HTTP REQUEST:
-      URL    : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Method : GET
-      URL Query Parameters:
-        family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Request Headers: {Referer=http://13.233.119.231/}
-      HTTP RESPONSE:
-      URL         : https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap
-      Status Code : 200 
-      MIME Type   : text/css
-      Response Body Got:
-        /* latin */
-@font-face {
-  font-family: 'Arvo';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/arvo/v23/tDbD2oWUg0MKqScQ7Q.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin */
-@font-face {
-  font-family: 'Arvo';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/arvo/v23/tDbM2oWUg0MKoZw1-LPK8w.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZOIHQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZOIHQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-dis
-        ... [Payload truncated, total length: 4135 chars]
-
-  [3] HTTP REQUEST:
-      URL    : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
-      Method : GET
-      Param / Body / FormData: [None]
-      Request Headers: {Referer=http://13.233.119.231/}
-      HTTP RESPONSE:
-      URL         : https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js
-      Status Code : 200 
-      MIME Type   : application/javascript
-      Response Body Got:
-        /* -----------------------------------------------
-/* Author : Vincent Garreau  - vincentgarreau.com
-/* MIT license: http://opensource.org/licenses/MIT
-/* Demo / Generator : vincentgarreau.com/particles.js
-/* GitHub : github.com/VincentGarreau/particles.js
-/* How to use? : Check the GitHub README
-/* v2.0.0
-/* ----------------------------------------------- */
-function hexToRgb(e){var a=/^#?([a-f\d])([a-f\d])([a-f\d])$/i;e=e.replace(a,function(e,a,t,i){return a+a+t+t+i+i});var t=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e);return t?{r:parseInt(t[1],16),g:parseInt(t[2],16),b:parseInt(t[3],16)}:null}function clamp(e,a,t){return Math.min(Math.max(e,a),t)}function isInArray(e,a){return a.indexOf(e)>-1}var pJS=function(e,a){var t=document.querySelector("#"+e+" > .particles-js-canvas-el");this.pJS={canvas:{el:t,w:t.offsetWidth,h:t.offsetHeight},particles:{number:{value:400,density:{enable:!0,value_area:800}},color:{value:"#fff"},shape:{type:"circle",stroke:{width:0,color:"#ff0000"},polygon:{nb_sides:5},image:{src:"",width:100,height:100}},opacity:{value:1,random:!1,anim:{enable:!1,speed:2,opacity_min:0,sync:!1}},size:{value:20,random:!1,anim:{enable:!1,speed:20,size_min:0,sync:!1}},line_linked:{enable:!0,distance:100,color:"#fff",opacity:1,width:1},move:{enable:!0,speed:2,direction:"none",random:!1,straight:!1,out_mode:"out",bounce:!1,attract:{enable:!1,rotateX:3e3,rotateY:3e3}},array:[]},interactivity:{detect_on:"canvas",events:{onhover:{enable:!0,mode:"grab"},onclick:{enable:!0,mode:"push"},resize:!0},modes:{grab:{distance:100,line_linked:{opacity:1}},bubble:{distance:200,size:80,duration:.4},repulse:{distance:200,duration:.4},push:{particles_nb:4},remove:{particles_nb:2}},mouse:{}},retina_detect:!1,fn:{interact:{},modes:{},vendors:{}},tmp:{}};var i=this.pJS;a&&Object.deepExtend(i,a),i.tmp.obj={size_value:i.particles.size.value,size_anim_speed:i.particles.size.anim.speed,move_speed:i.particles.move.speed,line_linked_distance:i.particles.line_linked.distance,line_linked_width:i.particles.line_linked.width,mode_grab_distance:i.interactivity.modes.grab.distance,mode_bubble_distance:i.interactivity.modes.bubble.distance,mode_bubble_size:i.interactivity.modes.bubble.size,mode_repulse_distance:i.interactivity.modes.repulse.distance},i.fn.retinaInit=function(){i.retina_detect&&window.devicePixelRatio>1?(i.canvas.pxratio=window.devicePixelRatio,i.tmp.retina=!0):(i.canvas.pxratio=1,i.tmp.retina=!1),i.canvas.w=i.canvas.el.offsetWidth*i.canvas.pxratio,i.canvas.h=i.canvas.el.offsetHeight*i.canvas.pxratio,i.particles.size.value=i.tmp.obj.size_value*i.canvas.pxratio,i.particles.size.anim.speed=i.tmp.obj.size_anim_speed*i.canvas.pxratio,i.particles.move.speed=i.tmp.obj.move_speed*i.canvas.pxratio,i.particles.line_linked.distance=i.tmp.obj.line_linked_distance*i.canvas.pxratio,i.interactivity.modes.grab.distance=i.tmp.obj.mode_grab_distance*i.canvas.pxratio,i.interactivity.modes.bubble.distance=i.tmp.obj.mode_bubble_distance*i.canvas.pxratio,i.particles.line_l
-        ... [Payload truncated, total length: 23364 chars]
-
+  [Notice: No HTTP requests captured for this interaction, or request was blocked by client-side validation]
 UI & BROWSER OUTCOME:
   * Final Page URL : http://13.233.119.231/
   * Page Title     : SIMATS 360
@@ -820,3 +573,155 @@ UI & BROWSER OUTCOME:
   * Final Verdict  : PASSED (Rejected correctly (Authentication denied or validation triggered))
 ----------------------------------------------------------------------------------------------------
 
+----------------------------------------------------------------------------------------------------
+TEST CASE ID  : TC-06 [Malformed: Empty Login ID]
+DESCRIPTION   : Empty login ID with valid password
+TIMESTAMP     : 2026-10-12 16:04:28
+INPUT VALUES  :
+  * Login ID : ""
+  * Password : "walkin111"
+EXPECTED TYPE : INVALID/MALFORMED (SHOULD BE REJECTED)
+----------------------------------------------------------------------------------------------------
+CAPTURED NETWORK ACTIVITY:
+  [Notice: No HTTP requests captured for this interaction, or request was blocked by client-side validation]
+UI & BROWSER OUTCOME:
+  * Final Page URL : http://13.233.119.231/
+  * Page Title     : SIMATS 360
+  * UI Message Got : [Login ID Validation: Please fill out this field.]
+  * Final Verdict  : PASSED (Rejected correctly (Authentication denied or validation triggered))
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+TEST CASE ID  : TC-07 [Malformed: Empty Password]
+DESCRIPTION   : Valid login ID with empty password
+TIMESTAMP     : 2026-10-12 16:04:33
+INPUT VALUES  :
+  * Login ID : "23114"
+  * Password : ""
+EXPECTED TYPE : INVALID/MALFORMED (SHOULD BE REJECTED)
+----------------------------------------------------------------------------------------------------
+CAPTURED NETWORK ACTIVITY:
+  [Notice: No HTTP requests captured for this interaction, or request was blocked by client-side validation]
+UI & BROWSER OUTCOME:
+  * Final Page URL : http://13.233.119.231/
+  * Page Title     : SIMATS 360
+  * UI Message Got : [Password Validation: Please fill out this field.]
+  * Final Verdict  : PASSED (Rejected correctly (Authentication denied or validation triggered))
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+TEST CASE ID  : TC-08 [Malformed: Whitespace Only]
+DESCRIPTION   : Whitespace-only strings submitted for ID and password
+TIMESTAMP     : 2026-10-12 16:04:38
+INPUT VALUES  :
+  * Login ID : "     "
+  * Password : "     "
+EXPECTED TYPE : INVALID/MALFORMED (SHOULD BE REJECTED)
+----------------------------------------------------------------------------------------------------
+CAPTURED NETWORK ACTIVITY:
+  [Notice: No HTTP requests captured for this interaction, or request was blocked by client-side validation]
+UI & BROWSER OUTCOME:
+  * Final Page URL : http://13.233.119.231/
+  * Page Title     : SIMATS 360
+  * UI Message Got : [UI Error: Login ID and password are required.]
+  * Final Verdict  : PASSED (Rejected correctly (Authentication denied or validation triggered))
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+TEST CASE ID  : TC-09 [Malformed: SQL Injection]
+DESCRIPTION   : Authentication bypass SQL Injection payload
+TIMESTAMP     : 2026-10-12 16:04:44
+INPUT VALUES  :
+  * Login ID : "' OR '1'='1"
+  * Password : "' OR '1'='1"
+EXPECTED TYPE : INVALID/MALFORMED (SHOULD BE REJECTED)
+----------------------------------------------------------------------------------------------------
+CAPTURED NETWORK ACTIVITY:
+  [Notice: No HTTP requests captured for this interaction, or request was blocked by client-side validation]
+UI & BROWSER OUTCOME:
+  * Final Page URL : http://13.233.119.231/
+  * Page Title     : 13.233.119.231
+  * UI Message Got : [UI Error: This site can’t be reached
+The connection was reset.
+Try:
+Checking the connection
+Checking the proxy and the firewall
+Running Windows Network Diagnostics
+ERR_CONNECTION_RESET
+Details]
+  * Final Verdict  : PASSED (Rejected correctly (Authentication denied or validation triggered))
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+TEST CASE ID  : TC-10 [Malformed: XSS Injection]
+DESCRIPTION   : HTML/JavaScript script injection payload in login ID
+TIMESTAMP     : 2026-10-12 16:04:56
+INPUT VALUES  :
+  * Login ID : "<script>alert('XSS')</script>"
+  * Password : "walkin111"
+EXPECTED TYPE : INVALID/MALFORMED (SHOULD BE REJECTED)
+----------------------------------------------------------------------------------------------------
+CAPTURED NETWORK ACTIVITY:
+  [Notice: No HTTP requests captured for this interaction, or request was blocked by client-side validation]
+UI & BROWSER OUTCOME:
+  * Final Page URL : http://13.233.119.231/
+  * Page Title     : 
+  * UI Message Got : 
+  * Final Verdict  : FAILED (Execution Exception: Expected condition failed: waiting for visibility of element located by By.xpath: //input[@placeholder='Enter your Login ID' or contains(@placeholder, 'Login ID')] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.7'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 154.0.8037.98, chrome: {chromedriverVersion: 154.0.8037.92 (334b65d254cc..., userDataDir: C:\Users\veera\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53660}, goog:processID: 22820, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:53660/devtoo..., se:cdpVersion: 154.0.8037.98, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: cfb87d7c71326e0ac07912ad227e51ab)
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+TEST CASE ID  : TC-11 [Malformed: Special Characters]
+DESCRIPTION   : Punctuation, symbols, and malformed characters
+TIMESTAMP     : 2026-10-12 16:05:08
+INPUT VALUES  :
+  * Login ID : "!@#$%^&*()_+{}[]:;"'<>?,./"
+  * Password : "P@$$w0rd!#%&"
+EXPECTED TYPE : INVALID/MALFORMED (SHOULD BE REJECTED)
+----------------------------------------------------------------------------------------------------
+CAPTURED NETWORK ACTIVITY:
+  [Notice: No HTTP requests captured for this interaction, or request was blocked by client-side validation]
+UI & BROWSER OUTCOME:
+  * Final Page URL : http://13.233.119.231/
+  * Page Title     : 
+  * UI Message Got : 
+  * Final Verdict  : FAILED (Execution Exception: Expected condition failed: waiting for visibility of element located by By.xpath: //input[@placeholder='Enter your Login ID' or contains(@placeholder, 'Login ID')] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.7'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 154.0.8037.98, chrome: {chromedriverVersion: 154.0.8037.92 (334b65d254cc..., userDataDir: C:\Users\veera\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53660}, goog:processID: 22820, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:53660/devtoo..., se:cdpVersion: 154.0.8037.98, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: cfb87d7c71326e0ac07912ad227e51ab)
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+TEST CASE ID  : TC-12 [Malformed: Boundary Overflow]
+DESCRIPTION   : Excessively long string input to test boundary limits
+TIMESTAMP     : 2026-10-12 16:05:13
+INPUT VALUES  :
+  * Login ID : "23114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114"
+  * Password : "walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111"
+EXPECTED TYPE : INVALID/MALFORMED (SHOULD BE REJECTED)
+----------------------------------------------------------------------------------------------------
+CAPTURED NETWORK ACTIVITY:
+  [Notice: No HTTP requests captured for this interaction, or request was blocked by client-side validation]
+UI & BROWSER OUTCOME:
+  * Final Page URL : http://13.233.119.231/
+  * Page Title     : SIMATS 360
+  * UI Message Got : [UI Error: Invalid Login ID or password]
+  * Final Verdict  : PASSED (Rejected correctly (Authentication denied or validation triggered))
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+                                      TEST EXECUTION SUMMARY                                        
+====================================================================================================
+Total Scenarios Executed : 12
+Passed Scenarios         : 9
+Failed Scenarios         : 3
+Success Rate             : 75%
+Completed Timestamp      : 2026-10-12 16:05:21
+====================================================================================================
