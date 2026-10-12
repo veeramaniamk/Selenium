@@ -47,6 +47,8 @@ Compile the source code and dependencies using Maven:
 mvn clean compile
 ```
 
+mvn exec:java "-Dexec.mainClass=com.practice.home.ApplyLeave"
+
 Or standard compile:
 ```powershell
 mvn compile
