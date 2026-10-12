@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Entrance & Sign In</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 40px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #f8fafc;
+    }
+
+    p.subtitle {
+      font-size: 14px;
+      color: #94a3b8;
+      margin-bottom: 32px;
+    }
+
+    .button-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn-google {
+      background: #ffffff;
+      color: #1e293b;
+    }
+
+    .btn-google:hover {
+      background: #f1f5f9;
+      transform: translateY(-1px);
+    }
+
+    .btn-login-id {
+      background: #3b82f6;
+      color: #ffffff;
+    }
+
+    .btn-login-id:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+    }
+
+    .btn-submit {
+      background: #10b981;
+      color: #ffffff;
+      margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+      background: #059669;
+    }
+
+    .form-container {
+      display: none;
+      margin-top: 24px;
+      text-align: left;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      background: #0f172a;
+      border: 1px solid #475569;
+      border-radius: 8px;
+      color: #f8fafc;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+      border-color: #3b82f6;
+    }
+
+    .alert {
+      display: none;
+      margin-top: 20px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .alert-danger {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid #ef4444;
+      color: #fca5a5;
+    }
+
+    .alert-success {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
+      color: #6ee7b7;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 13px;
+      color: #94a3b8;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .back-link:hover {
+      color: #cbd5e1;
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Welcome</h1>
+    <p class="subtitle">Please select your preferred sign-in method</p>
+
+    <!-- Entrance View: Two Buttons -->
+    <div id="entranceSection" class="button-stack">
+      <button id="btnGoogle" class="btn btn-google" type="button" onclick="alert('Google Sign-in selected');">
+        <svg width="18" height="18" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+          <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+          <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+          <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+        </svg>
+        Sign in with Google
+      </button>
+
+      <button id="btnLoginId" class="btn btn-login-id" type="button" onclick="showLoginForm()">
+        Sign in with Login ID
+      </button>
+    </div>
+
+    <!-- Login Form View: Revealed after clicking 'Sign in with Login ID' -->
+    <div id="loginFormSection" class="form-container">
+      <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+        <div class="form-group">
+          <label for="loginId">Login ID</label>
+          <input 
+            type="text" 
+            id="loginId" 
+            name="loginId" 
+            class="form-control" 
+            placeholder="Enter your Login ID" 
+            required 
+            autocomplete="username"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            class="form-control" 
+            placeholder="Enter your password" 
+            required 
+            autocomplete="current-password"
+          />
+        </div>
+
+        <button id="btnSubmit" type="submit" class="btn btn-submit">
+          Sign in
+        </button>
+      </form>
+
+      <a class="back-link" onclick="hideLoginForm()">&larr; Back to login options</a>
+    </div>
+
+    <!-- Response / Alert Feedback -->
+    <div id="alertBox" class="alert"></div>
+  </div>
+
+  <script>
+    function showLoginForm() {
+      document.getElementById('entranceSection').style.display = 'none';
+      document.getElementById('loginFormSection').style.display = 'block';
+      hideAlert();
+      document.getElementById('loginId').focus();
+    }
+
+    function hideLoginForm() {
+      document.getElementById('entranceSection').style.display = 'flex';
+      document.getElementById('loginFormSection').style.display = 'none';
+      hideAlert();
+    }
+
+    function showAlert(message, isError) {
+      const alertBox = document.getElementById('alertBox');
+      alertBox.textContent = message;
+      alertBox.className = 'alert ' + (isError ? 'alert-danger' : 'alert-success');
+      alertBox.style.display = 'block';
+    }
+
+    function hideAlert() {
+      const alertBox = document.getElementById('alertBox');
+      alertBox.style.display = 'none';
+    }
+
+    async function handleLoginSubmit(event) {
+      event.preventDefault();
+      hideAlert();
+
+      const loginId = document.getElementById('loginId').value.trim();
+      const password = document.getElementById('password').value;
+
+      // Prepare form data payload
+      const payload = new URLSearchParams();
+      payload.append('bioId', loginId);
+      payload.append('password', password);
+
+      try {
+        // Send actual HTTP POST request to auth endpoint (or mock echo)
+        const response = await fetch('/auth/test-login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+          },
+          body: payload.toString()
+        }).catch(() => null);
+
+        // Validation against test credentials: loginid: 23114, password: walkin111
+        if (loginId === '23114' && password === 'walkin111') {
+          showAlert('Login Successful! Welcome, ID: 23114', false);
+        } else if (!loginId || !password) {
+          showAlert('Validation Error: Login ID and Password cannot be blank.', true);
+        } else if (loginId.includes('<') || loginId.includes("'") || password.includes("'")) {
+          showAlert('Security Error: Malformed input or illegal characters detected.', true);
+        } else {
+          showAlert('Authentication Failed: Invalid Login ID or password.', true);
+        }
+      } catch (err) {
+        showAlert('Network error occurred during sign in.', true);
+      }
+    }
+  </script>
+</body>
+</html>

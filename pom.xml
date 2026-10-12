@@ -55,7 +55,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.5.0</version>
                 <configuration>
-                    <mainClass>com.practice.FirstTest</mainClass>
+                    <mainClass>com.practice.home.Login</mainClass>
                 </configuration>
             </plugin>
         </plugins>
