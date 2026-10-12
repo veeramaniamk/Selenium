@@ -70,7 +70,7 @@ public class Login {
 
     /** Right / Valid test credentials as requested. */
     public static final String VALID_LOGIN_ID = "23114";
-    public static final String VALID_PASSWORD = "walkin1111";
+    public static final String VALID_PASSWORD = "walkin111";
 
     // ------------------------------------------------------------------------------------------------
     // Data Models
@@ -493,8 +493,7 @@ public class Login {
                     Map<String, Object> req = (Map<String, Object>) params.get("request");
                     if (req != null) {
                         String url = String.valueOf(req.get("url"));
-                        // Filter out static assets (images, css, fonts)
-                        if (isRelevantTraffic(url)) {
+                        if (isRelevantTraffic(url, null)) {
                             NetworkTransaction tx = transactionMap.computeIfAbsent(requestId,
                                     k -> new NetworkTransaction());
                             tx.requestId = requestId;
@@ -521,10 +520,15 @@ public class Login {
                     Map<String, Object> resp = (Map<String, Object>) params.get("response");
                     if (resp != null) {
                         String url = String.valueOf(resp.get("url"));
-                        if (isRelevantTraffic(url)) {
+                        String mimeType = resp.containsKey("mimeType") ? String.valueOf(resp.get("mimeType")) : null;
+
+                        if (isRelevantTraffic(url, mimeType)) {
                             NetworkTransaction tx = transactionMap.computeIfAbsent(requestId,
                                     k -> new NetworkTransaction());
                             tx.requestId = requestId;
+                            if (tx.requestUrl.isBlank()) {
+                                tx.requestUrl = url;
+                            }
                             tx.responseUrl = url;
 
                             if (resp.get("status") instanceof Number) {
@@ -533,8 +537,8 @@ public class Login {
                             if (resp.containsKey("statusText")) {
                                 tx.responseStatusText = String.valueOf(resp.get("statusText"));
                             }
-                            if (resp.containsKey("mimeType")) {
-                                tx.responseMimeType = String.valueOf(resp.get("mimeType"));
+                            if (mimeType != null) {
+                                tx.responseMimeType = mimeType;
                             }
 
                             // Extract Response Headers
@@ -552,8 +556,6 @@ public class Login {
                                     tx.responseBody = String.valueOf(bodyResult.get("body"));
                                 }
                             } catch (Exception ignored) {
-                                // Body may not be available for redirects, 204 No Content, or unbuffered
-                                // streams
                             }
                         }
                     }
@@ -563,10 +565,16 @@ public class Login {
             }
         }
 
-        // Return only transactions that recorded a valid URL
+        // Return only transactions that recorded a valid, non-blank live URL
         List<NetworkTransaction> list = new ArrayList<>();
         for (NetworkTransaction tx : transactionMap.values()) {
-            if (!tx.requestUrl.isBlank() || !tx.responseUrl.isBlank()) {
+            if (tx.requestUrl == null || tx.requestUrl.isBlank()) {
+                if (tx.responseUrl != null && !tx.responseUrl.isBlank()) {
+                    tx.requestUrl = tx.responseUrl;
+                }
+            }
+            if (tx.requestUrl != null && !tx.requestUrl.isBlank()
+                    && isRelevantTraffic(tx.requestUrl, tx.responseMimeType)) {
                 list.add(tx);
             }
         }
@@ -574,23 +582,71 @@ public class Login {
     }
 
     /**
-     * Filters out non-essential static resources (css, fonts, png, svg) to keep the
-     * log focused on API/Auth calls.
+     * Strict traffic filter:
+     * - NO empty / null URLs
+     * - NO images (.png, .jpg, .jpeg, .webp, .gif, .svg, .ico, MIME image/*)
+     * - NO icons or fonts (.woff, .woff2, .ttf, MIME font/*)
+     * - NO stylesheets (.css, text/css)
+     * - NO AWS S3 URLs (simats360.s3.ap-south-1.amazonaws.com)
+     * - NO data: / blob: / external CDNs
+     * - ONLY live target host (13.233.119.231) and related API endpoints
      */
-    private boolean isRelevantTraffic(String url) {
-        if (url == null)
+    private boolean isRelevantTraffic(String url, String mimeType) {
+        if (url == null || url.trim().isEmpty() || "null".equalsIgnoreCase(url.trim())) {
             return false;
-        String lower = url.toLowerCase();
-        return !lower.endsWith(".png") &&
-                !lower.endsWith(".jpg") &&
-                !lower.endsWith(".jpeg") &&
-                !lower.endsWith(".gif") &&
-                !lower.endsWith(".svg") &&
-                !lower.endsWith(".ico") &&
-                !lower.endsWith(".woff") &&
-                !lower.endsWith(".woff2") &&
-                !lower.endsWith(".ttf") &&
-                !lower.endsWith(".css");
+        }
+        String lower = url.trim().toLowerCase();
+
+        // 1. Pseudo schemes
+        if (lower.startsWith("data:") || lower.startsWith("blob:") || lower.startsWith("javascript:")) {
+            return false;
+        }
+
+        // 2. AWS S3 storage URLs
+        if (lower.contains("amazonaws.com") || lower.contains(".s3.") || lower.contains("simats360.s3")) {
+            return false;
+        }
+
+        // 3. Third-party CDNs and font providers
+        if (lower.contains("cdnjs.") || lower.contains("cloudflare.com") || lower.contains("googleapis.com")
+                || lower.contains("gstatic.com") || lower.contains("fontawesome") || lower.contains("google.")) {
+            return false;
+        }
+
+        // 4. File extension check (strip queries and anchors)
+        String cleanPath = lower.split("[?#]")[0];
+        if (cleanPath.endsWith(".png") || cleanPath.endsWith(".jpg") || cleanPath.endsWith(".jpeg")
+                || cleanPath.endsWith(".webp") || cleanPath.endsWith(".gif") || cleanPath.endsWith(".svg")
+                || cleanPath.endsWith(".ico") || cleanPath.endsWith(".bmp") || cleanPath.endsWith(".avif")) {
+            return false;
+        }
+        if (cleanPath.endsWith(".css") || cleanPath.endsWith(".woff") || cleanPath.endsWith(".woff2")
+                || cleanPath.endsWith(".ttf") || cleanPath.endsWith(".eot") || cleanPath.endsWith(".otf")) {
+            return false;
+        }
+        if (cleanPath.endsWith(".js") && !cleanPath.contains("api")) {
+            return false;
+        }
+
+        // 5. MIME type check
+        if (mimeType != null && !mimeType.isBlank()) {
+            String m = mimeType.trim().toLowerCase();
+            if (m.startsWith("image/") || m.startsWith("font/") || m.startsWith("video/")
+                    || m.startsWith("audio/") || m.equals("text/css")) {
+                return false;
+            }
+        }
+
+        // 6. Must target the live application host or relative URL
+        boolean isLiveHost = lower.contains("13.233.119.231") || lower.contains("localhost") || lower.startsWith("/");
+        if (!isLiveHost) {
+            return false;
+        }
+
+        // 7. Must be a backend API or action script
+        return lower.contains("/api/") || lower.contains(".php") || lower.contains("leave")
+                || lower.contains("attend") || lower.contains("login") || lower.contains("scores")
+                || lower.contains("counts");
     }
 
     // ------------------------------------------------------------------------------------------------

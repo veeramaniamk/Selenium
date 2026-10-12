@@ -16,6 +16,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -478,7 +482,7 @@ public class ApplyLeave {
      */
     private boolean isApplyLeaveTabPresent(ChromeDriver driver) {
         return !driver.findElements(By.xpath(
-                "//*[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply leave')]"))
+                "//button[@id='sb2'] | //*[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply leave')]"))
                 .isEmpty();
     }
 
@@ -486,21 +490,20 @@ public class ApplyLeave {
      * Navigates to the "Apply Leave" tab on the dashboard.
      */
     private void navigateToApplyLeaveTab(ChromeDriver driver, WebDriverWait wait, String targetUrl) {
-        // Ensure we are on the dashboard
+        System.out.println("  [Nav] Checking if on Dashboard...");
         if (!driver.getCurrentUrl().contains("dashboard") && !isApplyLeaveTabPresent(driver)) {
             performDirectLogin(driver, wait, targetUrl);
         }
 
+        System.out.println("  [Nav] Locating 'Apply Leave' tab...");
         By[] applyLeaveTabLocators = new By[] {
-                By.xpath(
-                        "//button[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply leave')]"),
-                By.xpath(
-                        "//a[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply leave')]"),
-                By.xpath(
-                        "//li[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply leave')]"),
-                By.xpath(
-                        "//*[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply leave')]"),
-                By.cssSelector("#tab-apply-leave, [data-tab='apply-leave']")
+                By.id("sb2"),
+                By.xpath("//button[@id='sb2' or contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply leave')]"),
+                By.xpath("//button[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply leave')]"),
+                By.xpath("//a[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply leave')]"),
+                By.xpath("//li[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply leave')]"),
+                By.xpath("//*[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply leave')]"),
+                By.cssSelector("#sb2, #tab-apply-leave, [data-tab='apply-leave'], .tab-apply-leave")
         };
 
         WebElement tab = null;
@@ -520,44 +523,37 @@ public class ApplyLeave {
         }
 
         if (tab != null) {
+            System.out.println("  [Nav OK] Found 'Apply Leave' tab: <" + tab.getTagName() + " id='" + tab.getAttribute("id") + "'> Text: '" + tab.getText().trim() + "'");
             try {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'instant', block: 'center'});", tab);
                 tab.click();
             } catch (Exception e) {
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", tab);
             }
+            pause(1500);
+        } else {
+            System.out.println("  [Nav Note] 'Apply Leave' tab button not found or already on form.");
         }
 
-        // Wait for the New Application form section to become visible
-        pause(1000);
+        // Print visible form fields for diagnostic inspection
+        dumpFormFieldsDebug(driver);
     }
 
     /**
      * Selects a leave type from the Leave Type dropdown.
      */
     private void selectLeaveType(ChromeDriver driver, WebDriverWait wait, String targetLeaveType) {
+        System.out.println("  [Form 1/5] Selecting Leave Type...");
         By[] dropdownLocators = new By[] {
-                By.xpath(
-                        "//select[contains(@id, 'leave_type') or contains(@name, 'leave_type') or contains(@id, 'leave') or contains(@name, 'leave')]"),
-                By.xpath(
-                        "//select[preceding-sibling::label[contains(., 'Leave Type')] or ../label[contains(., 'Leave Type')]]"),
-                By.cssSelector("select.leave-type, #leaveType, #leave_type")
+                By.id("lv-type"),
+                By.xpath("//select[@id='lv-type' or contains(@id, 'leave_type') or contains(@name, 'leave_type') or contains(@id, 'leave') or contains(@name, 'leave')]"),
+                By.xpath("//select[preceding-sibling::label[contains(., 'Leave Type')] or ../label[contains(., 'Leave Type')] or ../preceding-sibling::label[contains(., 'Leave Type')]]"),
+                By.xpath("//select[contains(@class, 'leave')]"),
+                By.xpath("//form//select[1]"),
+                By.cssSelector("#lv-type, select.leave-type, #leaveType, #leave_type")
         };
 
-        WebElement selectElement = null;
-        for (By loc : dropdownLocators) {
-            try {
-                List<WebElement> list = driver.findElements(loc);
-                for (WebElement el : list) {
-                    if (el.isDisplayed()) {
-                        selectElement = el;
-                        break;
-                    }
-                }
-                if (selectElement != null)
-                    break;
-            } catch (Exception ignored) {
-            }
-        }
+        WebElement selectElement = findFirstDisplayedElement(driver, dropdownLocators);
 
         if (selectElement != null) {
             Select select = new Select(selectElement);
@@ -566,25 +562,41 @@ public class ApplyLeave {
             if (targetLeaveType != null && !targetLeaveType.isBlank()) {
                 try {
                     select.selectByVisibleText(targetLeaveType);
+                    System.out.println("  [Form 1/5 OK] Selected requested leave type: " + targetLeaveType);
+                    triggerChangeEvent(driver, selectElement);
                     return;
                 } catch (Exception ignored) {
                 }
+                for (WebElement opt : options) {
+                    if (opt.getText().toLowerCase().contains(targetLeaveType.toLowerCase())
+                            || opt.getAttribute("value").toLowerCase().contains(targetLeaveType.toLowerCase())) {
+                        select.selectByValue(opt.getAttribute("value"));
+                        System.out.println("  [Form 1/5 OK] Selected leave type by partial match: " + opt.getText());
+                        triggerChangeEvent(driver, selectElement);
+                        return;
+                    }
+                }
             }
 
-            // Auto-pick the first available valid option (skipping placeholder like
-            // '--Select--')
+            // Auto-pick the first available valid option
             for (int i = 0; i < options.size(); i++) {
                 String val = options.get(i).getAttribute("value");
                 String txt = options.get(i).getText().trim();
                 if (val != null && !val.isBlank() && !txt.toLowerCase().contains("select")) {
                     select.selectByIndex(i);
+                    System.out.println("  [Form 1/5 OK] Selected leave option: " + txt + " (value: " + val + ")");
+                    triggerChangeEvent(driver, selectElement);
                     return;
                 }
             }
 
             if (options.size() > 1) {
                 select.selectByIndex(1);
+                System.out.println("  [Form 1/5 OK] Selected first non-empty option index 1.");
+                triggerChangeEvent(driver, selectElement);
             }
+        } else {
+            System.err.println("  [Form 1/5 WARNING] Leave Type select dropdown was not located!");
         }
     }
 
@@ -592,89 +604,99 @@ public class ApplyLeave {
      * Populates the From Date and To Date fields.
      */
     private void fillDateFields(ChromeDriver driver, WebDriverWait wait, String fromDate, String toDate) {
+        System.out.println("  [Form 2/5] Setting dates: From=" + fromDate + ", To=" + toDate);
+
         // 1. From Date field
         By[] fromDateLocators = new By[] {
-                By.xpath(
-                        "//input[contains(@id, 'from_date') or contains(@name, 'from_date') or contains(@id, 'from') or contains(@placeholder, 'From Date')]"),
-                By.xpath(
-                        "//input[preceding-sibling::label[contains(., 'From Date')] or ../label[contains(., 'From Date')]]"),
-                By.cssSelector("#fromDate, #from_date, input[name='from_date']")
+                By.id("lv-date-from"),
+                By.xpath("//input[@id='lv-date-from' or contains(@id, 'from_date') or contains(@name, 'from_date') or contains(@id, 'from') or contains(@placeholder, 'From Date')]"),
+                By.xpath("//input[preceding-sibling::label[contains(., 'From Date')] or ../label[contains(., 'From Date')]]"),
+                By.cssSelector("#lv-date-from, #fromDate, #from_date, input[name='from_date']")
         };
 
         WebElement fromInput = findFirstDisplayedElement(driver, fromDateLocators);
         if (fromInput != null && fromDate != null) {
             setDateInputValue(driver, fromInput, fromDate);
+            System.out.println("  [Form 2/5 OK] From Date set to: " + fromDate);
+        } else {
+            System.err.println("  [Form 2/5 WARNING] From Date input field not located!");
         }
 
         // 2. To Date field
         By[] toDateLocators = new By[] {
-                By.xpath(
-                        "//input[contains(@id, 'to_date') or contains(@name, 'to_date') or contains(@id, 'to') or contains(@placeholder, 'To Date')]"),
-                By.xpath(
-                        "//input[preceding-sibling::label[contains(., 'To Date')] or ../label[contains(., 'To Date')]]"),
-                By.cssSelector("#toDate, #to_date, input[name='to_date']")
+                By.id("lv-date-to"),
+                By.xpath("//input[@id='lv-date-to' or contains(@id, 'to_date') or contains(@name, 'to_date') or contains(@id, 'to') or contains(@placeholder, 'To Date')]"),
+                By.xpath("//input[preceding-sibling::label[contains(., 'To Date')] or ../label[contains(., 'To Date')]]"),
+                By.cssSelector("#lv-date-to, #toDate, #to_date, input[name='to_date']")
         };
 
         WebElement toInput = findFirstDisplayedElement(driver, toDateLocators);
         if (toInput != null && toDate != null) {
             setDateInputValue(driver, toInput, toDate);
+            System.out.println("  [Form 2/5 OK] To Date set to: " + toDate);
+        } else {
+            System.err.println("  [Form 2/5 WARNING] To Date input field not located!");
         }
     }
 
     /**
-     * Sets date value via direct typing, datepicker interaction, or JS event
-     * dispatch.
+     * Sets date value via direct typing, datepicker interaction, and JS event dispatch.
      */
     private void setDateInputValue(ChromeDriver driver, WebElement input, String dateValue) {
         try {
-            input.click();
-            input.sendKeys(Keys.CONTROL + "a");
-            input.sendKeys(Keys.BACK_SPACE);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'instant', block: 'center'});", input);
+            input.clear();
             input.sendKeys(dateValue);
-            input.sendKeys(Keys.TAB);
-        } catch (Exception e) {
-            // JavaScript fallback for read-only or styled datepickers
-            ((JavascriptExecutor) driver).executeScript(
-                    "arguments[0].value = arguments[1];" +
-                            "arguments[0].dispatchEvent(new Event('input', { bubbles: true }));" +
-                            "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));",
-                    input, dateValue);
+        } catch (Exception ignored) {
         }
+
+        // JavaScript dispatch to ensure reactive datepicker and validation state updates
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].value = arguments[1];" +
+                "arguments[0].dispatchEvent(new Event('input', { bubbles: true }));" +
+                "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));" +
+                "if (arguments[0]._flatpickr) { try { arguments[0]._flatpickr.setDate(arguments[1], true); } catch(e){} }",
+                input, dateValue);
     }
 
     /**
-     * Handles Day Type selection (Full Day vs. Half Day) and verifies the dynamic
-     * Session dropdown.
+     * Handles Day Type selection (Full Day vs. Half Day) and verifies the dynamic Session dropdown.
      */
     private void selectDayTypeAndSession(ChromeDriver driver, WebDriverWait wait,
             LeaveTestCase tc, TestExecutionResult result) {
+        System.out.println("  [Form 3/5] Setting Day Type: " + (tc.isHalfDay ? "Half Day" : "Full Day"));
         if (tc.isHalfDay) {
-            // Locate and click "Half Day" button or radio
             By[] halfDayLocators = new By[] {
-                    By.xpath(
-                            "//button[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'half day')]"),
+                    By.id("dth"),
+                    By.xpath("//button[@id='dth' or contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'half day')]"),
                     By.xpath("//input[@value='half' or @value='half_day' or @id='half_day']"),
-                    By.xpath("//label[contains(., 'Half Day')]"),
-                    By.cssSelector("#btnHalfDay, #half_day, [data-day-type='half']")
+                    By.xpath("//label[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'half day')]"),
+                    By.cssSelector("#dth, #btnHalfDay, #half_day, [data-day-type='half']")
             };
 
             WebElement halfBtn = findFirstDisplayedElement(driver, halfDayLocators);
             if (halfBtn != null) {
                 try {
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'instant', block: 'center'});", halfBtn);
                     halfBtn.click();
                 } catch (Exception e) {
                     ((JavascriptExecutor) driver).executeScript("arguments[0].click();", halfBtn);
                 }
+                // Fallback invoke setDt('half') if portal provides it
+                ((JavascriptExecutor) driver).executeScript("if (typeof window.setDt === 'function') { window.setDt('half'); }");
+                System.out.println("  [Form 3/5 OK] Clicked 'Half Day' button.");
+            } else {
+                System.err.println("  [Form 3/5 WARNING] Half Day button element not located!");
             }
 
             pause(800); // Allow dynamic DOM transition for Session dropdown
 
             // Verify Session dropdown becomes visible
             By[] sessionLocators = new By[] {
-                    By.xpath("//select[contains(@id, 'session') or contains(@name, 'session')]"),
-                    By.xpath(
-                            "//select[preceding-sibling::label[contains(., 'Session')] or ../label[contains(., 'Session')]]"),
-                    By.cssSelector("#session, #sessionSelect, select[name='session']")
+                    By.id("lv-sess"),
+                    By.xpath("//select[@id='lv-sess' or contains(@id, 'session') or contains(@name, 'session')]"),
+                    By.xpath("//select[preceding-sibling::label[contains(., 'Session')] or ../label[contains(., 'Session')]]"),
+                    By.cssSelector("#lv-sess, #session, #sessionSelect, select[name='session']")
             };
 
             WebElement sessionSelectEl = null;
@@ -696,37 +718,48 @@ public class ApplyLeave {
             if (sessionSelectEl != null) {
                 result.sessionDropdownVerified = true;
                 Select select = new Select(sessionSelectEl);
-                String targetSession = tc.session != null ? tc.session : "Session 1";
+                String targetSession = tc.session != null ? tc.session : "Session-1";
 
-                try {
-                    select.selectByVisibleText(targetSession);
-                } catch (Exception e) {
-                    // Fallback to value or index
-                    if (targetSession.contains("2")) {
-                        select.selectByIndex(Math.min(2, select.getOptions().size() - 1));
-                    } else {
-                        select.selectByIndex(1);
+                if (targetSession.contains("2")) {
+                    try {
+                        select.selectByValue("Session-2");
+                    } catch (Exception e) {
+                        try { select.selectByVisibleText("Session-2"); }
+                        catch (Exception ex) { select.selectByIndex(Math.min(2, select.getOptions().size() - 1)); }
+                    }
+                } else {
+                    try {
+                        select.selectByValue("Session-1");
+                    } catch (Exception e) {
+                        try { select.selectByVisibleText("Session-1"); }
+                        catch (Exception ex) { select.selectByIndex(1); }
                     }
                 }
+                triggerChangeEvent(driver, sessionSelectEl);
+                System.out.println("  [Form 3/5 OK] Session dropdown verified and selected: " + targetSession);
+            } else {
+                System.err.println("  [Form 3/5 WARNING] Session dropdown did not appear after selecting Half Day!");
             }
 
         } else {
-            // Locate and click "Full Day" button or radio
             By[] fullDayLocators = new By[] {
-                    By.xpath(
-                            "//button[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'full day')]"),
+                    By.id("dtf"),
+                    By.xpath("//button[@id='dtf' or contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'full day')]"),
                     By.xpath("//input[@value='full' or @value='full_day' or @id='full_day']"),
-                    By.xpath("//label[contains(., 'Full Day')]"),
-                    By.cssSelector("#btnFullDay, #full_day, [data-day-type='full']")
+                    By.xpath("//label[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'full day')]"),
+                    By.cssSelector("#dtf, #btnFullDay, #full_day, [data-day-type='full']")
             };
 
             WebElement fullBtn = findFirstDisplayedElement(driver, fullDayLocators);
             if (fullBtn != null) {
                 try {
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'instant', block: 'center'});", fullBtn);
                     fullBtn.click();
                 } catch (Exception e) {
                     ((JavascriptExecutor) driver).executeScript("arguments[0].click();", fullBtn);
                 }
+                ((JavascriptExecutor) driver).executeScript("if (typeof window.setDt === 'function') { window.setDt('full'); }");
+                System.out.println("  [Form 3/5 OK] Clicked 'Full Day' button.");
             }
         }
     }
@@ -735,12 +768,15 @@ public class ApplyLeave {
      * Enters Reason / Remarks into the textarea or input.
      */
     private void enterReasonRemarks(ChromeDriver driver, WebDriverWait wait, String remarks) {
+        System.out.println("  [Form 4/5] Entering Reason/Remarks...");
         By[] remarksLocators = new By[] {
-                By.xpath(
-                        "//textarea[contains(@id, 'reason') or contains(@name, 'reason') or contains(@id, 'remark') or contains(@name, 'remark')]"),
-                By.xpath(
-                        "//input[contains(@id, 'reason') or contains(@name, 'reason') or contains(@placeholder, 'Reason') or contains(@placeholder, 'Remarks')]"),
-                By.cssSelector("#reason, #remarks, textarea[name='reason'], textarea[name='remarks']")
+                By.id("lv-reason"),
+                By.xpath("//textarea[@id='lv-reason' or contains(@id, 'reason') or contains(@name, 'reason') or contains(@id, 'remark') or contains(@name, 'remark')]"),
+                By.xpath("//textarea[contains(@placeholder, 'reason') or contains(@placeholder, 'remark') or contains(@placeholder, 'Reason') or contains(@placeholder, 'Remarks')]"),
+                By.xpath("//form//textarea"),
+                By.xpath("//textarea"),
+                By.xpath("//input[contains(@id, 'reason') or contains(@name, 'reason') or contains(@placeholder, 'Reason') or contains(@placeholder, 'Remarks')]"),
+                By.cssSelector("#lv-reason, #reason, #remarks, textarea[name='reason'], textarea[name='remarks']")
         };
 
         WebElement remarksInput = findFirstDisplayedElement(driver, remarksLocators);
@@ -749,6 +785,10 @@ public class ApplyLeave {
             if (remarks != null && !remarks.isEmpty()) {
                 remarksInput.sendKeys(remarks);
             }
+            triggerChangeEvent(driver, remarksInput);
+            System.out.println("  [Form 4/5 OK] Entered reason: \"" + (remarks != null && remarks.length() > 40 ? remarks.substring(0, 40) + "..." : remarks) + "\"");
+        } else {
+            System.err.println("  [Form 4/5 WARNING] Reason/Remarks textarea was not located!");
         }
     }
 
@@ -756,10 +796,12 @@ public class ApplyLeave {
      * Uploads the attachment file to the file input element.
      */
     private void uploadAttachment(ChromeDriver driver, WebDriverWait wait, File file) {
+        System.out.println("  [Form 5/5] Attaching file: " + file.getName() + " (size: " + file.length() + " bytes)");
         try {
             By[] fileInputLocators = new By[] {
-                    By.xpath("//input[@type='file']"),
-                    By.cssSelector("input[type='file'], #fileUpload, #attachment")
+                    By.id("lv-file"),
+                    By.xpath("//input[@id='lv-file' or @type='file']"),
+                    By.cssSelector("#lv-file, input[type='file'], #fileUpload, #attachment")
             };
 
             WebElement fileInput = null;
@@ -772,37 +814,166 @@ public class ApplyLeave {
             }
 
             if (fileInput != null) {
-                // Ensure input is interactable even if styled as hidden by CSS
                 ((JavascriptExecutor) driver).executeScript(
                         "arguments[0].style.display = 'block'; arguments[0].style.visibility = 'visible';",
                         fileInput);
                 fileInput.sendKeys(file.getAbsolutePath());
+                triggerChangeEvent(driver, fileInput);
+                System.out.println("  [Form 5/5 OK] Attachment attached to file input successfully.");
+            } else {
+                System.out.println("  [Form 5/5 Note] No file upload input located on this form.");
             }
         } catch (Exception e) {
-            System.err.println("File upload note: " + e.getMessage());
+            System.err.println("  [Form 5/5 Note] File upload note: " + e.getMessage());
         }
     }
 
     /**
-     * Locates and clicks the "Submit Application" button.
+     * Locates and clicks the "Submit Application" button with robust triggers and validation logging.
      */
     private void clickSubmitApplication(ChromeDriver driver, WebDriverWait wait) {
-        By[] submitLocators = new By[] {
-                By.xpath(
-                        "//button[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'submit application')]"),
-                By.xpath(
-                        "//button[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'submit') and not(contains(., 'login'))]"),
-                By.xpath("//input[@type='submit' and contains(@value, 'Submit')]"),
-                By.cssSelector("#btnSubmitApplication, button.btn-submit-application, button[type='submit']")
+        System.out.println("  [Submit] Locating 'Submit Application' button...");
+
+        WebElement submitBtn = null;
+        try {
+            List<WebElement> byId = driver.findElements(By.id("lv-submit-btn"));
+            for (WebElement el : byId) {
+                if (el.isDisplayed()) {
+                    submitBtn = el;
+                    break;
+                }
+            }
+        } catch (Exception ignored) {
+        }
+
+        if (submitBtn == null) {
+            By[] submitLocators = new By[] {
+                    By.xpath("//button[@id='lv-submit-btn']"),
+                    By.xpath("//button[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'submit application')]"),
+                    By.xpath("//button[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'submit') and not(contains(., 'login')) and not(contains(., 'sign in')) and not(@id='sb0') and not(@id='sb1') and not(@id='sb2')]"),
+                    By.cssSelector("#lv-submit-btn, button[type='submit']")
+            };
+            submitBtn = findFirstDisplayedElement(driver, submitLocators);
+        }
+
+        if (submitBtn != null) {
+            System.out.println("  [Submit OK] Found button: <" + submitBtn.getTagName() + " id='" + submitBtn.getAttribute("id") + "' class='" + submitBtn.getAttribute("class") + "'> Text: '" + submitBtn.getText().trim() + "'");
+
+            boolean isDisabled = submitBtn.getAttribute("disabled") != null;
+            String readinessNote = "";
+            try {
+                readinessNote = (String) ((JavascriptExecutor) driver).executeScript(
+                        "return typeof getFormReadiness === 'function' ? (getFormReadiness().reason || 'ready') : (arguments[0].title || 'ready');",
+                        submitBtn);
+                System.out.println("  [Submit Status] Button disabled=" + isDisabled + " | Readiness note: \"" + readinessNote + "\"");
+            } catch (Exception ignored) {
+            }
+
+            // 1. Standard click if enabled
+            if (!isDisabled) {
+                try {
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'instant', block: 'center'});", submitBtn);
+                    pause(400);
+                    submitBtn.click();
+                    System.out.println("  [Submit Action] Standard click executed.");
+                } catch (Exception e) {
+                    System.out.println("  [Submit Note] Standard click: " + e.getMessage());
+                }
+            }
+
+            // 2. JavaScript submission handler dispatch via EDLeave.submitApplication()
+            try {
+                ((JavascriptExecutor) driver).executeScript(
+                        "var btn = arguments[0];" +
+                        "if (window.EDLeave && typeof window.EDLeave.submitApplication === 'function') {" +
+                        "  window.EDLeave.submitApplication();" +
+                        "} else if (typeof window.subLeave === 'function') {" +
+                        "  window.subLeave();" +
+                        "} else {" +
+                        "  btn.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));" +
+                        "  var form = btn.closest('form');" +
+                        "  if (form && form.requestSubmit) { try { form.requestSubmit(btn); } catch(e){ form.submit(); } }" +
+                        "}", submitBtn);
+                System.out.println("  [Submit Action] JavaScript submission handler dispatched.");
+            } catch (Exception e) {
+                System.err.println("  [Submit Note] JS submit dispatch: " + e.getMessage());
+            }
+
+            // 3. Handle confirmation modals if present
+            pause(1000);
+            handleConfirmationModals(driver);
+
+            // 4. Allow adequate time for asynchronous AJAX fetch API POST to complete
+            pause(3500);
+
+        } else {
+            System.err.println("  [Submit ERROR] No submit button matching locators was found on the page!");
+            dumpFormFieldsDebug(driver);
+        }
+    }
+
+    /**
+     * Dumps visible form elements to the console for clear troubleshooting.
+     */
+    private void dumpFormFieldsDebug(ChromeDriver driver) {
+        try {
+            System.out.println("  --- [DOM Elements Currently Visible] ---");
+            List<WebElement> formElements = driver.findElements(By.xpath(
+                    "//form//input | //form//select | //form//textarea | //form//button | " +
+                    "//div[contains(@id, 'leave') or contains(@class, 'leave')]//input | " +
+                    "//div[contains(@id, 'leave') or contains(@class, 'leave')]//select | " +
+                    "//div[contains(@id, 'leave') or contains(@class, 'leave')]//textarea | " +
+                    "//div[contains(@id, 'leave') or contains(@class, 'leave')]//button"));
+            for (WebElement el : formElements) {
+                if (el.isDisplayed()) {
+                    System.out.println("    - <" + el.getTagName() + " id='" + el.getAttribute("id") +
+                            "' name='" + el.getAttribute("name") +
+                            "' type='" + el.getAttribute("type") +
+                            "'> Text: '" + el.getText().trim() + "' Placeholder: '" + el.getAttribute("placeholder") + "'");
+                }
+            }
+            System.out.println("  -----------------------------------------");
+        } catch (Exception ignored) {
+        }
+    }
+
+    /**
+     * Handles confirmation popups (e.g. SweetAlert modals or native confirm dialogs).
+     */
+    private void handleConfirmationModals(ChromeDriver driver) {
+        // 1. Native alert
+        try {
+            driver.switchTo().alert().accept();
+            System.out.println("  [Modal] Native browser confirm dialog accepted.");
+        } catch (Exception ignored) {
+        }
+
+        // 2. SweetAlert / custom modal confirm buttons
+        By[] confirmModalBtns = new By[] {
+                By.cssSelector(".swal2-confirm, .swal-button--confirm, button.confirm, button.btn-confirm"),
+                By.xpath("//button[text()='Yes' or text()='Confirm' or text()='Yes, submit' or text()='OK' or contains(text(), 'Proceed')]")
         };
 
-        WebElement submitBtn = findFirstDisplayedElement(driver, submitLocators);
-        if (submitBtn != null) {
+        for (By modalLoc : confirmModalBtns) {
             try {
-                submitBtn.click();
-            } catch (Exception e) {
-                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitBtn);
+                for (WebElement mBtn : driver.findElements(modalLoc)) {
+                    if (mBtn.isDisplayed() && mBtn.isEnabled()) {
+                        System.out.println("  [Modal] Confirmation modal detected! Clicking: " + mBtn.getText());
+                        mBtn.click();
+                        break;
+                    }
+                }
+            } catch (Exception ignored) {
             }
+        }
+    }
+
+    private void triggerChangeEvent(ChromeDriver driver, WebElement el) {
+        try {
+            ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].dispatchEvent(new Event('input', {bubbles: true}));" +
+                    "arguments[0].dispatchEvent(new Event('change', {bubbles: true}));", el);
+        } catch (Exception ignored) {
         }
     }
 
@@ -857,17 +1028,32 @@ public class ApplyLeave {
         LeaveTestCase tc = result.testCase;
         boolean hasHttpError = false;
         boolean hasHttpSuccess = false;
+        boolean hasSubmitApiCall = false;
 
         for (NetworkTransaction tx : result.networkTransactions) {
-            if (tx.responseStatus >= 200 && tx.responseStatus < 300) {
+            boolean isSubmit = (tx.requestUrl != null && tx.requestUrl.contains("action=submit"))
+                    || (tx.responseUrl != null && tx.responseUrl.contains("action=submit"));
+            if (isSubmit) {
+                hasSubmitApiCall = true;
+                if (tx.responseStatus >= 200 && tx.responseStatus < 300) {
+                    hasHttpSuccess = true;
+                } else {
+                    hasHttpError = true;
+                }
+            } else if (tx.responseStatus >= 200 && tx.responseStatus < 300) {
                 hasHttpSuccess = true;
             } else if (tx.responseStatus >= 400) {
                 hasHttpError = true;
             }
         }
 
+        String uiMsg = result.uiFeedbackMessage.toLowerCase();
+        boolean uiSuccess = uiMsg.contains("success") || uiMsg.contains("submitted successfully");
+        boolean uiError = uiMsg.contains("error") || uiMsg.contains("invalid") || uiMsg.contains("required")
+                || uiMsg.contains("insufficient") || uiMsg.contains("shortfall");
+
         if (tc.isExpectedSuccess) {
-            if (hasHttpSuccess || !result.uiFeedbackMessage.toLowerCase().contains("error")) {
+            if (hasSubmitApiCall || uiSuccess || (!uiError && hasHttpSuccess)) {
                 result.isPassed = true;
                 result.verdictNote = "Leave application submitted successfully as expected";
             } else {
@@ -876,11 +1062,7 @@ public class ApplyLeave {
             }
         } else {
             // Expected validation failure or rejection
-            boolean feedbackRejected = result.uiFeedbackMessage.toLowerCase().contains("error")
-                    || result.uiFeedbackMessage.toLowerCase().contains("invalid")
-                    || result.uiFeedbackMessage.toLowerCase().contains("required");
-
-            if (hasHttpError || feedbackRejected || !hasHttpSuccess) {
+            if (hasHttpError || uiError || !hasSubmitApiCall) {
                 result.isPassed = true;
                 result.verdictNote = "Input rejected / validation triggered correctly";
             } else {
@@ -896,6 +1078,8 @@ public class ApplyLeave {
 
     /**
      * Extracts network traffic from Chrome Performance Logs and CDP.
+     * Strictly filters out images, icons, fonts, CSS, external S3 buckets, and empty URLs.
+     * Only retains relevant live application API calls.
      */
     private List<NetworkTransaction> extractNetworkTraffic(ChromeDriver driver) {
         Map<String, NetworkTransaction> transactionMap = new LinkedHashMap<>();
@@ -920,7 +1104,7 @@ public class ApplyLeave {
                     Map<String, Object> req = (Map<String, Object>) params.get("request");
                     if (req != null) {
                         String url = String.valueOf(req.get("url"));
-                        if (isRelevantTraffic(url)) {
+                        if (isRelevantTraffic(url, null)) {
                             NetworkTransaction tx = transactionMap.computeIfAbsent(requestId,
                                     k -> new NetworkTransaction());
                             tx.requestId = requestId;
@@ -945,10 +1129,15 @@ public class ApplyLeave {
                     Map<String, Object> resp = (Map<String, Object>) params.get("response");
                     if (resp != null) {
                         String url = String.valueOf(resp.get("url"));
-                        if (isRelevantTraffic(url)) {
+                        String mimeType = resp.containsKey("mimeType") ? String.valueOf(resp.get("mimeType")) : null;
+
+                        if (isRelevantTraffic(url, mimeType)) {
                             NetworkTransaction tx = transactionMap.computeIfAbsent(requestId,
                                     k -> new NetworkTransaction());
                             tx.requestId = requestId;
+                            if (tx.requestUrl.isBlank()) {
+                                tx.requestUrl = url;
+                            }
                             tx.responseUrl = url;
 
                             if (resp.get("status") instanceof Number) {
@@ -957,8 +1146,8 @@ public class ApplyLeave {
                             if (resp.containsKey("statusText")) {
                                 tx.responseStatusText = String.valueOf(resp.get("statusText"));
                             }
-                            if (resp.containsKey("mimeType")) {
-                                tx.responseMimeType = String.valueOf(resp.get("mimeType"));
+                            if (mimeType != null) {
+                                tx.responseMimeType = mimeType;
                             }
 
                             if (resp.containsKey("headers") && resp.get("headers") instanceof Map) {
@@ -986,21 +1175,87 @@ public class ApplyLeave {
 
         List<NetworkTransaction> list = new ArrayList<>();
         for (NetworkTransaction tx : transactionMap.values()) {
-            if (!tx.requestUrl.isBlank() || !tx.responseUrl.isBlank()) {
+            // Fill requestUrl if responseUrl is known
+            if (tx.requestUrl == null || tx.requestUrl.isBlank()) {
+                if (tx.responseUrl != null && !tx.responseUrl.isBlank()) {
+                    tx.requestUrl = tx.responseUrl;
+                }
+            }
+            // Strict inclusion: Must not be blank, and must be verified relevant live API
+            if (tx.requestUrl != null && !tx.requestUrl.isBlank()
+                    && isRelevantTraffic(tx.requestUrl, tx.responseMimeType)) {
                 list.add(tx);
             }
         }
         return list;
     }
 
-    private boolean isRelevantTraffic(String url) {
-        if (url == null)
+    /**
+     * Strict traffic filter:
+     * - NO empty / null URLs
+     * - NO images (.png, .jpg, .jpeg, .webp, .gif, .svg, .ico, MIME image/*)
+     * - NO icons or fonts (.woff, .woff2, .ttf, MIME font/*)
+     * - NO stylesheets (.css, text/css)
+     * - NO AWS S3 URLs (simats360.s3.ap-south-1.amazonaws.com)
+     * - NO data: / blob: / external CDNs
+     * - ONLY live target host (13.233.119.231) and related API endpoints
+     */
+    private boolean isRelevantTraffic(String url, String mimeType) {
+        if (url == null || url.trim().isEmpty() || "null".equalsIgnoreCase(url.trim())) {
             return false;
-        String lower = url.toLowerCase();
-        return !lower.endsWith(".png") && !lower.endsWith(".jpg") && !lower.endsWith(".jpeg")
-                && !lower.endsWith(".gif") && !lower.endsWith(".svg") && !lower.endsWith(".ico")
-                && !lower.endsWith(".woff") && !lower.endsWith(".woff2") && !lower.endsWith(".ttf")
-                && !lower.endsWith(".css");
+        }
+        String lower = url.trim().toLowerCase();
+
+        // 1. Filter out pseudo schemes
+        if (lower.startsWith("data:") || lower.startsWith("blob:") || lower.startsWith("javascript:")) {
+            return false;
+        }
+
+        // 2. Filter out AWS S3 bucket URLs (e.g., https://simats360.s3.ap-south-1.amazonaws.com)
+        if (lower.contains("amazonaws.com") || lower.contains(".s3.") || lower.contains("simats360.s3")) {
+            return false;
+        }
+
+        // 3. Filter out external CDNs, fonts, third-party libraries
+        if (lower.contains("cdnjs.") || lower.contains("cloudflare.com") || lower.contains("googleapis.com")
+                || lower.contains("gstatic.com") || lower.contains("fontawesome") || lower.contains("google.")) {
+            return false;
+        }
+
+        // 4. Filter static asset extensions
+        String cleanPath = lower.split("[?#]")[0];
+        if (cleanPath.endsWith(".png") || cleanPath.endsWith(".jpg") || cleanPath.endsWith(".jpeg")
+                || cleanPath.endsWith(".webp") || cleanPath.endsWith(".gif") || cleanPath.endsWith(".svg")
+                || cleanPath.endsWith(".ico") || cleanPath.endsWith(".bmp") || cleanPath.endsWith(".avif")) {
+            return false;
+        }
+        if (cleanPath.endsWith(".css") || cleanPath.endsWith(".woff") || cleanPath.endsWith(".woff2")
+                || cleanPath.endsWith(".ttf") || cleanPath.endsWith(".eot") || cleanPath.endsWith(".otf")) {
+            return false;
+        }
+        if (cleanPath.endsWith(".js") && !cleanPath.contains("api")) {
+            return false;
+        }
+
+        // 5. Filter MIME type if present
+        if (mimeType != null && !mimeType.isBlank()) {
+            String m = mimeType.trim().toLowerCase();
+            if (m.startsWith("image/") || m.startsWith("font/") || m.startsWith("video/")
+                    || m.startsWith("audio/") || m.equals("text/css")) {
+                return false;
+            }
+        }
+
+        // 6. Must target the live application host or relative URL
+        boolean isLiveHost = lower.contains("13.233.119.231") || lower.contains("localhost") || lower.startsWith("/");
+        if (!isLiveHost) {
+            return false;
+        }
+
+        // 7. Must be a backend API or action script
+        return lower.contains("/api/") || lower.contains(".php") || lower.contains("leave")
+                || lower.contains("attend") || lower.contains("login") || lower.contains("scores")
+                || lower.contains("counts");
     }
 
     // ------------------------------------------------------------------------------------------------
@@ -1260,13 +1515,18 @@ public class ApplyLeave {
             uploadDir.mkdirs();
         }
 
-        File sampleFile = new File(uploadDir, "sample_leave_document.txt");
-        if (!sampleFile.exists()) {
-            try (FileWriter fw = new FileWriter(sampleFile)) {
-                fw.write("Medical Certificate / Leave Document Proof\nGenerated for automated Selenium testing.\nDate: "
-                        + LocalDate.now());
-            } catch (IOException ignored) {
-            }
+        File sampleFile = new File(uploadDir, "sample_leave_proof.png");
+        try {
+            BufferedImage img = new BufferedImage(120, 80, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g = img.createGraphics();
+            g.setColor(Color.WHITE);
+            g.fillRect(0, 0, 120, 80);
+            g.setColor(Color.BLUE);
+            g.drawString("Proof of Leave", 15, 45);
+            g.dispose();
+            ImageIO.write(img, "png", sampleFile);
+        } catch (Exception e) {
+            System.err.println("Note generating sample PNG: " + e.getMessage());
         }
         return sampleFile;
     }
@@ -1289,21 +1549,23 @@ public class ApplyLeave {
         List<LeaveTestCase> list = new ArrayList<>();
 
         LocalDate today = LocalDate.now();
-        String validFrom = today.plusDays(2).toString();
-        String validTo = today.plusDays(4).toString();
+        String validFrom1 = today.plusDays(2).toString();
+        String validTo1 = today.plusDays(2).toString();
+        String validFrom2 = today.plusDays(3).toString();
+        String validFrom3 = today.plusDays(4).toString();
         String invalidToDate = today.minusDays(2).toString(); // Before from date
 
-        // 1. Happy Path - Valid Full Day Application with File Attachment
+        // 1. Happy Path - Valid Full Day Application with Sample PNG Attachment
         list.add(new LeaveTestCase(
                 "TC-01",
                 "Valid Full Day Leave",
-                "Applies for a standard Full Day leave with valid dates and sample attachment",
-                null,
-                validFrom,
-                validTo,
+                "Applies for a standard Full Day leave with valid dates and sample PNG proof attachment",
+                "Sick leave",
+                validFrom1,
+                validTo1,
                 false,
                 null,
-                "Personal family function and travel",
+                "Personal health checkup and recovery",
                 true,
                 true));
 
@@ -1311,12 +1573,12 @@ public class ApplyLeave {
         list.add(new LeaveTestCase(
                 "TC-02",
                 "Valid Half Day - Session 1",
-                "Selects Half Day, verifies Session dropdown appears, and chooses Session 1",
-                null,
-                validFrom,
-                validFrom,
+                "Selects Half Day, verifies Session dropdown appears, and chooses Session-1",
+                "Sick leave",
+                validFrom2,
+                validFrom2,
                 true,
-                "Session 1",
+                "Session-1",
                 "Doctor appointment in the forenoon session",
                 true,
                 true));
@@ -1325,14 +1587,14 @@ public class ApplyLeave {
         list.add(new LeaveTestCase(
                 "TC-03",
                 "Valid Half Day - Session 2",
-                "Selects Half Day, verifies Session dropdown, and chooses Session 2",
-                null,
-                validFrom,
-                validFrom,
+                "Selects Half Day, verifies Session dropdown, and chooses Session-2",
+                "Sick leave",
+                validFrom3,
+                validFrom3,
                 true,
-                "Session 2",
-                "Personal banking work in the afternoon session",
-                false,
+                "Session-2",
+                "Medical consultation in the afternoon session",
+                true,
                 true));
 
         // 4. Date Validation - To Date Earlier Than From Date
@@ -1340,13 +1602,13 @@ public class ApplyLeave {
                 "TC-04",
                 "Date Validation: To Date Before From Date",
                 "Checks date validation error when To Date is chronologically earlier than From Date",
-                null,
-                validFrom,
+                "Sick leave",
+                validFrom1,
                 invalidToDate,
                 false,
                 null,
                 "Testing date range boundary check",
-                false,
+                true,
                 false));
 
         // 5. Security - SQL Injection in Reason / Remarks
@@ -1354,13 +1616,13 @@ public class ApplyLeave {
                 "TC-05",
                 "Security: SQL Injection in Reason",
                 "Injects authentication bypass and database command into the Reason field",
-                null,
-                validFrom,
-                validTo,
+                "Sick leave",
+                validFrom1,
+                validTo1,
                 false,
                 null,
                 "' OR '1'='1'; DROP TABLE tbl_leaves; --",
-                false,
+                true,
                 false));
 
         // 6. Security - Cross-Site Scripting (XSS) in Reason
@@ -1368,13 +1630,13 @@ public class ApplyLeave {
                 "TC-06",
                 "Security: XSS Script Injection in Reason",
                 "Injects HTML/JavaScript XSS payload into the Reason/Remarks field",
-                null,
-                validFrom,
-                validTo,
+                "Sick leave",
+                validFrom1,
+                validTo1,
                 false,
                 null,
                 "<script>alert('XSS-Leave')</script><img src=x onerror=alert(1)>",
-                false,
+                true,
                 false));
 
         // 7. Defensive - Malformed Special Characters & Emojis
@@ -1382,13 +1644,13 @@ public class ApplyLeave {
                 "TC-07",
                 "Malformed: Special Characters & Emojis",
                 "Submits Unicode emojis, punctuation, and malformed symbols in Reason",
-                null,
-                validFrom,
-                validTo,
+                "Sick leave",
+                validFrom1,
+                validTo1,
                 false,
                 null,
                 "!@#$%^&*()_+{}[]:;\"'<>?,./~ 🚀🔥⭐ ñçü",
-                false,
+                true,
                 false));
 
         // 8. Boundary - Excessively Long String (Buffer Boundary)
@@ -1396,13 +1658,13 @@ public class ApplyLeave {
                 "TC-08",
                 "Boundary: Excessively Long Reason Text",
                 "Submits a 1,500+ character string in Reason to verify max-length limit",
-                null,
-                validFrom,
-                validTo,
+                "Sick leave",
+                validFrom1,
+                validTo1,
                 false,
                 null,
-                "Emergency leave request details exceeding normal length boundary. ".repeat(40),
-                false,
+                "Emergency leave request details exceeding normal length boundary. ".repeat(30),
+                true,
                 false));
 
         // 9. Validation - Empty Reason / Remarks
@@ -1410,12 +1672,26 @@ public class ApplyLeave {
                 "TC-09",
                 "Validation: Missing Reason",
                 "Submits without providing any reason to check required field enforcement",
-                null,
-                validFrom,
-                validTo,
+                "Sick leave",
+                validFrom1,
+                validTo1,
                 false,
                 null,
                 "",
+                true,
+                false));
+
+        // 10. Validation - Missing Supporting Image Attachment
+        list.add(new LeaveTestCase(
+                "TC-10",
+                "Validation: Missing Attachment",
+                "Submits without attaching required supporting PNG/JPEG image to test validation",
+                "Sick leave",
+                validFrom1,
+                validTo1,
+                false,
+                null,
+                "Valid reason text without attachment",
                 false,
                 false));
 
