@@ -1,0 +1,3 @@
+Medical Certificate / Leave Document Proof
+Generated for automated Selenium testing.
+Date: 2026-10-12
