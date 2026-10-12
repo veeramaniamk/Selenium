@@ -1,10 +1,8 @@
 package com.practice.home;
 
-import com.practice.ApiConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -72,7 +70,7 @@ public class Login {
 
     /** Right / Valid test credentials as requested. */
     public static final String VALID_LOGIN_ID = "23114";
-    public static final String VALID_PASSWORD = "walkin111";
+    public static final String VALID_PASSWORD = "walkin1111";
 
     // ------------------------------------------------------------------------------------------------
     // Data Models
@@ -677,12 +675,8 @@ public class Login {
                     writer.println("      Status Code : " + tx.responseStatus + " " + tx.responseStatusText);
                     writer.println("      MIME Type   : " + tx.responseMimeType);
 
-                    if (!tx.responseBody.isBlank()) {
-                        writer.println("      Response Body Got:");
-                        writer.println("        " + tx.responseBody);
-                    } else {
-                        writer.println("      Response Body Got: [Empty or Streaming/Redirected]");
-                    }
+                    writer.println("      Response Body Got:");
+                    writer.println("        " + formatResponseBody(tx));
                     writer.println();
                 }
             }
@@ -699,6 +693,63 @@ public class Login {
         } catch (IOException e) {
             System.err.println("Failed to append test result to log file: " + e.getMessage());
         }
+    }
+
+    /**
+     * Formats the response body for the log file:
+     * - If the page returns fully HTML content or a huge amount of HTML data,
+     *   omits the full HTML dump and only records the response status code and summary.
+     * - If it is a smaller piece of HTML (e.g. error snippet, <= 500 characters), logs it.
+     * - Non-HTML responses (JSON, XML, text) are logged normally.
+     */
+    private String formatResponseBody(NetworkTransaction tx) {
+        if (tx.responseBody == null || tx.responseBody.isBlank()) {
+            return "[Empty or Streaming/Redirected]";
+        }
+
+        String body = tx.responseBody.trim();
+        String mime = tx.responseMimeType != null ? tx.responseMimeType.toLowerCase() : "";
+        String lowerBody = body.toLowerCase();
+
+        boolean isHtml = mime.contains("text/html")
+                || mime.contains("application/xhtml")
+                || lowerBody.startsWith("<!doctype html")
+                || lowerBody.startsWith("<html")
+                || (lowerBody.contains("<head") && lowerBody.contains("<body"));
+
+        // Max character threshold for a "smaller piece" of HTML
+        final int HTML_SMALL_PIECE_THRESHOLD = 500;
+
+        if (isHtml) {
+            if (body.length() > HTML_SMALL_PIECE_THRESHOLD) {
+                // Huge amount of HTML: do not dump full HTML, just log response code & summary
+                String pageTitle = "";
+                int titleStart = lowerBody.indexOf("<title>");
+                int titleEnd = lowerBody.indexOf("</title>");
+                if (titleStart != -1 && titleEnd > titleStart) {
+                    pageTitle = " | Title: \"" + body.substring(titleStart + 7, titleEnd).trim() + "\"";
+                }
+
+                return String.format(
+                        "[Full HTML Content Omitted - Response Code: %d %s%s | Length: %d chars]",
+                        tx.responseStatus,
+                        (tx.responseStatusText != null && !tx.responseStatusText.isBlank() ? tx.responseStatusText : ""),
+                        pageTitle,
+                        body.length());
+            } else {
+                // Smaller piece of HTML: add it directly
+                return body;
+            }
+        }
+
+        // For non-HTML (e.g. application/json, text/plain)
+        final int NON_HTML_MAX_LENGTH = 3000;
+        if (body.length() > NON_HTML_MAX_LENGTH) {
+            return body.substring(0, NON_HTML_MAX_LENGTH)
+                    + "\n        ... [Payload truncated, total length: " + body.length() + " chars]";
+        }
+
+        return body;
     }
 
     /**
