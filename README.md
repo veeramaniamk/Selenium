@@ -1,259 +1,263 @@
-# Automated Security & Defensive Input Validation Suite
+# Selenium Java Automation & Network Logging Framework
 
-Automated defensive security and input-validation test suite for REST API endpoint:
-```http
-POST /test-login
-Content-Type: application/x-www-form-urlencoded
+A pure **Java 17+** Selenium WebDriver test automation framework designed for end-to-end functional and defensive security testing of the Employee Portal (`http://13.233.119.231`).
 
-bioId=<Long>&password=<String>
-```
-
-Built with **Java 17**, **JUnit 5**, and **REST Assured**.
+This framework features **automated Chrome DevTools Protocol (CDP) network capture** and **pure Java Excel report generation (Apache POI)**—with **zero Python dependencies**.
 
 ---
 
 ## Table of Contents
-1. [Overview & Security Assertions](#overview--security-assertions)
-2. [How to Compile the Project](#how-to-compile-the-project)
-3. [How to Run All Tests](#how-to-run-all-tests)
-4. [How to Run a Particular Test or Category](#how-to-run-a-particular-test-or-category)
-   - [Method 1: Via Maven Command Line](#method-1-via-maven-command-line)
-   - [Method 2: Via IDE (IntelliJ IDEA / VS Code / Eclipse)](#method-2-via-ide-intellij-idea--vs-code--eclipse)
-5. [Available Filter Keywords & Test Categories](#available-filter-keywords--test-categories)
-6. [Complete List of Individual Test Methods](#complete-list-of-individual-test-methods)
-7. [Configuring Target Server Base URL](#configuring-target-server-base-url)
-8. [Reviewing Execution Logs (`security_test_results.log`)](#reviewing-execution-logs-security_test_resultslog)
+1. [Overview & Features](#overview--features)
+2. [Prerequisites](#prerequisites)
+3. [Project Directory Structure](#project-directory-structure)
+4. [How to Compile the Project](#how-to-compile-the-project)
+5. [How to Run Tests (Single File / Task)](#how-to-run-tests-single-file--task)
+   - [1. Run Apply Leave Test Suite](#1-run-apply-leave-test-suite)
+   - [2. Run Login Test Suite](#2-run-login-test-suite)
+   - [3. Run Pure Java Excel Report Generator Standalone](#3-run-pure-java-excel-report-generator-standalone)
+   - [4. Run with Command-Line Options (Headless / Target URL)](#4-run-with-command-line-options-headless--target-url)
+   - [5. Run via IDE (IntelliJ IDEA / VS Code / Eclipse)](#5-run-via-ide-intellij-idea--vs-code--eclipse)
+6. [Test Suites & Scenarios](#test-suites--scenarios)
+   - [Apply Leave Suite (`ApplyLeave.java`)](#apply-leave-suite-applyleavejava)
+   - [Login Authentication Suite (`Login.java`)](#login-authentication-suite-loginjava)
+7. [Reporting System (Logs & Excel Workbooks)](#reporting-system-logs--excel-workbooks)
+   - [Automated Generation](#automated-generation)
+   - [Generated Report Files](#generated-report-files)
+   - [Excel Workbook Features & Layout](#excel-workbook-features--layout)
+8. [Troubleshooting & FAQ](#troubleshooting--faq)
 
 ---
 
-## Overview & Security Assertions
+## Overview & Features
 
-Every test in this suite sends malicious or edge-case input to the endpoint and asserts:
-- **Strict 4xx Status**: The API must respond with a `4xx` client error (e.g., `400 Bad Request`, `401 Unauthorized`, `403 Forbidden`, `422 Unprocessable Entity`).
-- **Never `200 OK`**: Prevents false acceptance or authentication bypass.
-- **Never `5xx`**: Prevents unhandled server exceptions, crashes, or unhandled 500 errors.
-- **No SQL Leaks**: Ensures response bodies never leak SQL syntax errors, database names, or table internals (`SQLException`, `syntax error at or near`, `hibernate`, `jdbc`, etc.).
-- **No Stack Traces**: Ensures response bodies never expose Java/Spring exception traces (`NullPointerException`, `at org.springframework.`, `Whitelabel Error Page`, etc.).
-- **No Command Injection Artifacts**: Ensures response bodies never contain shell execution artifacts (`uid=`, `root:`, `nt authority\system`, directory listings, etc.).
-- **No Auth Bypass Leaks**: Ensures response bodies never return authentication tokens or success indicators.
+- **100% Pure Java**: All test automation, network parsing, and Excel report generation are implemented purely in Java. All legacy Python scripts have been completely removed.
+- **Dual Test Suites**:
+  - **Portal Authentication (`Login.java`)**: Covers entrance screen interaction, credentials validation, SQL injection, XSS vectors, and boundary string limits.
+  - **Employee Leave Application (`ApplyLeave.java`)**: Covers navigation across dashboard tabs, leave types, date pickers, Full Day vs Half Day dynamic session toggles, multi-part file uploads, and submission verification.
+- **CDP Network Performance Capture**: Captures live HTTP traffic (Request URLs, HTTP methods, headers, POST form data/query params, status codes, and response bodies) while intelligently filtering noise and oversized HTML dumps.
+- **Rich Excel (.xlsx) Export**: Generates styled spreadsheets with executive dashboards, KPI cards, zebra-striped case tables, status code highlights, and auto-filters.
+
+---
+
+## Prerequisites
+
+Ensure the following tools are installed on your machine:
+- **Java Development Kit (JDK)**: Version 17 or higher (e.g., Java 17, 21). Verify with:
+  ```powershell
+  java -version
+  ```
+- **Apache Maven**: Version 3.8 or higher. Verify with:
+  ```powershell
+  mvn -version
+  ```
+- **Google Chrome**: Latest stable version installed. ChromeDriver is automatically managed by Selenium 4.
+
+---
+
+## Project Directory Structure
+
+```text
+Selenium/
+├── pom.xml                                    # Maven configuration & dependencies (Selenium, POI, TestNG, JUnit)
+├── README.md                                  # Complete execution and architecture guide
+├── Apply_Leave_Test_Report.log                # Text log generated by ApplyLeave suite
+├── Apply_Leave_Test_Report.xlsx               # Standalone Apply Leave Excel report
+├── Login_Test_Report.log                      # Text log generated by Login suite
+├── Login_Test_Report.xlsx                     # Standalone Login Excel report
+├── Test_Execution_Reports.xlsx                # Master consolidated Excel report (Dashboard + all suites)
+├── temp_uploads/                              # Generated sample file attachments (PNG/TXT)
+└── src/
+    └── main/
+        └── java/
+            └── com/
+                └── practice/
+                    ├── ApiConfig.java
+                    ├── home/
+                    │   ├── ApplyLeave.java    # Apply Leave Selenium automation suite
+                    │   └── Login.java         # Login authentication Selenium automation suite
+                    └── report/
+                        └── ExcelReportGenerator.java # Pure Java Excel (.xlsx) exporter (Apache POI)
+```
 
 ---
 
 ## How to Compile the Project
 
-Compile the source code and dependencies using Maven:
+Before running any test or task, compile the project dependencies:
 
+### Clean and Compile
 ```powershell
 mvn clean compile
 ```
 
-mvn exec:java "-Dexec.mainClass=com.practice.home.ApplyLeave"
-
-Or standard compile:
+### Quick Incremental Compile
 ```powershell
 mvn compile
 ```
 
 ---
 
-## How to Run All Tests
+## How to Run Tests (Single File / Task)
 
-To execute all 112 automated security tests against the default endpoint (`http://localhost:8080/test-login`):
+You can run individual test files or specific tasks easily via Maven or directly in your IDE.
 
+> [!NOTE]
+> On Windows PowerShell, enclose Maven `-D` arguments containing `=` or dots in quotes (e.g. `"-Dexec.mainClass=..."`).
+
+### 1. Run Apply Leave Test Suite
+To execute the **Apply Leave** automation suite:
+```powershell
+mvn exec:java "-Dexec.mainClass=com.practice.home.ApplyLeave"
+```
+*Default shortcut:* Since `com.practice.home.ApplyLeave` is configured as the default `exec.mainClass` in [`pom.xml`](pom.xml), you can also run:
 ```powershell
 mvn exec:java
 ```
 
----
+### 2. Run Login Test Suite
+To execute only the **Login Authentication** automation suite:
+```powershell
+mvn exec:java "-Dexec.mainClass=com.practice.home.Login"
+```
 
-## How to Run a Particular Test or Category
+### 3. Run Pure Java Excel Report Generator Standalone
+If you already have existing log files (`Apply_Leave_Test_Report.log` and `Login_Test_Report.log`) and want to generate or update the Excel sheets (`.xlsx`) at any time without re-running browser tests:
+```powershell
+mvn exec:java "-Dexec.mainClass=com.practice.report.ExcelReportGenerator"
+```
 
-You can execute a specific test case or an entire test category in two ways:
+### 4. Run with Command-Line Options (Headless / Target URL)
 
-### Method 1: Via Maven Command Line
+#### Run in Headless Mode (No Browser Window Displayed)
+Add `-Dheadless=true` to run Chrome headlessly in background:
+```powershell
+mvn exec:java "-Dexec.mainClass=com.practice.home.Login" -Dheadless=true
+```
+```powershell
+mvn exec:java "-Dexec.mainClass=com.practice.home.ApplyLeave" -Dheadless=true
+```
 
-You can pass the test name or category keyword directly using `-Dtest=...` (recommended, works cleanly in PowerShell & CMD) or `"-Dexec.args=..."`:
+#### Run Against a Custom Target URL
+Override the target environment URL using `-Dapp.url=...`:
+```powershell
+mvn exec:java "-Dexec.mainClass=com.practice.home.Login" -Dapp.url="http://13.233.119.231"
+```
 
-#### 1. Run by Category Name:
-- Run only **SQL Injection** tests:
-  ```powershell
-  mvn exec:java -Dtest=sql
-  ```
-- Run only **XSS Injection** tests:
-  ```powershell
-  mvn exec:java -Dtest=xss
-  ```
-- Run only **OS Command Injection** tests:
-  ```powershell
-  mvn exec:java -Dtest=command
-  ```
-- Run only **Parameter Type & Missing Parameter** tests:
-  ```powershell
-  mvn exec:java -Dtest=param
-  ```
-- Run only **Boundary & Empty/Whitespace** tests:
-  ```powershell
-  mvn exec:java -Dtest=boundary
-  ```
-- Run only **Unicode & Emojis** tests:
-  ```powershell
-  mvn exec:java -Dtest=unicode
-  ```
-- Run only **Malformed JSON** tests:
-  ```powershell
-  mvn exec:java -Dtest=malformed
-  ```
-- Run only **Transport & Content-Type** tests:
-  ```powershell
-  mvn exec:java -Dtest=transport
-  ```
-
-#### 2. Run a Single Individual Test Method:
-You can target any specific test method name directly:
-- Run only the **Missing bioId** test:
-  ```powershell
-  mvn exec:java -Dtest=testMissingBioIdParameter
-  ```
-- Run only the **Missing Password** test:
-  ```powershell
-  mvn exec:java -Dtest=testMissingPasswordParameter
-  ```
-- Run only the **Empty Password** test:
-  ```powershell
-  mvn exec:java -Dtest=testEmptyPassword
-  ```
-- Run only the **64KB Buffer Limit** test:
-  ```powershell
-  mvn exec:java -Dtest=testOversizedPassword64KB
-  ```
-- Run only the **Parameter Tampering** test:
-  ```powershell
-  mvn exec:java -Dtest=testParameterTamperingExtraFields
-  ```
-- Run only the **Invalid bioId Types** test:
-  ```powershell
-  mvn exec:java -Dtest=testInvalidBioIdTypes
-  ```
-
-*(Note: In PowerShell, you can also use `"-Dexec.args=testMissingBioIdParameter"`)*
+#### Combine Options:
+```powershell
+mvn exec:java "-Dexec.mainClass=com.practice.home.ApplyLeave" -Dheadless=true -Dapp.url="http://13.233.119.231"
+```
 
 ---
 
-### Method 2: Via IDE (IntelliJ IDEA / VS Code / Eclipse)
+### 5. Run via IDE (IntelliJ IDEA / VS Code / Eclipse)
 
-1. Open [`FirstTest.java`](src/main/java/com/practice/FirstTest.java).
-2. Look at the left gutter next to line numbers:
-   - Next to each `@Test` or `@ParameterizedTest` method, you will see a green **Play ▶️** icon.
-   - Click the green **Play ▶️** icon next to the specific test method you want to run.
-   - Select **Run 'testMethodName()'**.
-3. To run an entire category in the IDE:
-   - Click the green **Play ▶️** icon next to any `@Nested class` (e.g., `SqlInjectionTests`).
-   - Select **Run 'SqlInjectionTests'**.
+1. **Run as Java Application**:
+   - Navigate to [`src/main/java/com/practice/home/Login.java`](src/main/java/com/practice/home/Login.java) or [`src/main/java/com/practice/home/ApplyLeave.java`](src/main/java/com/practice/home/ApplyLeave.java).
+   - Right-click anywhere in the file and select **Run 'Login.main()'** or **Run 'ApplyLeave.main()'**.
+2. **Run as TestNG / JUnit Test**:
+   - Both test classes are annotated with `@Test`.
+   - Click the green **Play ▶️** icon in the editor gutter next to `testLoginAutomationSuite()` or `testApplyLeaveSuite()` and choose **Run**.
+3. **Run Excel Exporter in IDE**:
+   - Navigate to [`src/main/java/com/practice/report/ExcelReportGenerator.java`](src/main/java/com/practice/report/ExcelReportGenerator.java).
+   - Right-click and choose **Run 'ExcelReportGenerator.main()'**.
 
 ---
 
-## Available Filter Keywords & Test Categories
+## Test Suites & Scenarios
 
-| Filter Keyword | Category Description | What It Tests |
+### Apply Leave Suite ([`ApplyLeave.java`](src/main/java/com/practice/home/ApplyLeave.java))
+Automates the employee leave application workflow:
+1. **Automated Login & Dashboard Verification**: Signs in with valid credentials (`23114` / `walkin111`) and validates the dashboard.
+2. **Tab Switch**: Navigates to the "Apply Leave" tab and renders the "New Application" form.
+3. **Scenarios Covered**:
+   - **TC-01**: Valid Full Day Leave with sample proof attachment.
+   - **TC-02**: Valid Half Day (Session 1) verifying dynamic session dropdown appearance.
+   - **TC-03**: Valid Half Day (Session 2) verifying dynamic session selection.
+   - **TC-04**: Leave without file attachment.
+   - **TC-05**: Inverted Date Range (`From Date > To Date`) boundary testing.
+   - **TC-06**: SQL Injection payload in Remarks/Reason field.
+   - **TC-07**: Cross-Site Scripting (XSS) payload in Remarks/Reason field.
+   - **TC-08**: Special characters and punctuation in Remarks/Reason field.
+   - **TC-09**: Boundary overflow string (buffer length test) in Remarks/Reason field.
+   - **TC-10**: Blank Remarks/Reason field validation.
+
+### Login Authentication Suite ([`Login.java`](src/main/java/com/practice/home/Login.java))
+Automates entrance screen and authentication security validations:
+1. **Entrance Screen**: Interacts with the "Sign in with Login ID" toggle button to display input fields.
+2. **Scenarios Covered**:
+   - **TC-01**: Valid credentials happy path (`23114` / `walkin111`).
+   - **TC-02**: Wrong password with valid Login ID.
+   - **TC-03**: Wrong Login ID with valid password format.
+   - **TC-04**: Both Login ID and password incorrect.
+   - **TC-05**: Malformed empty fields submission.
+   - **TC-06**: Empty Login ID.
+   - **TC-07**: Empty Password.
+   - **TC-08**: Whitespace-only submission.
+   - **TC-09**: Authentication bypass SQL Injection vectors.
+   - **TC-10**: Cross-Site Scripting (XSS) payload injection.
+   - **TC-11**: Special characters & punctuation string inputs.
+   - **TC-12**: Buffer limit boundary overflow string.
+
+---
+
+## Reporting System (Logs & Excel Workbooks)
+
+### Automated Generation
+When you execute either test suite (`Login` or `ApplyLeave`), the following happens automatically at the end of the test run:
+1. The structured text log file is written and summarized.
+2. [`ExcelReportGenerator.java`](src/main/java/com/practice/report/ExcelReportGenerator.java) is invoked automatically in pure Java.
+3. All corresponding Excel files are updated immediately. **No Python commands or external tools are needed.**
+
+### Generated Report Files
+
+| File Name | Format | Description |
 | :--- | :--- | :--- |
-| `sql` | SQL Injection | Boolean bypass (`' OR '1'='1`), stacked queries (`'; DROP TABLE users;--`), UNION queries, sleep blind injection, and SQLi in `bioId`. |
-| `xss` | Cross-Site Scripting | `<script>alert(1)</script>`, `<img src=x onerror=...>`, `<svg onload=...>`, event handlers, iframes, and `bioId` XSS. |
-| `command` or `cmd` | OS Command Injection | `; whoami`, `$(whoami)`, `& dir`, `\| id`, `; cat /etc/passwd`, `& calc.exe`, verifying input is never passed to a shell. |
-| `boundary` | Boundary & Buffer Limits | Empty string `""`, whitespace only (`\t`, `\n`), 1,000 char, 10,000 char, and 64KB oversized payloads. |
-| `unicode` | Encoding & Unicode | Emojis (`🔥🔒🚀👻🛡️`), non-Latin scripts (Japanese, Arabic, Cyrillic), null-byte injection (`admin\0pass`), and Right-to-Left (RLO) overrides. |
-| `malformed` | Malformed & Objects | Malformed JSON strings (`{"admin": true}`), format strings (`%s%s%n`), path traversal (`../../etc/passwd`), and JNDI (`${jndi:ldap:...}`). |
-| `param` or `type` | Parameter Types & Missing | Non-numeric `bioId` (`invalidBioId`, `abc123`), floats (`1234.5678`), integer overflow, missing `bioId`, missing `password`, and parameter tampering. |
-| `transport` | Transport & Content Negotiation | Query parameters in POST (`/test-login?bioId=...&password=...`) and raw JSON payloads with `Content-Type: application/json`. |
+| `Test_Execution_Reports.xlsx` | Excel Workbook | **Master Report**: Contains Executive Dashboard, Apply Leave test cases & APIs, and Login test cases & APIs. |
+| `Apply_Leave_Test_Report.xlsx` | Excel Workbook | **Standalone Suite Report**: Detailed test cases and network traffic for the Apply Leave suite. |
+| `Login_Test_Report.xlsx` | Excel Workbook | **Standalone Suite Report**: Detailed test cases and network traffic for the Login suite. |
+| `Apply_Leave_Test_Report.log` | Text Log | Human-readable execution log with full CDP network transaction blocks for Apply Leave. |
+| `Login_Test_Report.log` | Text Log | Human-readable execution log with full CDP network transaction blocks for Login. |
 
 ---
 
-## Complete List of Individual Test Methods
+### Excel Workbook Features & Layout
 
-You can copy and run any of these method names with `-Dexec.args="<methodName>"`:
+The Excel reports generated by [`ExcelReportGenerator.java`](src/main/java/com/practice/report/ExcelReportGenerator.java) include:
 
-### 1. SQL Injection Tests (`SqlInjectionTests`)
-- `testSqlInjectionInPassword` — Parameterized test covering 17 SQL injection vectors in `password`.
-- `testSqlInjectionInBioId` — Parameterized test covering 5 SQL injection vectors in `bioId`.
-
-### 2. XSS Tests (`XssInjectionTests`)
-- `testXssInPassword` — Parameterized test covering 12 XSS payload strings in `password`.
-- `testXssInBioId` — Parameterized test covering script tags in `bioId`.
-
-### 3. OS Command Injection Tests (`CommandInjectionTests`)
-- `testCommandInjectionInPassword` — Parameterized test covering 19 command execution strings in `password`.
-- `testCommandInjectionInBioId` — Parameterized test covering command strings in `bioId`.
-
-### 4. Boundary & Malformed Input Tests (`BoundaryAndMalformedInputTests`)
-- `testEmptyPassword` — Tests empty string `""` password rejection.
-- `testWhitespacePassword` — Tests whitespace-only (`" "`, `"\t"`, `"\n"`, `"\r\n"`) passwords.
-- `testLongPassword1000Chars` — Tests 1,000 character password buffer limit.
-- `testLongPassword10000Chars` — Tests 10,000 character password buffer limit.
-- `testOversizedPassword64KB` — Tests 65,536 character (64KB) oversized payload.
-- `testUnicodeAndSpecialCharsets` — Tests emojis, null-bytes, RTL, and non-ASCII character sets.
-- `testMalformedJsonStrings` — Tests JSON and object injection payloads.
-- `testFormatStringAndTraversalPayloads` — Tests `%s` format strings, path traversal, and `${jndi:...}` strings.
-
-### 5. Parameter Types & Missing Parameters (`ParameterTypeAndMissingParameterTests`)
-- `testInvalidBioIdTypes` — Tests alphanumeric, floating-point, NaN, and integer overflow in `bioId`.
-- `testNegativeAndEmptyBioId` — Tests negative numbers (`-1`, `-999999`), zero, and empty `bioId`.
-- `testMissingBioIdParameter` — Tests request with `bioId` omitted completely.
-- `testMissingPasswordParameter` — Tests request with `password` omitted completely.
-- `testMissingBothParameters` — Tests request with both `bioId` and `password` omitted.
-- `testParameterTamperingExtraFields` — Tests unexpected admin privilege escalation parameters (`isAdmin=true`, `role=SUPERADMIN`).
-
-### 6. Transport & Content-Type Tests (`TransportAndPayloadSecurityTests`)
-- `testSqlInjectionViaQueryParams` — Tests SQL injection transmitted via query parameters on POST.
-- `testJsonPayloadRejection` — Tests request with `application/json` payload body.
+1. **Executive Dashboard (`Test_Execution_Reports.xlsx`)**:
+   - **Header & Environment Banner**: Target URL, Browser Engine, Execution Timestamp.
+   - **Summary KPI Cards**: Total Test Cases, Passed Scenarios, Failed Scenarios, and Overall Success Rate.
+   - **Suite Execution Breakdown Table**: Per-suite metrics and consolidated totals.
+   - **High-Level Scenario Results Matrix**: Matrix view with clickable pass/fail indicators and network request counts.
+2. **Test Cases Sheets**:
+   - Includes Test Case ID, Scenario Name, Description, Input Parameters, UI Message Got, and Final Verdict.
+   - Formatted with **Navy Headers (`#1F4E79`)**, **Zebra Striping (`#F9FAFB`)**, **Green Pass Fill (`#E2EFDA`)**, and **Red Fail Fill (`#FCE4D6`)**.
+   - **Frozen Header Row** and **Excel Auto-Filters** enabled on all columns.
+3. **Network & APIs Sheets**:
+   - Full breakdown of captured HTTP requests: Request #, HTTP Method, Target URL / Endpoint, Query Parameters / Body, Headers, Status Code, MIME Type, and Response Body.
+   - HTTP `200 OK` highlighted in green; HTTP `4xx` / `5xx` highlighted in red.
+   - Auto-fitted column widths with clean bounds for effortless reading.
 
 ---
 
-## Configuring Target Server Base URL
+## Troubleshooting & FAQ
 
-By default, tests send requests to:
-`http://localhost:8080/test-login`
-
-To point tests to another host, port, or base path, provide `-Dapi.base.url`:
-
+#### Q: How do I re-export Excel files without re-running tests?
+Simply execute:
 ```powershell
-mvn exec:java -Dapi.base.url=http://localhost:8080/auth
+mvn exec:java "-Dexec.mainClass=com.practice.report.ExcelReportGenerator"
 ```
+It reads the existing `.log` files and regenerates all three `.xlsx` workbooks in seconds.
 
-Or combine it with a test filter:
+#### Q: Is Python required anywhere in the project?
+No. All Python dependencies and scripts (`export_reports_to_excel.py`) have been removed. The entire build, execution, and reporting pipeline runs 100% on Java with Apache POI.
+
+#### Q: Can I run tests on a server without a graphical display?
+Yes, simply pass `-Dheadless=true`:
 ```powershell
-mvn exec:java -Dapi.base.url=http://localhost:8080/auth -Dexec.args="sql"
+mvn exec:java "-Dexec.mainClass=com.practice.home.ApplyLeave" -Dheadless=true
 ```
 
----
-
-## Reviewing Execution Logs (`security_test_results.log`)
-
-Execution logs are appended to [`security_test_results.log`](security_test_results.log).
-
-Each log record includes:
-1. **Timestamp & Category**
-2. **Request Details**:
-   - HTTP method and target URL
-   - Exact request parameters sent (`bioId`, `password`, extra parameters)
-3. **Response Details**:
-   - HTTP Status Code (e.g., `HTTP 400`)
-   - Response Time in milliseconds
-   - Exact response body received from the server
-4. **Security Verdict**:
-   - `PASS` or detailed failure violation messages.
-
-### Example Log Record:
-```text
-----------------------------------------------------------------------------------------
-[2026-10-08 11:46:15.976] [PASS] Category: Missing Param | Test: password omitted from request
-  [REQUEST]
-    Endpoint & Transport: POST http://localhost:8080/test-login (application/x-www-form-urlencoded)
-    Request Params Sent:
-      * bioId          = 1001
-      * password       = [OMITTED / NOT SENT]
-  [RESPONSE]
-    Status Code:          HTTP 400 (65 ms)
-    Response Body:        {"message":"Missing parameter.","status":400}
-  [VERDICT]
-    Outcome:              PASS
-----------------------------------------------------------------------------------------
-```
+#### Q: Where are uploaded sample files stored?
+Sample files generated during leave attachment tests are stored in `temp_uploads/` (`sample_leave_proof.png` and `sample_leave_document.txt`).

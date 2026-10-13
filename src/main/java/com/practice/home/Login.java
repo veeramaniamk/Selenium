@@ -200,6 +200,12 @@ public class Login {
                 }
             }
             appendSummaryToLogFile(logFile, results);
+            try {
+                com.practice.report.ExcelReportGenerator.generateReports();
+                System.out.println("[REPORT] Excel reports successfully generated & updated (.xlsx)");
+            } catch (Exception e) {
+                System.err.println("[REPORT] Note: Failed to update Excel reports: " + e.getMessage());
+            }
         }
 
         printConsoleSummary(results, logFile.getAbsolutePath());

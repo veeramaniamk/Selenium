@@ -1,7 +1,7 @@
 ====================================================================================================
                    SELENIUM AUTOMATION TEST REPORT: ApplyLeave.java                                 
 ====================================================================================================
-Generated Date & Time : 2026-10-12 15:46:32
+Generated Date & Time : 2026-10-13 11:26:40
 Target Website URL    : http://13.233.119.231
 Browser Engine        : Google Chrome with CDP Performance Logging
 Scope                 : Attendance/Duty Exchange/Apply Leave Tabs, Form Fields, Dates, Day Types,
@@ -11,11 +11,11 @@ Scope                 : Attendance/Duty Exchange/Apply Leave Tabs, Form Fields, 
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-01 [Valid Full Day Leave]
 DESCRIPTION   : Applies for a standard Full Day leave with valid dates and sample PNG proof attachment
-TIMESTAMP     : 2026-10-12 15:46:56
+TIMESTAMP     : 2026-10-13 11:27:06
 INPUT PARAMETERS:
   * Leave Type     : Sick leave
-  * From Date      : 2026-10-14
-  * To Date        : 2026-10-14
+  * From Date      : 2026-10-15
+  * To Date        : 2026-10-15
   * Day Type       : Full Day
   * Session Dropdown Verified : N/A
   * Remarks/Reason : "Personal health checkup and recovery"
@@ -24,44 +24,143 @@ INPUT PARAMETERS:
 ----------------------------------------------------------------------------------------------------
 CAPTURED NETWORK ACTIVITY:
   [1] HTTP REQUEST:
-      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      URL    : http://13.233.119.231/api/employee/birthday.php?action=status
       Method : GET
       URL Query Parameters:
-        action=pending
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiYTA5NmY5ZGQzNjcwZjk4ZDBlMTg1ZjdlOTMzNzc4YzFlZWMyMDk1NjM5MDE2MDI2ZGY0OWNmYzQ0MWUwOTg3MiIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjdiMjUxNGMzYjM1MGMzNjI5MDY3MjBkYzc2NjY3ZTFlIiwiaWF0IjoxNzkxODAwMTk4LCJuYmYiOjE3OTE4MDAxOTgsImV4cCI6MTc5MTgwMTA5OH0.DDvMPH0K7vvgtO3fqLq2MCORfAk4M41rESlyPIvvcDo}
+        action=status
       HTTP RESPONSE:
-      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      URL         : http://13.233.119.231/api/employee/birthday.php?action=status
       Status Code : 200 OK
       MIME Type   : application/json
       Response Body Got:
-        {"success":true,"data":{"is_head":false,"date":"2026-10-12","due_groups":[],"waiting_groups":[],"due_count":0,"next_available_at":null,"must_score":false}}
+        {"success":true,"data":{"is_birthday_today":false,"has_auto_opened":false,"celebration_year":2026,"employee":{"bio_id":"23114","employee_name":"Veeramani A","first_name":"Veeramani","display_name":"Veeramani","formal_name":"Veeramani","department":"Software","campus":"Viana Soft Private Limited","institution":"Viana Soft Private Limited","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_68b70257432b41.09819328.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055648Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=646ab1f0fd8d352ef75eae81b70c2273ec9948b2dcb04cdd8e8b58573d850a45"},"colleague_birthdays":[],"pending_notifications":[],"stats":{"wish_count":0,"greet_me_count":0,"auto_popup_count":0},"greeting":null}}
 
   [2] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/duty-exchange.php?action=overview&slim=1
+      Method : GET
+      URL Query Parameters:
+        action=overview&slim=1
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/duty-exchange.php?action=overview&slim=1
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"duty_exchange":{"upcoming":{"rows":[],"shift_names":[],"count":0},"outgoing_pending":{"rows":[],"count":0},"incoming":{"rows":[],"count":0},"counts":{"upcoming":0,"outgoing_pending":0,"incoming":0}}}}
+
+  [3] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/project-requests.php?action=list&page=1&search=&location=&doa_status=
+      Method : GET
+      URL Query Parameters:
+        action=list&page=1&search=&location=&doa_status=
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/project-requests.php?action=list&page=1&search=&location=&doa_status=
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"project_request":{"rows":[],"total":0,"page":1,"per_page":50,"has_more":false}}}
+
+  [4] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/leave.php?action=bootstrap
+      Method : GET
+      URL Query Parameters:
+        action=bootstrap
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/leave.php?action=bootstrap
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"leave":{"overview":{"balances":[{"abbr":"CL","name":"Casual leave","availability":1.5,"interval":"Month"},{"abbr":"SL","name":"Sick leave","availability":5,"interval":"Month"},{"abbr":"EL","name":"Earned leave","availability":1,"interval":"Month"}],"message":"","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055648Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=468c9e052f42cc3520bc895508349f6e61e672af0dcd8e816b0c45bb54295269","display":"Reporting Authority: Dr. V. Deepak Nallasamy (389)"},"cycle":{"label":"Sep 21 – Oct 20, 2026","date_from":"2026-09-21","date_to":"2026-10-20"},"leave_filter_names":["Casual leave","Sick leave","Earned leave"],"is_teaching":false,"department":"Software","work_category":"Non teaching","today":"2026-10-13","substitute_required":false},"history":{"rows":[{"id":274323,"category":"Sick leave","leave_date":"2026-10-18","start_date":"2026-10-18","end_date":"2026-10-18","leave_type":"full_day","half_day_session":"","total_days":1,"status":"Rejected","applied_on":"2026-10-12 10:30:35","reason":"' OR '1'='1'; DROP TABLE tbl_leaves; --","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791801035_6accb6cbde69a0.81441458.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055648Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=1ee6e0618bd69c848b1c2bf779ca5b3489e40fe4cfd463f42c93f13469cd2383","can_cancel":false},{"id":274322,"category":"Casual leave","leave_date":"2026-10-17","start_date":"2026-10-17","end_date":"2026-10-17","leave_type":"full_day","half_day_session":"","total_days":1,"status":"Rejected","applied_on":"2026-10-12 10:30:02","reason":"dfdfdf","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791801001_6accb6a9e494d0.97234210.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055648Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=92fab944c8ef6e5b27f854e68246d7afa95719c2ddc4a81d9a737355b1cf88d9","can_cancel":false},{"id":274321,"category":"Sick leave","leave_date":"2026-10-16","start_date":"2026-10-16","end_date":"2026-10-16","leave_type":"half_day","half_day_session":"Session-2","total_days":0.5,"status":"Rejected","applied_on":"2026-10-12 10:17:20","reason":"Medical consultation in the afternoon session","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791800240_6accb3b00128a9.82124111.png?X-Amz-Content-Sha256=UNSIGNED-PAYLO
+        ... [Payload truncated, total length: 24542 chars]
+
+  [5] HTTP REQUEST:
       URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
       Method : GET
       URL Query Parameters:
         action=pending
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiYTA5NmY5ZGQzNjcwZjk4ZDBlMTg1ZjdlOTMzNzc4YzFlZWMyMDk1NjM5MDE2MDI2ZGY0OWNmYzQ0MWUwOTg3MiIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjdiMjUxNGMzYjM1MGMzNjI5MDY3MjBkYzc2NjY3ZTFlIiwiaWF0IjoxNzkxODAwMTk4LCJuYmYiOjE3OTE4MDAxOTgsImV4cCI6MTc5MTgwMTA5OH0.DDvMPH0K7vvgtO3fqLq2MCORfAk4M41rESlyPIvvcDo}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
       Status Code : 200 OK
       MIME Type   : application/json
       Response Body Got:
-        {"success":true,"data":{"is_head":false,"date":"2026-10-12","due_groups":[],"waiting_groups":[],"due_count":0,"next_available_at":null,"must_score":false}}
+        {"success":true,"data":{"is_head":false,"date":"2026-10-13","due_groups":[],"waiting_groups":[],"due_count":0,"next_available_at":null,"must_score":false}}
 
-  [3] HTTP REQUEST:
+  [6] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-leave
+      Method : GET
+      URL Query Parameters:
+        page=home-tab-leave
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-leave
+      Status Code : 200 OK
+      MIME Type   : text/html
+      Response Body Got:
+        [Full HTML Content Omitted - Response Code: 200 OK | Length: 11060 chars]
+
+  [7] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Method : GET
+      URL Query Parameters:
+        cycle=current&lite=1
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"attendance":{"cycle":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"title":"Oct 2026","available_cycles":{"current":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"last":{"key":"last","start":"2026-08-21","end":"2026-09-20","label":"Aug 21 – Sep 20, 2026","selector_label":"Sep 2026","end_month_key":"2026-09"}},"summary":{"present_days":0,"half_days":0,"sandwich_lop_days":3,"total_present_days":0,"total_absent_days":23,"week_off_days":3,"lop_days":23,"remaining_buffer_minutes":250,"total_buffer_minutes":250,"used_buffer_minutes":0,"buffer_lop_cycles":0,"total_working_hours":0,"attendance_percent":0,"today_in_time":"—","today_out_time":"—"},"calendar":{"mode":"payroll_cycle","title":"Sep 21 – Oct 20, 2026","start_date":"2026-09-21","end_date":"2026-10-20","offset":1,"total_days":30,"days":{"2026-09-21":{"date":"2026-09-21","display_day":21,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-22":{"date":"2026-09-22","display_day":22,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-23":{"date":"2026-09-23","display_day":23,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-24":{"date":"2026-09-24","display_day":24,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-25":{"date":"2026-09-25","display_day":25,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-26":{"date":"2026-09-26","display_day":26,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-27":{"date":"2026-09-27","display_day":27,"month_label":"Sep","status":"Sandwich LOP","raw_status":"(LOP)","in_time":null,"out_time":null,"is_future":false},"2026-09-28":{"date":"2026-09-28","display_day":28,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-29":{"date":"2026-09-29","display_day":29,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-30":{"date":"2026-09-30","display_day":30,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-01":{"date":"2026-10-01","display_day":1,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-02":{"date":"2026-10-02","display_day":2,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-03":{"date":"2026-10-03","display_day
+        ... [Payload truncated, total length: 12491 chars]
+
+  [8] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Method : GET
+      URL Query Parameters:
+        action=pending
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMjVkMDY1M2JlZmFiOTdiODEzMTcyZTUxZDY5ZDc0NmU0NzA2ZWZiNjYxNzIzYTkwMzIyOTVjZDZmNDQ0MmMzYiIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImI3ODBkNTI4ZWYzZDI3ZWVlOTI4N2IwZmYxMmViNjA5IiwiaWF0IjoxNzkxODcxMDA1LCJuYmYiOjE3OTE4NzEwMDUsImV4cCI6MTc5MTg3MTkwNX0.Vngh4Yl2ELDoHj4p-xOFk930zyy6uwaLU9mSldMjm8g}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"is_head":false,"date":"2026-10-13","due_groups":[],"waiting_groups":[],"due_count":0,"next_available_at":null,"must_score":false}}
+
+  [9] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Method : GET
+      URL Query Parameters:
+        action=pending
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMjVkMDY1M2JlZmFiOTdiODEzMTcyZTUxZDY5ZDc0NmU0NzA2ZWZiNjYxNzIzYTkwMzIyOTVjZDZmNDQ0MmMzYiIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImI3ODBkNTI4ZWYzZDI3ZWVlOTI4N2IwZmYxMmViNjA5IiwiaWF0IjoxNzkxODcxMDA1LCJuYmYiOjE3OTE4NzEwMDUsImV4cCI6MTc5MTg3MTkwNX0.Vngh4Yl2ELDoHj4p-xOFk930zyy6uwaLU9mSldMjm8g}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"is_head":false,"date":"2026-10-13","due_groups":[],"waiting_groups":[],"due_count":0,"next_available_at":null,"must_score":false}}
+
+  [10] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Method : GET
+      URL Query Parameters:
+        action=pending
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMjVkMDY1M2JlZmFiOTdiODEzMTcyZTUxZDY5ZDc0NmU0NzA2ZWZiNjYxNzIzYTkwMzIyOTVjZDZmNDQ0MmMzYiIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImI3ODBkNTI4ZWYzZDI3ZWVlOTI4N2IwZmYxMmViNjA5IiwiaWF0IjoxNzkxODcxMDA1LCJuYmYiOjE3OTE4NzEwMDUsImV4cCI6MTc5MTg3MTkwNX0.Vngh4Yl2ELDoHj4p-xOFk930zyy6uwaLU9mSldMjm8g}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"is_head":false,"date":"2026-10-13","due_groups":[],"waiting_groups":[],"due_count":0,"next_available_at":null,"must_score":false}}
+
+  [11] HTTP REQUEST:
       URL    : http://13.233.119.231/api/employee/leave.php?action=submit
       Method : POST
       URL Query Parameters:
         action=submit
-      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundaryqJOBSz326A0WkTIA, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiYTA5NmY5ZGQzNjcwZjk4ZDBlMTg1ZjdlOTMzNzc4YzFlZWMyMDk1NjM5MDE2MDI2ZGY0OWNmYzQ0MWUwOTg3MiIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjdiMjUxNGMzYjM1MGMzNjI5MDY3MjBkYzc2NjY3ZTFlIiwiaWF0IjoxNzkxODAwMTk4LCJuYmYiOjE3OTE4MDAxOTgsImV4cCI6MTc5MTgwMTA5OH0.DDvMPH0K7vvgtO3fqLq2MCORfAk4M41rESlyPIvvcDo, x-csrf-token=96eaa880455463da6ffa9a3afb21b3489bf9a06360e241ace048afb9ac3fcffd}
+      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundaryQX9CZjHYTkIFryNz, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMjVkMDY1M2JlZmFiOTdiODEzMTcyZTUxZDY5ZDc0NmU0NzA2ZWZiNjYxNzIzYTkwMzIyOTVjZDZmNDQ0MmMzYiIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6ImI3ODBkNTI4ZWYzZDI3ZWVlOTI4N2IwZmYxMmViNjA5IiwiaWF0IjoxNzkxODcxMDA1LCJuYmYiOjE3OTE4NzEwMDUsImV4cCI6MTc5MTg3MTkwNX0.Vngh4Yl2ELDoHj4p-xOFk930zyy6uwaLU9mSldMjm8g, x-csrf-token=1aa50e14f7d6629341695952fd28d3c4f25679821f9cda0aec0fc8567a864591}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/leave.php?action=submit
       Status Code : 200 OK
       MIME Type   : application/json
       Response Body Got:
-        {"success":true,"data":{"leave":{"id":274319,"message":"Leave application submitted successfully.","substitutes_saved":0,"total_days":1,"start_date":"2026-10-14","end_date":"2026-10-14","patch":{"overview":{"balances":[{"abbr":"CL","name":"Casual leave","availability":1.5,"interval":"Month"},{"abbr":"SL","name":"Sick leave","availability":4,"interval":"Month"},{"abbr":"EL","name":"Earned leave","availability":1,"interval":"Month"}],"message":"","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T101650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=5016c00c99425c5d5e4b34d3a45e47e5f4c6281436d7fb75a4eed4e48c4a949e","display":"Reporting Authority: Dr. V. Deepak Nallasamy (389)"},"cycle":{"label":"Sep 21 – Oct 20, 2026","date_from":"2026-09-21","date_to":"2026-10-20"},"leave_filter_names":["Casual leave","Sick leave","Earned leave"],"is_teaching":false,"department":"Software","work_category":"Non teaching","today":"2026-10-12","substitute_required":false},"history":{"rows":[{"id":274319,"category":"Sick leave","leave_date":"2026-10-14","start_date":"2026-10-14","end_date":"2026-10-14","leave_type":"full_day","half_day_session":"","total_days":1,"status":"Pending","applied_on":"2026-10-12 10:16:49","reason":"Personal health checkup and recovery","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791800209_6accb391c3dbe7.79867489.png?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T101650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=9d34dc11c3badfd230a52b8898a3c70d68f57669a6c0d0f5f239fa42218deadc","can_cancel":true},{"id":274318,"category":"Sick leave","leave_date":"2026-10-16","start_date":"2026-10-16","end_date":"2026-10-16","leave_type":"half_day","half_day_session":"Session-2","total_days":0.5,"status":"Rejected","applied_on":"2026-10-12 10:08:06","reason":"Medical consultation in the afternoon session","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791799686_6accb186c4e3b9.91537270.png?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T101650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=882bad9d804aeba2c2fcf8d7f9ac22625410d7599010dfb3d6ed0583bfed480c","can_cancel":false},{"id":274317,"category":"Sick leave","leave_date":"2026-10-15","start_date":"2026-10-15","end_date":"2026-10-15","leave_type":"half_day","half_day_session":"Session-1","total_days":0.5,"status":"Rejected","applied_on":"2026-10-12 10:07:52
-        ... [Payload truncated, total length: 20002 chars]
+        {"success":true,"data":{"leave":{"id":274324,"message":"Leave application submitted successfully.","substitutes_saved":0,"total_days":1,"start_date":"2026-10-15","end_date":"2026-10-15","patch":{"overview":{"balances":[{"abbr":"CL","name":"Casual leave","availability":1.5,"interval":"Month"},{"abbr":"SL","name":"Sick leave","availability":4,"interval":"Month"},{"abbr":"EL","name":"Earned leave","availability":1,"interval":"Month"}],"message":"","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055658Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=3b7f2ca26ddeaffbf6ce4da2d2b728f1614af6ca470ee9b04a83faeeaec42af5","display":"Reporting Authority: Dr. V. Deepak Nallasamy (389)"},"cycle":{"label":"Sep 21 – Oct 20, 2026","date_from":"2026-09-21","date_to":"2026-10-20"},"leave_filter_names":["Casual leave","Sick leave","Earned leave"],"is_teaching":false,"department":"Software","work_category":"Non teaching","today":"2026-10-13","substitute_required":false},"history":{"rows":[{"id":274324,"category":"Sick leave","leave_date":"2026-10-15","start_date":"2026-10-15","end_date":"2026-10-15","leave_type":"full_day","half_day_session":"","total_days":1,"status":"Pending","applied_on":"2026-10-13 05:56:58","reason":"Personal health checkup and recovery","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791871018_6acdc82a121260.46327991.png?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055658Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=ca8d23e64756029ff9e599a8f4c21ec24ddf692e25f2de98b4f571da2ec13cbe","can_cancel":true},{"id":274323,"category":"Sick leave","leave_date":"2026-10-18","start_date":"2026-10-18","end_date":"2026-10-18","leave_type":"full_day","half_day_session":"","total_days":1,"status":"Rejected","applied_on":"2026-10-12 10:30:35","reason":"' OR '1'='1'; DROP TABLE tbl_leaves; --","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791801035_6accb6cbde69a0.81441458.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055658Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=239851b0ae972a85264bb32c4ef0caadfd14116e17ebe20b7471b0c8bfa51cf3","can_cancel":false},{"id":274322,"category":"Casual leave","leave_date":"2026-10-17","start_date":"2026-10-17","end_date":"2026-10-17","leave_type":"full_day","half_day_session":"","total_days":1,"status":"Rejected","applied_on":"2026-10-12 10:30:02","reason":"dfdfdf","file"
+        ... [Payload truncated, total length: 25612 chars]
 
 UI & BROWSER OUTCOME:
   * Final Page URL : http://13.233.119.231/dashboard.php
@@ -73,47 +172,58 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-02 [Valid Half Day - Session 1]
 DESCRIPTION   : Selects Half Day, verifies Session dropdown appears, and chooses Session-1
-TIMESTAMP     : 2026-10-12 15:47:10
+TIMESTAMP     : 2026-10-13 11:27:18
 INPUT PARAMETERS:
   * Leave Type     : Sick leave
-  * From Date      : 2026-10-15
-  * To Date        : 2026-10-15
+  * From Date      : 2026-10-16
+  * To Date        : 2026-10-16
   * Day Type       : Half Day (Session: Session-1)
-  * Session Dropdown Verified : YES (Visible & Selected)
+  * Session Dropdown Verified : NO (Not found)
   * Remarks/Reason : "Doctor appointment in the forenoon session"
   * File Attached  : true
   * Expected Type  : VALID APPLICATION
 ----------------------------------------------------------------------------------------------------
 CAPTURED NETWORK ACTIVITY:
   [1] HTTP REQUEST:
-      URL    : http://13.233.119.231/api/employee/leave.php?action=submit
-      Method : POST
-      URL Query Parameters:
-        action=submit
-      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundary3nCNqWaH6uZ73VIr, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiYTA5NmY5ZGQzNjcwZjk4ZDBlMTg1ZjdlOTMzNzc4YzFlZWMyMDk1NjM5MDE2MDI2ZGY0OWNmYzQ0MWUwOTg3MiIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjdiMjUxNGMzYjM1MGMzNjI5MDY3MjBkYzc2NjY3ZTFlIiwiaWF0IjoxNzkxODAwMTk4LCJuYmYiOjE3OTE4MDAxOTgsImV4cCI6MTc5MTgwMTA5OH0.DDvMPH0K7vvgtO3fqLq2MCORfAk4M41rESlyPIvvcDo, x-csrf-token=96eaa880455463da6ffa9a3afb21b3489bf9a06360e241ace048afb9ac3fcffd}
+      URL    : http://13.233.119.231/logout.php
+      Method : GET
+      Param / Body / FormData: [None]
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, Upgrade-Insecure-Requests=1, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
       HTTP RESPONSE:
-      URL         : http://13.233.119.231/api/employee/leave.php?action=submit
+      URL         : http://13.233.119.231/logout.php
       Status Code : 200 OK
-      MIME Type   : application/json
+      MIME Type   : text/html
       Response Body Got:
-        {"success":true,"data":{"leave":{"id":274320,"message":"Leave application submitted successfully.","substitutes_saved":0,"total_days":0.5,"start_date":"2026-10-15","end_date":"2026-10-15","patch":{"overview":{"balances":[{"abbr":"CL","name":"Casual leave","availability":1.5,"interval":"Month"},{"abbr":"SL","name":"Sick leave","availability":3.5,"interval":"Month"},{"abbr":"EL","name":"Earned leave","availability":1,"interval":"Month"}],"message":"","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T101704Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=d97f8c8cbf5903634705da9e3307782b951e8d501af2ecb62a43da03f1f948bb","display":"Reporting Authority: Dr. V. Deepak Nallasamy (389)"},"cycle":{"label":"Sep 21 – Oct 20, 2026","date_from":"2026-09-21","date_to":"2026-10-20"},"leave_filter_names":["Casual leave","Sick leave","Earned leave"],"is_teaching":false,"department":"Software","work_category":"Non teaching","today":"2026-10-12","substitute_required":false},"history":{"rows":[{"id":274320,"category":"Sick leave","leave_date":"2026-10-15","start_date":"2026-10-15","end_date":"2026-10-15","leave_type":"half_day","half_day_session":"Session-1","total_days":0.5,"status":"Pending","applied_on":"2026-10-12 10:17:04","reason":"Doctor appointment in the forenoon session","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791800224_6accb3a053f103.41082511.png?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T101704Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=826c9531f33e6bfca013d1272ef20eef9187b8a51ae2eefdd14f88c0f740b713","can_cancel":true},{"id":274319,"category":"Sick leave","leave_date":"2026-10-14","start_date":"2026-10-14","end_date":"2026-10-14","leave_type":"full_day","half_day_session":"","total_days":1,"status":"Pending","applied_on":"2026-10-12 10:16:49","reason":"Personal health checkup and recovery","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791800209_6accb391c3dbe7.79867489.png?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T101704Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=571385071cc2c95d6188f7cb7a16b1b89446d496d4ff49b80757954b78a9772f","can_cancel":true},{"id":274318,"category":"Sick leave","leave_date":"2026-10-16","start_date":"2026-10-16","end_date":"2026-10-16","leave_type":"half_day","half_day_session":"Session-2","total_days":0.5,"status":"Rejected","applied_on":"2026-10-12 10:08:06"
-        ... [Payload truncated, total length: 20934 chars]
+        [Empty or Streaming/Redirected]
+
+  [2] HTTP REQUEST:
+      URL    : http://13.233.119.231/index.php?message=logout
+      Method : GET
+      URL Query Parameters:
+        message=logout
+      Request Headers: {Referer=http://13.233.119.231/logout.php, Upgrade-Insecure-Requests=1, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/index.php?message=logout
+      Status Code : 200 OK
+      MIME Type   : text/html
+      Response Body Got:
+        [Full HTML Content Omitted - Response Code: 200 OK | Title: "SIMATS 360" | Length: 39495 chars]
 
 UI & BROWSER OUTCOME:
-  * Final Page URL : http://13.233.119.231/dashboard.php
-  * Page Title     : VIANA 360
-  * UI Message Got : None detected (No error or success alert displayed)
+  * Final Page URL : http://13.233.119.231/index.php?message=logout
+  * Page Title     : SIMATS 360
+  * UI Message Got : [UI Notification: Success! You've been logged out successfully.]
   * Final Verdict  : PASSED (Leave application submitted successfully as expected)
 ----------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-03 [Valid Half Day - Session 2]
 DESCRIPTION   : Selects Half Day, verifies Session dropdown, and chooses Session-2
-TIMESTAMP     : 2026-10-12 15:47:26
+TIMESTAMP     : 2026-10-13 11:27:43
 INPUT PARAMETERS:
   * Leave Type     : Sick leave
-  * From Date      : 2026-10-16
-  * To Date        : 2026-10-16
+  * From Date      : 2026-10-17
+  * To Date        : 2026-10-17
   * Day Type       : Half Day (Session: Session-2)
   * Session Dropdown Verified : YES (Visible & Selected)
   * Remarks/Reason : "Medical consultation in the afternoon session"
@@ -122,18 +232,289 @@ INPUT PARAMETERS:
 ----------------------------------------------------------------------------------------------------
 CAPTURED NETWORK ACTIVITY:
   [1] HTTP REQUEST:
+      URL    : http://13.233.119.231/dashboard.php
+      Method : GET
+      Param / Body / FormData: [None]
+      Request Headers: {Content-Type=application/x-www-form-urlencoded, Origin=http://13.233.119.231, Referer=http://13.233.119.231/, Upgrade-Insecure-Requests=1, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/dashboard.php
+      Status Code : 200 OK
+      MIME Type   : text/html
+      Response Body Got:
+        [Full HTML Content Omitted - Response Code: 200 OK | Title: "VIANA 360" | Length: 317559 chars]
+
+  [2] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/software-tickets.php?action=pending_count
+      Method : GET
+      URL Query Parameters:
+        action=pending_count
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/software-tickets.php?action=pending_count
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"count":0,"is_handler":false}}
+
+  [3] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/digilocker-verification.php?action=status
+      Method : GET
+      URL Query Parameters:
+        action=status
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/digilocker-verification.php?action=status
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"state":"verified","verified_at":"2026-07-22 02:59:16","masked_phone":"63******52","phone_valid":true,"aadhaar_number":"287467652410","aadhaar_prefilled":true}}
+
+  [4] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/dashboard-theme.php
+      Method : GET
+      Param / Body / FormData: [None]
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/dashboard-theme.php
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"themes":[{"id":15,"bio_id":"23114","media_type":"image","file_url":"storage\/themes\/23114_6a9529e53fa6c2.55798739.jpg","display_name":"app_bg.jpg","file_size":1931577,"created_at":"2026-08-31 07:14:45","presigned_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/storage\/themes\/23114_6a9529e53fa6c2.55798739.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055722Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=f554bf608e9a5c9b2c90e8cec05e095f2400a51d2cc776120b47ba5da15f8983"}]}}
+
+  [5] HTTP REQUEST:
+      URL    : http://13.233.119.231/privileges/api/doa/pending_counts.php
+      Method : GET
+      Param / Body / FormData: [None]
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/privileges/api/doa/pending_counts.php
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"by_slug":[],"total":0}}
+
+  [6] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/approval-counts.php
+      Method : GET
+      Param / Body / FormData: [None]
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/approval-counts.php
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"pendingCounts":{"purchase":0,"projectHandover":0,"payment":0,"consumable":0,"scrape":0,"scrapDispatch":0,"equipment":0,"equipmentEdit":0,"service":0,"leave":0,"substitute":0,"privilege":0,"project":0,"event":0,"claim":0,"total":0},"weekendClaimsPending":0,"dutyClaimsPending":0,"claimsPendingTotal":0,"pendingTicketsCount":0}}
+
+  [7] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/home.php
+      Method : GET
+      Param / Body / FormData: [None]
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/home.php
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"home":{"summary":{"bio_id":"23114","staff_id":"SSENTS881","employee_name":"Veeramani A","designation":"Senior Developer Intern - SDI","level":"L-24","category":"Non teaching","emp_type":"Full time","department":"Software","campus":"Viana Soft Private Limited","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_68b70257432b41.09819328.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055722Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=bd3301d796b25198141d7f6ecb34981d5a8492a353e431b53b03a2ac07c911f3","doj":"2024-02-05"},"statistics":{"current_month":"October 2026","current_year":"2026"},"leave":{"types":[{"abbr":"CL","name":"Casual leave","availability":1.5,"interval":"Month"},{"abbr":"SL","name":"Sick leave","availability":4,"interval":"Month"},{"abbr":"EL","name":"Earned leave","availability":1,"interval":"Month"}],"message":"Reporting Authority: Dr. V. Deepak Nallasamy (389)","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055722Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=a534d7109db2a7c8a634ea1ee200483c9eb82e82dc732a92679f55ef45289ee9","display":"Reporting Authority: Dr. V. Deepak Nallasamy (389)"}},"notices":{"resignation_notice":false,"resignation_message":"You are currently under the notice period!"},"navigation":[{"key":"next_duty","label":"Next Duty","href":"..\/upcoming_duties.php","show":true,"badge":0},{"key":"privilege_approval","label":"Privilege Approval","href":"..\/privilage-approval.php","show":true,"badge":0},{"key":"allowance_details","label":"Allowance Details","href":"..\/employee_allowance_details.php","show":true,"badge":0},{"key":"salary_history","label":"Salary History","href":"..\/salary_history.php","show":true,"badge":0},{"key":"video_wall","label":"Duty - Video Wall","href":"..\/video_wall.php","show":true,"badge":0},{"key":"claim_ot","label":"Claim OT","href":"..\/ot.php","show":true,"badge":0},{"key":"grievance","label":"Grievance","href":"..\/grievanceForm.php","show":true,"badge":0}],"community":{"required":false},"legacy_urls":{"attendance":"..\/attendance.php","leave_status":"..\/leave_status.php","leave_application":"..\/leave_application.php","fetch_attendance":"..\/fetch_emp_attendance.php","save_community":"\/save_community.php","profile_view":"..\/profile_view.php"}}}}
+
+  [8] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/profile.php?_ts=1791871043717
+      Method : GET
+      URL Query Parameters:
+        _ts=1791871043717
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM, cache-control=no-cache, pragma=no-cache}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/profile.php?_ts=1791871043717
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"profile":{"identity":{"bio_id":"23114","staff_id":"SSENTS881","employee_name":"Veeramani A","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_68b70257432b41.09819328.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055722Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=bd3301d796b25198141d7f6ecb34981d5a8492a353e431b53b03a2ac07c911f3","status":"Active"},"work":{"campus":"Viana Soft Private Limited","department":"Software","designation":"Senior Developer Intern - SDI","category":"Non teaching","emp_type":"Full time","role":"Employee","level":"L-24","doj":"05 Feb 2024","shift":"M8.00-16.30","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055722Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=a534d7109db2a7c8a634ea1ee200483c9eb82e82dc732a92679f55ef45289ee9","display":"Dr. V. Deepak Nallasamy (389)"}},"personal":{"gender":"Male","dob":"06 Jul 2001","phone":"6374432752","email":"veeramaniamk@gmail.com","address":"No179, Pettai Street, Pappakudi South, Pappakudi, Ariyalure, Tamil Nadu 612903","qualification":"","registration_num":"0","external_experience":"0","physically_challenged":"No","outside_inside_state":"Inside","state":"Tamil Nadu","country":"India"},"compliance":{"aadhar_num":"287467652410","pan_num":"DJPPA0854P","passport_num":""},"bank":{"bank_name":"RBL BANK","bank_ac":"309024507372","bank_ifsc":"RATN0000387","branch_address":""}}}}
+
+  [9] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Method : GET
+      URL Query Parameters:
+        cycle=current&lite=1
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"attendance":{"cycle":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"title":"Oct 2026","available_cycles":{"current":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"last":{"key":"last","start":"2026-08-21","end":"2026-09-20","label":"Aug 21 – Sep 20, 2026","selector_label":"Sep 2026","end_month_key":"2026-09"}},"summary":{"present_days":0,"half_days":0,"sandwich_lop_days":3,"total_present_days":0,"total_absent_days":23,"week_off_days":3,"lop_days":23,"remaining_buffer_minutes":250,"total_buffer_minutes":250,"used_buffer_minutes":0,"buffer_lop_cycles":0,"total_working_hours":0,"attendance_percent":0,"today_in_time":"—","today_out_time":"—"},"calendar":{"mode":"payroll_cycle","title":"Sep 21 – Oct 20, 2026","start_date":"2026-09-21","end_date":"2026-10-20","offset":1,"total_days":30,"days":{"2026-09-21":{"date":"2026-09-21","display_day":21,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-22":{"date":"2026-09-22","display_day":22,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-23":{"date":"2026-09-23","display_day":23,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-24":{"date":"2026-09-24","display_day":24,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-25":{"date":"2026-09-25","display_day":25,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-26":{"date":"2026-09-26","display_day":26,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-27":{"date":"2026-09-27","display_day":27,"month_label":"Sep","status":"Sandwich LOP","raw_status":"(LOP)","in_time":null,"out_time":null,"is_future":false},"2026-09-28":{"date":"2026-09-28","display_day":28,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-29":{"date":"2026-09-29","display_day":29,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-30":{"date":"2026-09-30","display_day":30,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-01":{"date":"2026-10-01","display_day":1,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-02":{"date":"2026-10-02","display_day":2,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-03":{"date":"2026-10-03","display_day
+        ... [Payload truncated, total length: 12491 chars]
+
+  [10] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/software-tickets.php?action=pending_count
+      Method : GET
+      URL Query Parameters:
+        action=pending_count
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/software-tickets.php?action=pending_count
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"count":0,"is_handler":false}}
+
+  [11] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/birthday.php?action=status
+      Method : GET
+      URL Query Parameters:
+        action=status
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/birthday.php?action=status
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"is_birthday_today":false,"has_auto_opened":false,"celebration_year":2026,"employee":{"bio_id":"23114","employee_name":"Veeramani A","first_name":"Veeramani","display_name":"Veeramani","formal_name":"Veeramani","department":"Software","campus":"Viana Soft Private Limited","institution":"Viana Soft Private Limited","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_68b70257432b41.09819328.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055722Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=d3d6bb1c3679eaa7d02152f4e711c7a1ca310c8ae8d325e8f1e53cb5cca9c4ab"},"colleague_birthdays":[],"pending_notifications":[],"stats":{"wish_count":0,"greet_me_count":0,"auto_popup_count":0},"greeting":null}}
+
+  [12] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Method : GET
+      URL Query Parameters:
+        cycle=current&lite=1
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"attendance":{"cycle":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"title":"Oct 2026","available_cycles":{"current":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"last":{"key":"last","start":"2026-08-21","end":"2026-09-20","label":"Aug 21 – Sep 20, 2026","selector_label":"Sep 2026","end_month_key":"2026-09"}},"summary":{"present_days":0,"half_days":0,"sandwich_lop_days":3,"total_present_days":0,"total_absent_days":23,"week_off_days":3,"lop_days":23,"remaining_buffer_minutes":250,"total_buffer_minutes":250,"used_buffer_minutes":0,"buffer_lop_cycles":0,"total_working_hours":0,"attendance_percent":0,"today_in_time":"—","today_out_time":"—"},"calendar":{"mode":"payroll_cycle","title":"Sep 21 – Oct 20, 2026","start_date":"2026-09-21","end_date":"2026-10-20","offset":1,"total_days":30,"days":{"2026-09-21":{"date":"2026-09-21","display_day":21,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-22":{"date":"2026-09-22","display_day":22,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-23":{"date":"2026-09-23","display_day":23,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-24":{"date":"2026-09-24","display_day":24,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-25":{"date":"2026-09-25","display_day":25,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-26":{"date":"2026-09-26","display_day":26,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-27":{"date":"2026-09-27","display_day":27,"month_label":"Sep","status":"Sandwich LOP","raw_status":"(LOP)","in_time":null,"out_time":null,"is_future":false},"2026-09-28":{"date":"2026-09-28","display_day":28,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-29":{"date":"2026-09-29","display_day":29,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-30":{"date":"2026-09-30","display_day":30,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-01":{"date":"2026-10-01","display_day":1,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-02":{"date":"2026-10-02","display_day":2,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-03":{"date":"2026-10-03","display_day
+        ... [Payload truncated, total length: 12491 chars]
+
+  [13] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-duty
+      Method : GET
+      URL Query Parameters:
+        page=home-tab-duty
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=text/html, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-duty
+      Status Code : 200 OK
+      MIME Type   : text/html
+      Response Body Got:
+        [Full HTML Content Omitted - Response Code: 200 OK | Length: 4094 chars]
+
+  [14] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-leave
+      Method : GET
+      URL Query Parameters:
+        page=home-tab-leave
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=text/html, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-leave
+      Status Code : 200 OK
+      MIME Type   : text/html
+      Response Body Got:
+        [Full HTML Content Omitted - Response Code: 200 OK | Length: 11060 chars]
+
+  [15] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/duty-exchange.php?action=overview&slim=1
+      Method : GET
+      URL Query Parameters:
+        action=overview&slim=1
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/duty-exchange.php?action=overview&slim=1
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"duty_exchange":{"upcoming":{"rows":[],"shift_names":[],"count":0},"outgoing_pending":{"rows":[],"count":0},"incoming":{"rows":[],"count":0},"counts":{"upcoming":0,"outgoing_pending":0,"incoming":0}}}}
+
+  [16] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/leave.php?action=bootstrap
+      Method : GET
+      URL Query Parameters:
+        action=bootstrap
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/leave.php?action=bootstrap
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"leave":{"overview":{"balances":[{"abbr":"CL","name":"Casual leave","availability":1.5,"interval":"Month"},{"abbr":"SL","name":"Sick leave","availability":4,"interval":"Month"},{"abbr":"EL","name":"Earned leave","availability":1,"interval":"Month"}],"message":"","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055722Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=a534d7109db2a7c8a634ea1ee200483c9eb82e82dc732a92679f55ef45289ee9","display":"Reporting Authority: Dr. V. Deepak Nallasamy (389)"},"cycle":{"label":"Sep 21 – Oct 20, 2026","date_from":"2026-09-21","date_to":"2026-10-20"},"leave_filter_names":["Casual leave","Sick leave","Earned leave"],"is_teaching":false,"department":"Software","work_category":"Non teaching","today":"2026-10-13","substitute_required":false},"history":{"rows":[{"id":274324,"category":"Sick leave","leave_date":"2026-10-15","start_date":"2026-10-15","end_date":"2026-10-15","leave_type":"full_day","half_day_session":"","total_days":1,"status":"Pending","applied_on":"2026-10-13 05:56:58","reason":"Personal health checkup and recovery","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791871018_6acdc82a121260.46327991.png?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055722Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=72969891a7e1b0475410de98a2eca97f1ea09546be6d922b7b0585e5b14d32e2","can_cancel":true},{"id":274323,"category":"Sick leave","leave_date":"2026-10-18","start_date":"2026-10-18","end_date":"2026-10-18","leave_type":"full_day","half_day_session":"","total_days":1,"status":"Rejected","applied_on":"2026-10-12 10:30:35","reason":"' OR '1'='1'; DROP TABLE tbl_leaves; --","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791801035_6accb6cbde69a0.81441458.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055722Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=3cf47361a3c35088464ce19bf786cb08f2282df9a6061e8c9fec141cd7d8dde9","can_cancel":false},{"id":274322,"category":"Casual leave","leave_date":"2026-10-17","start_date":"2026-10-17","end_date":"2026-10-17","leave_type":"full_day","half_day_session":"","total_days":1,"status":"Rejected","applied_on":"2026-10-12 10:30:02","reason":"dfdfdf","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791801001_6accb6a9e494d0.97234210.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS
+        ... [Payload truncated, total length: 25449 chars]
+
+  [17] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/project-requests.php?action=list&page=1&search=&location=&doa_status=
+      Method : GET
+      URL Query Parameters:
+        action=list&page=1&search=&location=&doa_status=
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/project-requests.php?action=list&page=1&search=&location=&doa_status=
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"project_request":{"rows":[],"total":0,"page":1,"per_page":50,"has_more":false}}}
+
+  [18] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Method : GET
+      URL Query Parameters:
+        action=pending
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"is_head":false,"date":"2026-10-13","due_groups":[],"waiting_groups":[],"due_count":0,"next_available_at":null,"must_score":false}}
+
+  [19] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Method : GET
+      URL Query Parameters:
+        action=pending
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"is_head":false,"date":"2026-10-13","due_groups":[],"waiting_groups":[],"due_count":0,"next_available_at":null,"must_score":false}}
+
+  [20] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Method : GET
+      URL Query Parameters:
+        action=pending
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"is_head":false,"date":"2026-10-13","due_groups":[],"waiting_groups":[],"due_count":0,"next_available_at":null,"must_score":false}}
+
+  [21] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Method : GET
+      URL Query Parameters:
+        action=pending
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"is_head":false,"date":"2026-10-13","due_groups":[],"waiting_groups":[],"due_count":0,"next_available_at":null,"must_score":false}}
+
+  [22] HTTP REQUEST:
       URL    : http://13.233.119.231/api/employee/leave.php?action=submit
       Method : POST
       URL Query Parameters:
         action=submit
-      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundarysUAAdMlks9RBBAEF, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiYTA5NmY5ZGQzNjcwZjk4ZDBlMTg1ZjdlOTMzNzc4YzFlZWMyMDk1NjM5MDE2MDI2ZGY0OWNmYzQ0MWUwOTg3MiIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjdiMjUxNGMzYjM1MGMzNjI5MDY3MjBkYzc2NjY3ZTFlIiwiaWF0IjoxNzkxODAwMTk4LCJuYmYiOjE3OTE4MDAxOTgsImV4cCI6MTc5MTgwMTA5OH0.DDvMPH0K7vvgtO3fqLq2MCORfAk4M41rESlyPIvvcDo, x-csrf-token=96eaa880455463da6ffa9a3afb21b3489bf9a06360e241ace048afb9ac3fcffd}
+      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundaryBRJmqh0HoLQJoWWw, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM, x-csrf-token=303de97c6578903d3dc150be83478b17da7f79dda10092170260c30ffd475a0e}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/leave.php?action=submit
       Status Code : 200 OK
       MIME Type   : application/json
       Response Body Got:
-        {"success":true,"data":{"leave":{"id":274321,"message":"Leave application submitted successfully.","substitutes_saved":0,"total_days":0.5,"start_date":"2026-10-16","end_date":"2026-10-16","patch":{"overview":{"balances":[{"abbr":"CL","name":"Casual leave","availability":1.5,"interval":"Month"},{"abbr":"SL","name":"Sick leave","availability":3,"interval":"Month"},{"abbr":"EL","name":"Earned leave","availability":1,"interval":"Month"}],"message":"","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T101720Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=edb9947adb599900221ec44f8950d30ee6d80a9d632272ab7365db2255f655b9","display":"Reporting Authority: Dr. V. Deepak Nallasamy (389)"},"cycle":{"label":"Sep 21 – Oct 20, 2026","date_from":"2026-09-21","date_to":"2026-10-20"},"leave_filter_names":["Casual leave","Sick leave","Earned leave"],"is_teaching":false,"department":"Software","work_category":"Non teaching","today":"2026-10-12","substitute_required":false},"history":{"rows":[{"id":274321,"category":"Sick leave","leave_date":"2026-10-16","start_date":"2026-10-16","end_date":"2026-10-16","leave_type":"half_day","half_day_session":"Session-2","total_days":0.5,"status":"Pending","applied_on":"2026-10-12 10:17:20","reason":"Medical consultation in the afternoon session","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791800240_6accb3b00128a9.82124111.png?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T101720Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=e2fb880eae17dc7dc55180f0a4869dfaf939e666409ac4a9c599c1b47291695f","can_cancel":true},{"id":274320,"category":"Sick leave","leave_date":"2026-10-15","start_date":"2026-10-15","end_date":"2026-10-15","leave_type":"half_day","half_day_session":"Session-1","total_days":0.5,"status":"Pending","applied_on":"2026-10-12 10:17:04","reason":"Doctor appointment in the forenoon session","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791800224_6accb3a053f103.41082511.png?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T101720Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=52ffc6930eb069b5d456ae636a676697a5e0b74e650f54ad34c520fed65cd265","can_cancel":true},{"id":274319,"category":"Sick leave","leave_date":"2026-10-14","start_date":"2026-10-14","end_date":"2026-10-14","leave_type":"full_day","half_day_session":"","total_days":1,"status":"Pending","applied_on":"2026-10-12 10:
-        ... [Payload truncated, total length: 21863 chars]
+        {"success":true,"data":{"leave":{"id":274325,"message":"Leave application submitted successfully.","substitutes_saved":0,"total_days":0.5,"start_date":"2026-10-17","end_date":"2026-10-17","patch":{"overview":{"balances":[{"abbr":"CL","name":"Casual leave","availability":1.5,"interval":"Month"},{"abbr":"SL","name":"Sick leave","availability":3.5,"interval":"Month"},{"abbr":"EL","name":"Earned leave","availability":1,"interval":"Month"}],"message":"","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055734Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=4fb155aea5e2b344ac17675504f5788c7c44017673fb277047b730a3edb8a073","display":"Reporting Authority: Dr. V. Deepak Nallasamy (389)"},"cycle":{"label":"Sep 21 – Oct 20, 2026","date_from":"2026-09-21","date_to":"2026-10-20"},"leave_filter_names":["Casual leave","Sick leave","Earned leave"],"is_teaching":false,"department":"Software","work_category":"Non teaching","today":"2026-10-13","substitute_required":false},"history":{"rows":[{"id":274325,"category":"Sick leave","leave_date":"2026-10-17","start_date":"2026-10-17","end_date":"2026-10-17","leave_type":"half_day","half_day_session":"Session-2","total_days":0.5,"status":"Pending","applied_on":"2026-10-13 05:57:34","reason":"Medical consultation in the afternoon session","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791871054_6acdc84ea63234.23831927.png?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055734Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=c46ebc1cfb82aef628a1daed6313972045bef6afb2ae2d30e3cfa43dc29ccb61","can_cancel":true},{"id":274324,"category":"Sick leave","leave_date":"2026-10-15","start_date":"2026-10-15","end_date":"2026-10-15","leave_type":"full_day","half_day_session":"","total_days":1,"status":"Pending","applied_on":"2026-10-13 05:56:58","reason":"Personal health checkup and recovery","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791871018_6acdc82a121260.46327991.png?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T055734Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=04d24b14ce687f1b9825b05c24dfc0c274751ed2890e94bb433433d79739723b","can_cancel":true},{"id":274323,"category":"Sick leave","leave_date":"2026-10-18","start_date":"2026-10-18","end_date":"2026-10-18","leave_type":"full_day","half_day_session":"","total_days":1,"status":"Rejected","applied_on":"2026-10-12 10:30:35","reason
+        ... [Payload truncated, total length: 26547 chars]
 
 UI & BROWSER OUTCOME:
   * Final Page URL : http://13.233.119.231/dashboard.php
@@ -145,14 +526,85 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-04 [Date Validation: To Date Before From Date]
 DESCRIPTION   : Checks date validation error when To Date is chronologically earlier than From Date
-TIMESTAMP     : 2026-10-12 15:47:40
+TIMESTAMP     : 2026-10-13 11:27:59
 INPUT PARAMETERS:
   * Leave Type     : Sick leave
-  * From Date      : 2026-10-14
-  * To Date        : 2026-10-10
+  * From Date      : 2026-10-15
+  * To Date        : 2026-10-11
   * Day Type       : Full Day
   * Session Dropdown Verified : N/A
   * Remarks/Reason : "Testing date range boundary check"
+  * File Attached  : true
+  * Expected Type  : INVALID / MALFORMED / DEFENSIVE
+----------------------------------------------------------------------------------------------------
+CAPTURED NETWORK ACTIVITY:
+  [Notice: No HTTP network transactions recorded for this submission]
+UI & BROWSER OUTCOME:
+  * Final Page URL : http://13.233.119.231/dashboard.php
+  * Page Title     : VIANA 360
+  * UI Message Got : None detected (No error or success alert displayed)
+  * Final Verdict  : PASSED (Input rejected / validation triggered correctly)
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+TEST CASE ID  : TC-05 [Security: SQL Injection in Reason]
+DESCRIPTION   : Injects authentication bypass and database command into the Reason field
+TIMESTAMP     : 2026-10-13 11:28:17
+INPUT PARAMETERS:
+  * Leave Type     : Sick leave
+  * From Date      : 2026-10-15
+  * To Date        : 2026-10-15
+  * Day Type       : Full Day
+  * Session Dropdown Verified : N/A
+  * Remarks/Reason : "' OR '1'='1'; DROP TABLE tbl_leaves; --"
+  * File Attached  : true
+  * Expected Type  : INVALID / MALFORMED / DEFENSIVE
+----------------------------------------------------------------------------------------------------
+CAPTURED NETWORK ACTIVITY:
+  [1] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/leave.php?action=submit
+      Method : POST
+      URL Query Parameters:
+        action=submit
+      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundaryWe28zRpIXUAoNjiY, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM, x-csrf-token=303de97c6578903d3dc150be83478b17da7f79dda10092170260c30ffd475a0e}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/leave.php?action=submit
+      Status Code : 400 Bad Request
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":false,"error":"You already have a pending Sick leave leave request overlapping 2026-10-15. Cancel that pending request first if you want to apply again.","code":"VALIDATION_ERROR"}
+
+  [2] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/leave.php?action=submit
+      Method : POST
+      URL Query Parameters:
+        action=submit
+      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundaryBO8S7TljP3dFqZmn, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM, x-csrf-token=303de97c6578903d3dc150be83478b17da7f79dda10092170260c30ffd475a0e}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/leave.php?action=submit
+      Status Code : 400 Bad Request
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":false,"error":"You already have a pending Sick leave leave request overlapping 2026-10-15. Cancel that pending request first if you want to apply again.","code":"VALIDATION_ERROR"}
+
+UI & BROWSER OUTCOME:
+  * Final Page URL : http://13.233.119.231/dashboard.php
+  * Page Title     : VIANA 360
+  * UI Message Got : None detected (No error or success alert displayed)
+  * Final Verdict  : PASSED (Input rejected / validation triggered correctly)
+----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+TEST CASE ID  : TC-06 [Security: XSS Script Injection in Reason]
+DESCRIPTION   : Injects HTML/JavaScript XSS payload into the Reason/Remarks field
+TIMESTAMP     : 2026-10-13 11:28:38
+INPUT PARAMETERS:
+  * Leave Type     : Sick leave
+  * From Date      : 2026-10-15
+  * To Date        : 2026-10-15
+  * Day Type       : Full Day
+  * Session Dropdown Verified : N/A
+  * Remarks/Reason : "<script>alert('XSS-Leave')</script><img src=x onerror=alert(1)>"
   * File Attached  : true
   * Expected Type  : INVALID / MALFORMED / DEFENSIVE
 ----------------------------------------------------------------------------------------------------
@@ -169,69 +621,12 @@ CAPTURED NETWORK ACTIVITY:
       Response Body Got:
         {"success":true,"data":{"by_slug":[],"total":0}}
 
-UI & BROWSER OUTCOME:
-  * Final Page URL : http://13.233.119.231/dashboard.php
-  * Page Title     : VIANA 360
-  * UI Message Got : None detected (No error or success alert displayed)
-  * Final Verdict  : PASSED (Input rejected / validation triggered correctly)
-----------------------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------------------
-TEST CASE ID  : TC-05 [Security: SQL Injection in Reason]
-DESCRIPTION   : Injects authentication bypass and database command into the Reason field
-TIMESTAMP     : 2026-10-12 15:47:54
-INPUT PARAMETERS:
-  * Leave Type     : Sick leave
-  * From Date      : 2026-10-14
-  * To Date        : 2026-10-14
-  * Day Type       : Full Day
-  * Session Dropdown Verified : N/A
-  * Remarks/Reason : "' OR '1'='1'; DROP TABLE tbl_leaves; --"
-  * File Attached  : true
-  * Expected Type  : INVALID / MALFORMED / DEFENSIVE
-----------------------------------------------------------------------------------------------------
-CAPTURED NETWORK ACTIVITY:
-  [1] HTTP REQUEST:
+  [2] HTTP REQUEST:
       URL    : http://13.233.119.231/api/employee/leave.php?action=submit
       Method : POST
       URL Query Parameters:
         action=submit
-      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundaryAs7JYZUe3xTA2Tyr, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiYTA5NmY5ZGQzNjcwZjk4ZDBlMTg1ZjdlOTMzNzc4YzFlZWMyMDk1NjM5MDE2MDI2ZGY0OWNmYzQ0MWUwOTg3MiIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjdiMjUxNGMzYjM1MGMzNjI5MDY3MjBkYzc2NjY3ZTFlIiwiaWF0IjoxNzkxODAwMTk4LCJuYmYiOjE3OTE4MDAxOTgsImV4cCI6MTc5MTgwMTA5OH0.DDvMPH0K7vvgtO3fqLq2MCORfAk4M41rESlyPIvvcDo, x-csrf-token=96eaa880455463da6ffa9a3afb21b3489bf9a06360e241ace048afb9ac3fcffd}
-      HTTP RESPONSE:
-      URL         : http://13.233.119.231/api/employee/leave.php?action=submit
-      Status Code : 400 Bad Request
-      MIME Type   : application/json
-      Response Body Got:
-        {"success":false,"error":"You already have a pending Sick leave leave request overlapping 2026-10-14. Cancel that pending request first if you want to apply again.","code":"VALIDATION_ERROR"}
-
-UI & BROWSER OUTCOME:
-  * Final Page URL : http://13.233.119.231/dashboard.php
-  * Page Title     : VIANA 360
-  * UI Message Got : None detected (No error or success alert displayed)
-  * Final Verdict  : PASSED (Input rejected / validation triggered correctly)
-----------------------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------------------
-TEST CASE ID  : TC-06 [Security: XSS Script Injection in Reason]
-DESCRIPTION   : Injects HTML/JavaScript XSS payload into the Reason/Remarks field
-TIMESTAMP     : 2026-10-12 15:48:09
-INPUT PARAMETERS:
-  * Leave Type     : Sick leave
-  * From Date      : 2026-10-14
-  * To Date        : 2026-10-14
-  * Day Type       : Full Day
-  * Session Dropdown Verified : N/A
-  * Remarks/Reason : "<script>alert('XSS-Leave')</script><img src=x onerror=alert(1)>"
-  * File Attached  : true
-  * Expected Type  : INVALID / MALFORMED / DEFENSIVE
-----------------------------------------------------------------------------------------------------
-CAPTURED NETWORK ACTIVITY:
-  [1] HTTP REQUEST:
-      URL    : http://13.233.119.231/api/employee/leave.php?action=submit
-      Method : POST
-      URL Query Parameters:
-        action=submit
-      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundary2AhftztEP6S1KHJt, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiYTA5NmY5ZGQzNjcwZjk4ZDBlMTg1ZjdlOTMzNzc4YzFlZWMyMDk1NjM5MDE2MDI2ZGY0OWNmYzQ0MWUwOTg3MiIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjdiMjUxNGMzYjM1MGMzNjI5MDY3MjBkYzc2NjY3ZTFlIiwiaWF0IjoxNzkxODAwMTk4LCJuYmYiOjE3OTE4MDAxOTgsImV4cCI6MTc5MTgwMTA5OH0.DDvMPH0K7vvgtO3fqLq2MCORfAk4M41rESlyPIvvcDo, x-csrf-token=96eaa880455463da6ffa9a3afb21b3489bf9a06360e241ace048afb9ac3fcffd}
+      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundaryeWPjJue4JSPSel2F, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM, x-csrf-token=303de97c6578903d3dc150be83478b17da7f79dda10092170260c30ffd475a0e}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/leave.php?action=submit
       Status Code : 0 
@@ -249,11 +644,11 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-07 [Malformed: Special Characters & Emojis]
 DESCRIPTION   : Submits Unicode emojis, punctuation, and malformed symbols in Reason
-TIMESTAMP     : 2026-10-12 15:48:23
+TIMESTAMP     : 2026-10-13 11:28:58
 INPUT PARAMETERS:
   * Leave Type     : Sick leave
-  * From Date      : 2026-10-14
-  * To Date        : 2026-10-14
+  * From Date      : 2026-10-15
+  * To Date        : 2026-10-15
   * Day Type       : Full Day
   * Session Dropdown Verified : N/A
   * Remarks/Reason : "!@#$%^&*()_+{}[]:;"'<>?,./~ 🚀🔥⭐ ñçü"
@@ -266,13 +661,13 @@ CAPTURED NETWORK ACTIVITY:
       Method : POST
       URL Query Parameters:
         action=submit
-      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundaryNW05LBF21uPZC1oM, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiYTA5NmY5ZGQzNjcwZjk4ZDBlMTg1ZjdlOTMzNzc4YzFlZWMyMDk1NjM5MDE2MDI2ZGY0OWNmYzQ0MWUwOTg3MiIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjdiMjUxNGMzYjM1MGMzNjI5MDY3MjBkYzc2NjY3ZTFlIiwiaWF0IjoxNzkxODAwMTk4LCJuYmYiOjE3OTE4MDAxOTgsImV4cCI6MTc5MTgwMTA5OH0.DDvMPH0K7vvgtO3fqLq2MCORfAk4M41rESlyPIvvcDo, x-csrf-token=96eaa880455463da6ffa9a3afb21b3489bf9a06360e241ace048afb9ac3fcffd}
+      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundaryqEya8rMHvShUB6dM, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM, x-csrf-token=303de97c6578903d3dc150be83478b17da7f79dda10092170260c30ffd475a0e}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/leave.php?action=submit
       Status Code : 400 Bad Request
       MIME Type   : application/json
       Response Body Got:
-        {"success":false,"error":"You already have a pending Sick leave leave request overlapping 2026-10-14. Cancel that pending request first if you want to apply again.","code":"VALIDATION_ERROR"}
+        {"success":false,"error":"You already have a pending Sick leave leave request overlapping 2026-10-15. Cancel that pending request first if you want to apply again.","code":"VALIDATION_ERROR"}
 
 UI & BROWSER OUTCOME:
   * Final Page URL : http://13.233.119.231/dashboard.php
@@ -284,11 +679,11 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-08 [Boundary: Excessively Long Reason Text]
 DESCRIPTION   : Submits a 1,500+ character string in Reason to verify max-length limit
-TIMESTAMP     : 2026-10-12 15:48:43
+TIMESTAMP     : 2026-10-13 11:29:27
 INPUT PARAMETERS:
   * Leave Type     : Sick leave
-  * From Date      : 2026-10-14
-  * To Date        : 2026-10-14
+  * From Date      : 2026-10-15
+  * To Date        : 2026-10-15
   * Day Type       : Full Day
   * Session Dropdown Verified : N/A
   * Remarks/Reason : "Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. Emergency leave request details exceeding normal length boundary. "
@@ -301,15 +696,28 @@ CAPTURED NETWORK ACTIVITY:
       Method : POST
       URL Query Parameters:
         action=submit
-      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundaryFT4KMuffpQkVWarn, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiYTA5NmY5ZGQzNjcwZjk4ZDBlMTg1ZjdlOTMzNzc4YzFlZWMyMDk1NjM5MDE2MDI2ZGY0OWNmYzQ0MWUwOTg3MiIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjdiMjUxNGMzYjM1MGMzNjI5MDY3MjBkYzc2NjY3ZTFlIiwiaWF0IjoxNzkxODAwMTk4LCJuYmYiOjE3OTE4MDAxOTgsImV4cCI6MTc5MTgwMTA5OH0.DDvMPH0K7vvgtO3fqLq2MCORfAk4M41rESlyPIvvcDo, x-csrf-token=96eaa880455463da6ffa9a3afb21b3489bf9a06360e241ace048afb9ac3fcffd}
+      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundaryBzXTAfz4UhQNl3aC, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM, x-csrf-token=303de97c6578903d3dc150be83478b17da7f79dda10092170260c30ffd475a0e}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/leave.php?action=submit
       Status Code : 400 Bad Request
       MIME Type   : application/json
       Response Body Got:
-        {"success":false,"error":"You already have a pending Sick leave leave request overlapping 2026-10-14. Cancel that pending request first if you want to apply again.","code":"VALIDATION_ERROR"}
+        {"success":false,"error":"You already have a pending Sick leave leave request overlapping 2026-10-15. Cancel that pending request first if you want to apply again.","code":"VALIDATION_ERROR"}
 
   [2] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/leave.php?action=submit
+      Method : POST
+      URL Query Parameters:
+        action=submit
+      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundarybwXnsKxgUzFAK1oZ, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM, x-csrf-token=303de97c6578903d3dc150be83478b17da7f79dda10092170260c30ffd475a0e}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/leave.php?action=submit
+      Status Code : 400 Bad Request
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":false,"error":"You already have a pending Sick leave leave request overlapping 2026-10-15. Cancel that pending request first if you want to apply again.","code":"VALIDATION_ERROR"}
+
+  [3] HTTP REQUEST:
       URL    : http://13.233.119.231/privileges/api/doa/pending_counts.php
       Method : GET
       Param / Body / FormData: [None]
@@ -331,11 +739,11 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-09 [Validation: Missing Reason]
 DESCRIPTION   : Submits without providing any reason to check required field enforcement
-TIMESTAMP     : 2026-10-12 15:48:56
+TIMESTAMP     : 2026-10-13 11:29:44
 INPUT PARAMETERS:
   * Leave Type     : Sick leave
-  * From Date      : 2026-10-14
-  * To Date        : 2026-10-14
+  * From Date      : 2026-10-15
+  * To Date        : 2026-10-15
   * Day Type       : Full Day
   * Session Dropdown Verified : N/A
   * Remarks/Reason : ""
@@ -354,11 +762,11 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-10 [Validation: Missing Attachment]
 DESCRIPTION   : Submits without attaching required supporting PNG/JPEG image to test validation
-TIMESTAMP     : 2026-10-12 15:49:10
+TIMESTAMP     : 2026-10-13 11:30:02
 INPUT PARAMETERS:
   * Leave Type     : Sick leave
-  * From Date      : 2026-10-14
-  * To Date        : 2026-10-14
+  * From Date      : 2026-10-15
+  * To Date        : 2026-10-15
   * Day Type       : Full Day
   * Session Dropdown Verified : N/A
   * Remarks/Reason : "Valid reason text without attachment"
@@ -371,13 +779,13 @@ CAPTURED NETWORK ACTIVITY:
       Method : POST
       URL Query Parameters:
         action=submit
-      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundaryc3KqEbE0np7fOSOG, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiYTA5NmY5ZGQzNjcwZjk4ZDBlMTg1ZjdlOTMzNzc4YzFlZWMyMDk1NjM5MDE2MDI2ZGY0OWNmYzQ0MWUwOTg3MiIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjdiMjUxNGMzYjM1MGMzNjI5MDY3MjBkYzc2NjY3ZTFlIiwiaWF0IjoxNzkxODAwMTk4LCJuYmYiOjE3OTE4MDAxOTgsImV4cCI6MTc5MTgwMTA5OH0.DDvMPH0K7vvgtO3fqLq2MCORfAk4M41rESlyPIvvcDo, x-csrf-token=96eaa880455463da6ffa9a3afb21b3489bf9a06360e241ace048afb9ac3fcffd}
+      Request Headers: {Content-Type=multipart/form-data; boundary=----WebKitFormBoundaryqrYHob2rBcFvXoFx, Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMmIwMDNhYzFlODEzZmM5NmIyODcwMTgwYTVkZmZjMmEwZmViN2EwMzVlODY5YjM5Mjc3MzhkNmM1ZjBkZGZkMSIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjJjNjM1NWNhNWQ3OTJjZTRlNzEyNjQ0YjBmOTBiMjJjIiwiaWF0IjoxNzkxODcxMDQxLCJuYmYiOjE3OTE4NzEwNDEsImV4cCI6MTc5MTg3MTk0MX0.GmJ9vjDNOPrcHhdDRXjOK5yu0W6LQQwT0e3QTYOewGM, x-csrf-token=303de97c6578903d3dc150be83478b17da7f79dda10092170260c30ffd475a0e}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/leave.php?action=submit
       Status Code : 400 Bad Request
       MIME Type   : application/json
       Response Body Got:
-        {"success":false,"error":"You already have a pending Sick leave leave request overlapping 2026-10-14. Cancel that pending request first if you want to apply again.","code":"VALIDATION_ERROR"}
+        {"success":false,"error":"You already have a pending Sick leave leave request overlapping 2026-10-15. Cancel that pending request first if you want to apply again.","code":"VALIDATION_ERROR"}
 
 UI & BROWSER OUTCOME:
   * Final Page URL : http://13.233.119.231/dashboard.php
@@ -393,5 +801,5 @@ Total Scenarios Executed : 10
 Passed Scenarios         : 10
 Failed Scenarios         : 0
 Success Rate             : 100%
-Completed Timestamp      : 2026-10-12 15:49:15
+Completed Timestamp      : 2026-10-13 11:30:09
 ====================================================================================================
