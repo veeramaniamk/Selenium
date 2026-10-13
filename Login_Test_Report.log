@@ -1,7 +1,7 @@
 ====================================================================================================
                       SELENIUM AUTOMATION TEST REPORT: Login.java                                  
 ====================================================================================================
-Generated Date & Time : 2026-10-12 17:12:08
+Generated Date & Time : 2026-10-13 11:33:18
 Target Website URL    : http://13.233.119.231
 Browser Engine        : Google Chrome (Headless/Interactive) with CDP Performance Logging
 Test Scope            : Entrance page, Dual Auth, Login Form (Login ID + Password), Network Traffic
@@ -11,7 +11,7 @@ Baseline Credentials  : Login ID=23114 | Password=walkin111
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-02 [Wrong Password]
 DESCRIPTION   : Valid login ID with incorrect password
-TIMESTAMP     : 2026-10-12 17:12:19
+TIMESTAMP     : 2026-10-13 11:33:27
 INPUT VALUES  :
   * Login ID : "23114"
   * Password : "wrongpassword999"
@@ -29,7 +29,7 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-03 [Wrong Login ID]
 DESCRIPTION   : Non-existent login ID with valid password format
-TIMESTAMP     : 2026-10-12 17:12:25
+TIMESTAMP     : 2026-10-13 11:33:32
 INPUT VALUES  :
   * Login ID : "99999"
   * Password : "walkin111"
@@ -47,7 +47,7 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-04 [Wrong ID & Password]
 DESCRIPTION   : Non-existent login ID and wrong password
-TIMESTAMP     : 2026-10-12 17:12:30
+TIMESTAMP     : 2026-10-13 11:33:37
 INPUT VALUES  :
   * Login ID : "invalid_user_888"
   * Password : "IncorrectPass!404"
@@ -65,7 +65,7 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-05 [Malformed: Empty Fields]
 DESCRIPTION   : Both login ID and password submitted as empty strings
-TIMESTAMP     : 2026-10-12 17:12:35
+TIMESTAMP     : 2026-10-13 11:33:42
 INPUT VALUES  :
   * Login ID : ""
   * Password : ""
@@ -83,7 +83,7 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-06 [Malformed: Empty Login ID]
 DESCRIPTION   : Empty login ID with valid password
-TIMESTAMP     : 2026-10-12 17:12:40
+TIMESTAMP     : 2026-10-13 11:33:46
 INPUT VALUES  :
   * Login ID : ""
   * Password : "walkin111"
@@ -101,7 +101,7 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-07 [Malformed: Empty Password]
 DESCRIPTION   : Valid login ID with empty password
-TIMESTAMP     : 2026-10-12 17:12:47
+TIMESTAMP     : 2026-10-13 11:33:51
 INPUT VALUES  :
   * Login ID : "23114"
   * Password : ""
@@ -119,7 +119,7 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-08 [Malformed: Whitespace Only]
 DESCRIPTION   : Whitespace-only strings submitted for ID and password
-TIMESTAMP     : 2026-10-12 17:12:53
+TIMESTAMP     : 2026-10-13 11:33:56
 INPUT VALUES  :
   * Login ID : "     "
   * Password : "     "
@@ -137,7 +137,7 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-09 [Malformed: SQL Injection]
 DESCRIPTION   : Authentication bypass SQL Injection payload
-TIMESTAMP     : 2026-10-12 17:12:59
+TIMESTAMP     : 2026-10-13 11:34:01
 INPUT VALUES  :
   * Login ID : "' OR '1'='1"
   * Password : "' OR '1'='1"
@@ -162,7 +162,7 @@ Details]
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-10 [Malformed: XSS Injection]
 DESCRIPTION   : HTML/JavaScript script injection payload in login ID
-TIMESTAMP     : 2026-10-12 17:13:11
+TIMESTAMP     : 2026-10-13 11:34:13
 INPUT VALUES  :
   * Login ID : "<script>alert('XSS')</script>"
   * Password : "walkin111"
@@ -178,14 +178,14 @@ UI & BROWSER OUTCOME:
 Build info: version: '4.25.0', revision: '8a8aea2337'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.7'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 154.0.8037.98, chrome: {chromedriverVersion: 154.0.8037.92 (334b65d254cc..., userDataDir: C:\Users\veera\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54785}, goog:processID: 22788, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54785/devtoo..., se:cdpVersion: 154.0.8037.98, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 14f5a4ea97a1aa8a95669b5f3f850453)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 154.0.8037.98, chrome: {chromedriverVersion: 154.0.8037.92 (334b65d254cc..., userDataDir: C:\Users\veera\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52684}, goog:processID: 20252, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52684/devtoo..., se:cdpVersion: 154.0.8037.98, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: e4927c8a98b8dfeba9daa1c7938ece3f)
 ----------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-11 [Malformed: Special Characters]
 DESCRIPTION   : Punctuation, symbols, and malformed characters
-TIMESTAMP     : 2026-10-12 17:13:16
+TIMESTAMP     : 2026-10-13 11:34:18
 INPUT VALUES  :
   * Login ID : "!@#$%^&*()_+{}[]:;"'<>?,./"
   * Password : "P@$$w0rd!#%&"
@@ -203,7 +203,7 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-12 [Malformed: Boundary Overflow]
 DESCRIPTION   : Excessively long string input to test boundary limits
-TIMESTAMP     : 2026-10-12 17:13:22
+TIMESTAMP     : 2026-10-13 11:34:23
 INPUT VALUES  :
   * Login ID : "23114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114231142311423114"
   * Password : "walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111walkin111"
@@ -221,7 +221,7 @@ UI & BROWSER OUTCOME:
 ----------------------------------------------------------------------------------------------------
 TEST CASE ID  : TC-01 [Valid Credentials]
 DESCRIPTION   : Valid login ID and correct password (Happy Path)
-TIMESTAMP     : 2026-10-12 17:13:33
+TIMESTAMP     : 2026-10-13 11:34:29
 INPUT VALUES  :
   * Login ID : "23114"
   * Password : "walkin111"
@@ -245,7 +245,7 @@ CAPTURED NETWORK ACTIVITY:
       Method : GET
       URL Query Parameters:
         action=pending_count
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/software-tickets.php?action=pending_count
       Status Code : 200 OK
@@ -258,7 +258,7 @@ CAPTURED NETWORK ACTIVITY:
       Method : GET
       URL Query Parameters:
         action=status
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/digilocker-verification.php?action=status
       Status Code : 200 OK
@@ -270,13 +270,13 @@ CAPTURED NETWORK ACTIVITY:
       URL    : http://13.233.119.231/api/employee/dashboard-theme.php
       Method : GET
       Param / Body / FormData: [None]
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/dashboard-theme.php
       Status Code : 200 OK
       MIME Type   : application/json
       Response Body Got:
-        {"success":true,"data":{"themes":[{"id":15,"bio_id":"23114","media_type":"image","file_url":"storage\/themes\/23114_6a9529e53fa6c2.55798739.jpg","display_name":"app_bg.jpg","file_size":1931577,"created_at":"2026-08-31 07:14:45","presigned_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/storage\/themes\/23114_6a9529e53fa6c2.55798739.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T114327Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=386b754034d21fa65178dbc43c1d9377442cc96c6f7d6f2fd6603037cef44be1"}]}}
+        {"success":true,"data":{"themes":[{"id":15,"bio_id":"23114","media_type":"image","file_url":"storage\/themes\/23114_6a9529e53fa6c2.55798739.jpg","display_name":"app_bg.jpg","file_size":1931577,"created_at":"2026-08-31 07:14:45","presigned_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/storage\/themes\/23114_6a9529e53fa6c2.55798739.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T060426Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=01d7320451d58c2716c99835d441e1a919c802a18f869d681e82b2e3e27e0df6"}]}}
 
   [5] HTTP REQUEST:
       URL    : http://13.233.119.231/privileges/api/doa/pending_counts.php
@@ -294,7 +294,7 @@ CAPTURED NETWORK ACTIVITY:
       URL    : http://13.233.119.231/api/employee/approval-counts.php
       Method : GET
       Param / Body / FormData: [None]
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/approval-counts.php
       Status Code : 200 OK
@@ -306,47 +306,47 @@ CAPTURED NETWORK ACTIVITY:
       URL    : http://13.233.119.231/api/employee/home.php
       Method : GET
       Param / Body / FormData: [None]
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/home.php
       Status Code : 200 OK
       MIME Type   : application/json
       Response Body Got:
-        {"success":true,"data":{"home":{"summary":{"bio_id":"23114","staff_id":"SSENTS881","employee_name":"Veeramani A","designation":"Senior Developer Intern - SDI","level":"L-24","category":"Non teaching","emp_type":"Full time","department":"Software","campus":"Viana Soft Private Limited","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_68b70257432b41.09819328.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T114327Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=f32271d4a496e68587f20b4bda68c1d7019f8326553eeba0ad1f7717081c0638","doj":"2024-02-05"},"statistics":{"current_month":"October 2026","current_year":"2026"},"leave":{"types":[{"abbr":"CL","name":"Casual leave","availability":1.5,"interval":"Month"},{"abbr":"SL","name":"Sick leave","availability":5,"interval":"Month"},{"abbr":"EL","name":"Earned leave","availability":1,"interval":"Month"}],"message":"Reporting Authority: Dr. V. Deepak Nallasamy (389)","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T114327Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=409f077c1b52adb74d7da0dc8cc38e5f7f6ec49e36f4f06cc5b691ef53626be7","display":"Reporting Authority: Dr. V. Deepak Nallasamy (389)"}},"notices":{"resignation_notice":false,"resignation_message":"You are currently under the notice period!"},"navigation":[{"key":"next_duty","label":"Next Duty","href":"..\/upcoming_duties.php","show":true,"badge":0},{"key":"privilege_approval","label":"Privilege Approval","href":"..\/privilage-approval.php","show":true,"badge":0},{"key":"allowance_details","label":"Allowance Details","href":"..\/employee_allowance_details.php","show":true,"badge":0},{"key":"salary_history","label":"Salary History","href":"..\/salary_history.php","show":true,"badge":0},{"key":"video_wall","label":"Duty - Video Wall","href":"..\/video_wall.php","show":true,"badge":0},{"key":"claim_ot","label":"Claim OT","href":"..\/ot.php","show":true,"badge":0},{"key":"grievance","label":"Grievance","href":"..\/grievanceForm.php","show":true,"badge":0}],"community":{"required":false},"legacy_urls":{"attendance":"..\/attendance.php","leave_status":"..\/leave_status.php","leave_application":"..\/leave_application.php","fetch_attendance":"..\/fetch_emp_attendance.php","save_community":"\/save_community.php","profile_view":"..\/profile_view.php"}}}}
+        {"success":true,"data":{"home":{"summary":{"bio_id":"23114","staff_id":"SSENTS881","employee_name":"Veeramani A","designation":"Senior Developer Intern - SDI","level":"L-24","category":"Non teaching","emp_type":"Full time","department":"Software","campus":"Viana Soft Private Limited","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_68b70257432b41.09819328.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T060426Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=79383e212613ef90fd99963a067f497341f9fc0bce61f4d2202e78d8704b33f2","doj":"2024-02-05"},"statistics":{"current_month":"October 2026","current_year":"2026"},"leave":{"types":[{"abbr":"CL","name":"Casual leave","availability":1.5,"interval":"Month"},{"abbr":"SL","name":"Sick leave","availability":3.5,"interval":"Month"},{"abbr":"EL","name":"Earned leave","availability":1,"interval":"Month"}],"message":"Reporting Authority: Dr. V. Deepak Nallasamy (389)","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T060426Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=8efd8021f98d3044a792fd0dd7d060e67813ad277a49a4a64bb80f558d1ec4a1","display":"Reporting Authority: Dr. V. Deepak Nallasamy (389)"}},"notices":{"resignation_notice":false,"resignation_message":"You are currently under the notice period!"},"navigation":[{"key":"next_duty","label":"Next Duty","href":"..\/upcoming_duties.php","show":true,"badge":0},{"key":"privilege_approval","label":"Privilege Approval","href":"..\/privilage-approval.php","show":true,"badge":0},{"key":"allowance_details","label":"Allowance Details","href":"..\/employee_allowance_details.php","show":true,"badge":0},{"key":"salary_history","label":"Salary History","href":"..\/salary_history.php","show":true,"badge":0},{"key":"video_wall","label":"Duty - Video Wall","href":"..\/video_wall.php","show":true,"badge":0},{"key":"claim_ot","label":"Claim OT","href":"..\/ot.php","show":true,"badge":0},{"key":"grievance","label":"Grievance","href":"..\/grievanceForm.php","show":true,"badge":0}],"community":{"required":false},"legacy_urls":{"attendance":"..\/attendance.php","leave_status":"..\/leave_status.php","leave_application":"..\/leave_application.php","fetch_attendance":"..\/fetch_emp_attendance.php","save_community":"\/save_community.php","profile_view":"..\/profile_view.php"}}}}
 
   [8] HTTP REQUEST:
-      URL    : http://13.233.119.231/api/employee/profile.php?_ts=1791805407371
+      URL    : http://13.233.119.231/api/employee/profile.php?_ts=1791871468161
       Method : GET
       URL Query Parameters:
-        _ts=1791805407371
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q, cache-control=no-cache, pragma=no-cache}
+        _ts=1791871468161
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig, cache-control=no-cache, pragma=no-cache}
       HTTP RESPONSE:
-      URL         : http://13.233.119.231/api/employee/profile.php?_ts=1791805407371
+      URL         : http://13.233.119.231/api/employee/profile.php?_ts=1791871468161
       Status Code : 200 OK
       MIME Type   : application/json
       Response Body Got:
-        {"success":true,"data":{"profile":{"identity":{"bio_id":"23114","staff_id":"SSENTS881","employee_name":"Veeramani A","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_68b70257432b41.09819328.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T114327Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=f32271d4a496e68587f20b4bda68c1d7019f8326553eeba0ad1f7717081c0638","status":"Active"},"work":{"campus":"Viana Soft Private Limited","department":"Software","designation":"Senior Developer Intern - SDI","category":"Non teaching","emp_type":"Full time","role":"Employee","level":"L-24","doj":"05 Feb 2024","shift":"M8.00-16.30","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T114327Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=409f077c1b52adb74d7da0dc8cc38e5f7f6ec49e36f4f06cc5b691ef53626be7","display":"Dr. V. Deepak Nallasamy (389)"}},"personal":{"gender":"Male","dob":"06 Jul 2001","phone":"6374432752","email":"veeramaniamk@gmail.com","address":"No179, Pettai Street, Pappakudi South, Pappakudi, Ariyalure, Tamil Nadu 612903","qualification":"","registration_num":"0","external_experience":"0","physically_challenged":"No","outside_inside_state":"Inside","state":"Tamil Nadu","country":"India"},"compliance":{"aadhar_num":"287467652410","pan_num":"DJPPA0854P","passport_num":""},"bank":{"bank_name":"RBL BANK","bank_ac":"309024507372","bank_ifsc":"RATN0000387","branch_address":""}}}}
+        {"success":true,"data":{"profile":{"identity":{"bio_id":"23114","staff_id":"SSENTS881","employee_name":"Veeramani A","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_68b70257432b41.09819328.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T060426Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=79383e212613ef90fd99963a067f497341f9fc0bce61f4d2202e78d8704b33f2","status":"Active"},"work":{"campus":"Viana Soft Private Limited","department":"Software","designation":"Senior Developer Intern - SDI","category":"Non teaching","emp_type":"Full time","role":"Employee","level":"L-24","doj":"05 Feb 2024","shift":"M8.00-16.30","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T060426Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=8efd8021f98d3044a792fd0dd7d060e67813ad277a49a4a64bb80f558d1ec4a1","display":"Dr. V. Deepak Nallasamy (389)"}},"personal":{"gender":"Male","dob":"06 Jul 2001","phone":"6374432752","email":"veeramaniamk@gmail.com","address":"No179, Pettai Street, Pappakudi South, Pappakudi, Ariyalure, Tamil Nadu 612903","qualification":"","registration_num":"0","external_experience":"0","physically_challenged":"No","outside_inside_state":"Inside","state":"Tamil Nadu","country":"India"},"compliance":{"aadhar_num":"287467652410","pan_num":"DJPPA0854P","passport_num":""},"bank":{"bank_name":"RBL BANK","bank_ac":"309024507372","bank_ifsc":"RATN0000387","branch_address":""}}}}
 
   [9] HTTP REQUEST:
       URL    : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
       Method : GET
       URL Query Parameters:
         cycle=current&lite=1
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
       Status Code : 200 OK
       MIME Type   : application/json
       Response Body Got:
-        {"success":true,"data":{"attendance":{"cycle":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"title":"Oct 2026","available_cycles":{"current":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"last":{"key":"last","start":"2026-08-21","end":"2026-09-20","label":"Aug 21 – Sep 20, 2026","selector_label":"Sep 2026","end_month_key":"2026-09"}},"summary":{"present_days":0,"half_days":0,"sandwich_lop_days":3,"total_present_days":0,"total_absent_days":22,"week_off_days":3,"lop_days":22,"remaining_buffer_minutes":250,"total_buffer_minutes":250,"used_buffer_minutes":0,"buffer_lop_cycles":0,"total_working_hours":0,"attendance_percent":0,"today_in_time":"—","today_out_time":"—"},"calendar":{"mode":"payroll_cycle","title":"Sep 21 – Oct 20, 2026","start_date":"2026-09-21","end_date":"2026-10-20","offset":1,"total_days":30,"days":{"2026-09-21":{"date":"2026-09-21","display_day":21,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-22":{"date":"2026-09-22","display_day":22,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-23":{"date":"2026-09-23","display_day":23,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-24":{"date":"2026-09-24","display_day":24,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-25":{"date":"2026-09-25","display_day":25,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-26":{"date":"2026-09-26","display_day":26,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-27":{"date":"2026-09-27","display_day":27,"month_label":"Sep","status":"Sandwich LOP","raw_status":"(LOP)","in_time":null,"out_time":null,"is_future":false},"2026-09-28":{"date":"2026-09-28","display_day":28,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-29":{"date":"2026-09-29","display_day":29,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-30":{"date":"2026-09-30","display_day":30,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-01":{"date":"2026-10-01","display_day":1,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-02":{"date":"2026-10-02","display_day":2,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-03":{"date":"2026-10-03","display_day
-        ... [Payload truncated, total length: 12486 chars]
+        {"success":true,"data":{"attendance":{"cycle":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"title":"Oct 2026","available_cycles":{"current":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"last":{"key":"last","start":"2026-08-21","end":"2026-09-20","label":"Aug 21 – Sep 20, 2026","selector_label":"Sep 2026","end_month_key":"2026-09"}},"summary":{"present_days":0,"half_days":0,"sandwich_lop_days":3,"total_present_days":0,"total_absent_days":23,"week_off_days":3,"lop_days":23,"remaining_buffer_minutes":250,"total_buffer_minutes":250,"used_buffer_minutes":0,"buffer_lop_cycles":0,"total_working_hours":0,"attendance_percent":0,"today_in_time":"—","today_out_time":"—"},"calendar":{"mode":"payroll_cycle","title":"Sep 21 – Oct 20, 2026","start_date":"2026-09-21","end_date":"2026-10-20","offset":1,"total_days":30,"days":{"2026-09-21":{"date":"2026-09-21","display_day":21,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-22":{"date":"2026-09-22","display_day":22,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-23":{"date":"2026-09-23","display_day":23,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-24":{"date":"2026-09-24","display_day":24,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-25":{"date":"2026-09-25","display_day":25,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-26":{"date":"2026-09-26","display_day":26,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-27":{"date":"2026-09-27","display_day":27,"month_label":"Sep","status":"Sandwich LOP","raw_status":"(LOP)","in_time":null,"out_time":null,"is_future":false},"2026-09-28":{"date":"2026-09-28","display_day":28,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-29":{"date":"2026-09-29","display_day":29,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-30":{"date":"2026-09-30","display_day":30,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-01":{"date":"2026-10-01","display_day":1,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-02":{"date":"2026-10-02","display_day":2,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-03":{"date":"2026-10-03","display_day
+        ... [Payload truncated, total length: 12491 chars]
 
   [10] HTTP REQUEST:
       URL    : http://13.233.119.231/api/employee/software-tickets.php?action=pending_count
       Method : GET
       URL Query Parameters:
         action=pending_count
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/software-tickets.php?action=pending_count
       Status Code : 200 OK
@@ -359,47 +359,20 @@ CAPTURED NETWORK ACTIVITY:
       Method : GET
       URL Query Parameters:
         action=status
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/birthday.php?action=status
       Status Code : 200 OK
       MIME Type   : application/json
       Response Body Got:
-        {"success":true,"data":{"is_birthday_today":false,"has_auto_opened":false,"celebration_year":2026,"employee":{"bio_id":"23114","employee_name":"Veeramani A","first_name":"Veeramani","display_name":"Veeramani","formal_name":"Veeramani","department":"Software","campus":"Viana Soft Private Limited","institution":"Viana Soft Private Limited","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_68b70257432b41.09819328.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T114327Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=c7e61c07cfe7c90b502c5334bd2aad0fd161c9ab8108853bf4c779105736c01d"},"colleague_birthdays":[],"pending_notifications":[],"stats":{"wish_count":0,"greet_me_count":0,"auto_popup_count":0},"greeting":null}}
+        {"success":true,"data":{"is_birthday_today":false,"has_auto_opened":false,"celebration_year":2026,"employee":{"bio_id":"23114","employee_name":"Veeramani A","first_name":"Veeramani","display_name":"Veeramani","formal_name":"Veeramani","department":"Software","campus":"Viana Soft Private Limited","institution":"Viana Soft Private Limited","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_68b70257432b41.09819328.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261013%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261013T060426Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=7f613c7f40e45d7de5974a955670dcf7da8bd5c69c419742f4f911e4b623b74b"},"colleague_birthdays":[],"pending_notifications":[],"stats":{"wish_count":0,"greet_me_count":0,"auto_popup_count":0},"greeting":null}}
 
   [12] HTTP REQUEST:
-      URL    : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
-      Method : GET
-      URL Query Parameters:
-        cycle=current&lite=1
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
-      HTTP RESPONSE:
-      URL         : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
-      Status Code : 200 OK
-      MIME Type   : application/json
-      Response Body Got:
-        {"success":true,"data":{"attendance":{"cycle":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"title":"Oct 2026","available_cycles":{"current":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"last":{"key":"last","start":"2026-08-21","end":"2026-09-20","label":"Aug 21 – Sep 20, 2026","selector_label":"Sep 2026","end_month_key":"2026-09"}},"summary":{"present_days":0,"half_days":0,"sandwich_lop_days":3,"total_present_days":0,"total_absent_days":22,"week_off_days":3,"lop_days":22,"remaining_buffer_minutes":250,"total_buffer_minutes":250,"used_buffer_minutes":0,"buffer_lop_cycles":0,"total_working_hours":0,"attendance_percent":0,"today_in_time":"—","today_out_time":"—"},"calendar":{"mode":"payroll_cycle","title":"Sep 21 – Oct 20, 2026","start_date":"2026-09-21","end_date":"2026-10-20","offset":1,"total_days":30,"days":{"2026-09-21":{"date":"2026-09-21","display_day":21,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-22":{"date":"2026-09-22","display_day":22,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-23":{"date":"2026-09-23","display_day":23,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-24":{"date":"2026-09-24","display_day":24,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-25":{"date":"2026-09-25","display_day":25,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-26":{"date":"2026-09-26","display_day":26,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-27":{"date":"2026-09-27","display_day":27,"month_label":"Sep","status":"Sandwich LOP","raw_status":"(LOP)","in_time":null,"out_time":null,"is_future":false},"2026-09-28":{"date":"2026-09-28","display_day":28,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-29":{"date":"2026-09-29","display_day":29,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-30":{"date":"2026-09-30","display_day":30,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-01":{"date":"2026-10-01","display_day":1,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-02":{"date":"2026-10-02","display_day":2,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-03":{"date":"2026-10-03","display_day
-        ... [Payload truncated, total length: 12486 chars]
-
-  [13] HTTP REQUEST:
-      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
-      Method : GET
-      URL Query Parameters:
-        action=pending
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
-      HTTP RESPONSE:
-      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
-      Status Code : 200 OK
-      MIME Type   : application/json
-      Response Body Got:
-        {"success":true,"data":{"is_head":false,"date":"2026-10-12","due_groups":[],"waiting_groups":[],"due_count":0,"next_available_at":null,"must_score":false}}
-
-  [14] HTTP REQUEST:
       URL    : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-duty
       Method : GET
       URL Query Parameters:
         page=home-tab-duty
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=text/html, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=text/html, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-duty
       Status Code : 200 OK
@@ -407,12 +380,12 @@ CAPTURED NETWORK ACTIVITY:
       Response Body Got:
         [Full HTML Content Omitted - Response Code: 200 OK | Length: 4094 chars]
 
-  [15] HTTP REQUEST:
+  [13] HTTP REQUEST:
       URL    : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-leave
       Method : GET
       URL Query Parameters:
         page=home-tab-leave
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=text/html, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=text/html, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/page-fragment.php?page=home-tab-leave
       Status Code : 200 OK
@@ -420,12 +393,39 @@ CAPTURED NETWORK ACTIVITY:
       Response Body Got:
         [Full HTML Content Omitted - Response Code: 200 OK | Length: 11060 chars]
 
+  [14] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Method : GET
+      URL Query Parameters:
+        cycle=current&lite=1
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/attendance.php?cycle=current&lite=1
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"attendance":{"cycle":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"title":"Oct 2026","available_cycles":{"current":{"key":"current","start":"2026-09-21","end":"2026-10-20","label":"Sep 21 – Oct 20, 2026","selector_label":"Oct 2026","end_month_key":"2026-10"},"last":{"key":"last","start":"2026-08-21","end":"2026-09-20","label":"Aug 21 – Sep 20, 2026","selector_label":"Sep 2026","end_month_key":"2026-09"}},"summary":{"present_days":0,"half_days":0,"sandwich_lop_days":3,"total_present_days":0,"total_absent_days":23,"week_off_days":3,"lop_days":23,"remaining_buffer_minutes":250,"total_buffer_minutes":250,"used_buffer_minutes":0,"buffer_lop_cycles":0,"total_working_hours":0,"attendance_percent":0,"today_in_time":"—","today_out_time":"—"},"calendar":{"mode":"payroll_cycle","title":"Sep 21 – Oct 20, 2026","start_date":"2026-09-21","end_date":"2026-10-20","offset":1,"total_days":30,"days":{"2026-09-21":{"date":"2026-09-21","display_day":21,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-22":{"date":"2026-09-22","display_day":22,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-23":{"date":"2026-09-23","display_day":23,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-24":{"date":"2026-09-24","display_day":24,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-25":{"date":"2026-09-25","display_day":25,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-26":{"date":"2026-09-26","display_day":26,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-27":{"date":"2026-09-27","display_day":27,"month_label":"Sep","status":"Sandwich LOP","raw_status":"(LOP)","in_time":null,"out_time":null,"is_future":false},"2026-09-28":{"date":"2026-09-28","display_day":28,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-29":{"date":"2026-09-29","display_day":29,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-09-30":{"date":"2026-09-30","display_day":30,"month_label":"Sep","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-01":{"date":"2026-10-01","display_day":1,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-02":{"date":"2026-10-02","display_day":2,"month_label":"Oct","status":"Absent","raw_status":"Absent","in_time":null,"out_time":null,"is_future":false},"2026-10-03":{"date":"2026-10-03","display_day
+        ... [Payload truncated, total length: 12491 chars]
+
+  [15] HTTP REQUEST:
+      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Method : GET
+      URL Query Parameters:
+        action=pending
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig}
+      HTTP RESPONSE:
+      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
+      Status Code : 200 OK
+      MIME Type   : application/json
+      Response Body Got:
+        {"success":true,"data":{"is_head":false,"date":"2026-10-13","due_groups":[],"waiting_groups":[],"due_count":0,"next_available_at":null,"must_score":false}}
+
   [16] HTTP REQUEST:
       URL    : http://13.233.119.231/api/employee/duty-exchange.php?action=overview&slim=1
       Method : GET
       URL Query Parameters:
         action=overview&slim=1
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/duty-exchange.php?action=overview&slim=1
       Status Code : 200 OK
@@ -438,53 +438,26 @@ CAPTURED NETWORK ACTIVITY:
       Method : GET
       URL Query Parameters:
         action=bootstrap
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/leave.php?action=bootstrap
-      Status Code : 200 OK
-      MIME Type   : application/json
+      Status Code : 0 
+      MIME Type   : 
       Response Body Got:
-        {"success":true,"data":{"leave":{"overview":{"balances":[{"abbr":"CL","name":"Casual leave","availability":1.5,"interval":"Month"},{"abbr":"SL","name":"Sick leave","availability":5,"interval":"Month"},{"abbr":"EL","name":"Earned leave","availability":1,"interval":"Month"}],"message":"","reporting_authority":{"head_id":"389","head_name":"Dr. V. Deepak Nallasamy","designation":"Dental Professor","profile_img_url":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/389.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T114329Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Signature=485b2a831e5a26d3802bfd7c20bf4f3af31ad7328a14be438b117064b37f5646","display":"Reporting Authority: Dr. V. Deepak Nallasamy (389)"},"cycle":{"label":"Sep 21 – Oct 20, 2026","date_from":"2026-09-21","date_to":"2026-10-20"},"leave_filter_names":["Casual leave","Sick leave","Earned leave"],"is_teaching":false,"department":"Software","work_category":"Non teaching","today":"2026-10-12","substitute_required":false},"history":{"rows":[{"id":274323,"category":"Sick leave","leave_date":"2026-10-18","start_date":"2026-10-18","end_date":"2026-10-18","leave_type":"full_day","half_day_session":"","total_days":1,"status":"Rejected","applied_on":"2026-10-12 10:30:35","reason":"' OR '1'='1'; DROP TABLE tbl_leaves; --","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791801035_6accb6cbde69a0.81441458.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T114329Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=631f2d8a74a3bf4637fd71d4735274c888d0f685dc2b024f543a63fba3a0c2c6","can_cancel":false},{"id":274322,"category":"Casual leave","leave_date":"2026-10-17","start_date":"2026-10-17","end_date":"2026-10-17","leave_type":"full_day","half_day_session":"","total_days":1,"status":"Rejected","applied_on":"2026-10-12 10:30:02","reason":"dfdfdf","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791801001_6accb6a9e494d0.97234210.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUTBPXK7KA5U3VB5Z%2F20261012%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20261012T114329Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=a28b724a66884aa2e49dbac6cd9ce0ea88df1fe69d9e0ddc0a7735a29cecb99a","can_cancel":false},{"id":274321,"category":"Sick leave","leave_date":"2026-10-16","start_date":"2026-10-16","end_date":"2026-10-16","leave_type":"half_day","half_day_session":"Session-2","total_days":0.5,"status":"Rejected","applied_on":"2026-10-12 10:17:20","reason":"Medical consultation in the afternoon session","file":"https:\/\/simats360.s3.ap-south-1.amazonaws.com\/uploads\/23114_1791800240_6accb3b00128a9.82124111.png?X-Amz-Content-Sha256=UNSIGNED-PAYLO
-        ... [Payload truncated, total length: 24542 chars]
+        [Empty or Streaming/Redirected]
 
   [18] HTTP REQUEST:
       URL    : http://13.233.119.231/api/employee/project-requests.php?action=list&page=1&search=&location=&doa_status=
       Method : GET
       URL Query Parameters:
         action=list&page=1&search=&location=&doa_status=
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
+      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiZGYyYTNmZTAzYmRlMzYxZDk4MzlmYzAyYWU5NWVjMGEwZDEzNmZiNDg1MzA5YjQ3Y2Q5YTkzMzE3ZTNiZmYzMyIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjUwYzMxZjY5ZDBhMThhYjA4MzJlZjRlODllYzkyYjBmIiwiaWF0IjoxNzkxODcxNDY1LCJuYmYiOjE3OTE4NzE0NjUsImV4cCI6MTc5MTg3MjM2NX0.2yU9yXmAnJSsamMRivQQDbvjexO4rniHgtOumTwmAig}
       HTTP RESPONSE:
       URL         : http://13.233.119.231/api/employee/project-requests.php?action=list&page=1&search=&location=&doa_status=
       Status Code : 200 OK
       MIME Type   : application/json
       Response Body Got:
         {"success":true,"data":{"project_request":{"rows":[],"total":0,"page":1,"per_page":50,"has_more":false}}}
-
-  [19] HTTP REQUEST:
-      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
-      Method : GET
-      URL Query Parameters:
-        action=pending
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
-      HTTP RESPONSE:
-      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
-      Status Code : 200 OK
-      MIME Type   : application/json
-      Response Body Got:
-        {"success":true,"data":{"is_head":false,"date":"2026-10-12","due_groups":[],"waiting_groups":[],"due_count":0,"next_available_at":null,"must_score":false}}
-
-  [20] HTTP REQUEST:
-      URL    : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
-      Method : GET
-      URL Query Parameters:
-        action=pending
-      Request Headers: {Referer=http://13.233.119.231/dashboard.php, User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36, accept=application/json, authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaW1hdHMzNjAiLCJhdWQiOiJlbXBsb3llZS1kYXNoYm9hcmQiLCJzdWIiOiIyMzExNCIsImJpb19pZCI6IjIzMTE0Iiwicm9sZV9pZCI6OCwic2lkIjoiMTNjYTU1YzVhN2M0Njc1OWI3MDc5ODkwOTA1MzNhMjBkMzY1NGFkZmY3OTMyZDg4NGVhM2JiYjQ4ZmFjYzhmOCIsInRva2VuX3VzZSI6ImVtcGxveWVlX2FjY2VzcyIsImp0aSI6IjFkZGViYjRiNWQzMTk4ZmM3Y2VhOGI4ZjZkNjg3MjMyIiwiaWF0IjoxNzkxODA1NDA2LCJuYmYiOjE3OTE4MDU0MDYsImV4cCI6MTc5MTgwNjMwNn0.xD1kTi-a4p6tyd_HBoA8mEIx_yDuF1d9ZEG2OfU0A-Q}
-      HTTP RESPONSE:
-      URL         : http://13.233.119.231/api/employee/hierarchy_scores.php?action=pending
-      Status Code : 200 OK
-      MIME Type   : application/json
-      Response Body Got:
-        {"success":true,"data":{"is_head":false,"date":"2026-10-12","due_groups":[],"waiting_groups":[],"due_count":0,"next_available_at":null,"must_score":false}}
 
 UI & BROWSER OUTCOME:
   * Final Page URL : http://13.233.119.231/dashboard.php
@@ -500,5 +473,5 @@ Total Scenarios Executed : 12
 Passed Scenarios         : 11
 Failed Scenarios         : 1
 Success Rate             : 91%
-Completed Timestamp      : 2026-10-12 17:13:39
+Completed Timestamp      : 2026-10-13 11:34:35
 ====================================================================================================
